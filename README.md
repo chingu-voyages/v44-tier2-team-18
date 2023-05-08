@@ -11,6 +11,20 @@
    <br>
    <br>
    <br>
+
+# The flow of git
+
+1. `git init` (only for the first time of this project)
+
+2. `git add <filename>` or `git add .`(all of the files in your branch)
+
+3. `git commit -m "<comment>"`
+
+4. `git remote add origin https://github.com/chingu-voyages/v44-tier2-team-18.git`(only for the first time of this project)
+
+5. `git push origin <your branch name>`
+
+   <br>
    <br>
    <br>
 
