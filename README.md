@@ -12,7 +12,17 @@
    <br>
    <br>
 
+# How to create your git branch
+
+`git checkout -b <your branch name>`
+<br>
+<br>
+<br>
+
 # The flow of git
+
+- Don't forget to update your branch before pushing
+  `git pull origin <branch name>` (branch name should be "dev" or "master" depending on your necessaries)
 
 1. `git init` (only for the first time of this project)
 
