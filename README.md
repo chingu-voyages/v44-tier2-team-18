@@ -1,13 +1,19 @@
 # How to start the app
 
 1. Execute the git clone in the folder you will work on with this commande  
-   `git clone https://github.com/chingu-voyages/voyage-project-tier2-boolebots.git`
+   `git clone https://github.com/chingu-voyages/v44-tier2-team-18.git`
+
+   `git branch -a`
+   `git checkout dev`
 
 2. Execute npm install  
    `npm install`
 
 3. run the project in your local host  
     `npm start`
+
+ - If there is an error "Cannot find module 'sass' --> run this `npm install sass`
+    
    <br>
    <br>
    <br>
@@ -15,30 +21,37 @@
 # How to create your git branch
 
 `git checkout -b <your branch name>`
+
 <br>
 <br>
 <br>
 
-# The flow of git
+# The workflow of github
 
-- Don't forget to update your branch before pushing
+1. Create a new branch for your work. Use 4 basic types of branches: bug, feature, refactor, and style to start with your branch's name.  For example: `git checkout -b 'feature/welcome-page'`
+
+- Don't forget to update your branch before pushing any changes
   `git pull origin <branch name>` (branch name should be "dev" or "master" depending on your necessaries)
 
-1. `git init` (only for the first time of this project)
+2. `git init` (only for the first time of this project)
 
-2. `git add <filename>` or `git add .`(all of the files in your branch)
+3. `git add <filename>` or `git add .`(all of the files in your branch)
 
-3. `git commit -m "<comment>"`
+4. Commit to your branch using keywords: feat, fix, style, refactor, docs before your comment `git commit -m "keywords: <comment>"`. For example: `git commit -m "feat: Create footer section"`
 
-4. `git remote add origin https://github.com/chingu-voyages/v44-tier2-team-18.git`(only for the first time of this project)
+5. `git remote add origin https://github.com/chingu-voyages/v44-tier2-team-18.git`(only for the first time of this project)
 
-5. `git push origin <your branch name>`
+6. `git push origin <your branch name>`
+
+7. Open a pull request and wait for review from other members.
+
+8. After others have approved your changes, you should merge your branch with the dev branch. Be sure to execute the following command to retrieve the most recent changes from the development branch: "git pull." If conflicts arise, be sure to address them promptly.
 
    <br>
    <br>
    <br>
 
-# voyage-tasks
+# Voyage-tasks
 
 Your project's `readme` is as important to success as your code. For
 this reason you should put as much care into its creation and maintenance
@@ -59,7 +72,7 @@ in your `readme` feel free to replace the text we've provided here.
 <br>
 <br>
 
-# voyage-project-tier2-boolebots
+# Voyage-project-tier2-boolebots
 
 ## Table of Contents
 
