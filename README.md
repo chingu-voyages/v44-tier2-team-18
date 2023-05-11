@@ -15,16 +15,6 @@
  - If there is an error "Cannot find module 'sass' --> run this `npm install sass`
     
    <br>
-   <br>
-   <br>
-
-# How to create your git branch
-
-`git checkout -b <your branch name>`
-
-<br>
-<br>
-<br>
 
 # The workflow of github
 
@@ -37,7 +27,7 @@
 
 3. `git add <filename>` or `git add .`(all of the files in your branch)
 
-4. Commit to your branch using keywords: feat, fix, style, refactor, docs before your comment `git commit -m "keywords: <comment>"`. For example: `git commit -m "feat: Create footer section"`
+4. Commit to your branch using keywords: "feat, fix, style, refactor, docs" before your comment `git commit -m "keywords: <comment>"`. For example: `git commit -m "feat: Create footer section"`
 
 5. `git remote add origin https://github.com/chingu-voyages/v44-tier2-team-18.git`(only for the first time of this project)
 
@@ -47,7 +37,6 @@
 
 8. After others have approved your changes, you should merge your branch with the dev branch. Be sure to execute the following command to retrieve the most recent changes from the development branch: "git pull." If conflicts arise, be sure to address them promptly.
 
-   <br>
    <br>
    <br>
 
@@ -66,10 +55,6 @@ in your `readme` feel free to replace the text we've provided here.
 
 > Own it & Make it your Own!
 
-<br>
-<br>
-<br>
-<br>
 <br>
 
 # Voyage-project-tier2-boolebots
