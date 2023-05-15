@@ -10,15 +10,14 @@
    `npm install`
 
 3. run the project in your local host  
-    `npm start`
+   `npm start`
 
- - If there is an error "Cannot find module 'sass' --> run this `npm install sass`
-    
-   <br>
+- If there is an error "Cannot find module 'sass' --> run this `npm install sass`
+  <br>
 
 # The workflow of github
 
-1. Create a new branch for your work. Use 4 basic types of branches: bug, feature, refactor, and style to start with your branch's name.  For example: `git checkout -b 'feature/welcome-page'`
+1. Create a new branch for your work. Use 4 basic types of branches: bug, feature, refactor, and style to start with your branch's name. For example: `git checkout -b 'feature/welcome-page'`
 
 - Don't forget to update your branch before pushing any changes
   `git pull origin <branch name>` (branch name should be "dev" or "master" depending on your necessaries)
@@ -39,6 +38,18 @@
 
    <br>
    <br>
+
+# How to use global.scss
+
+1.  add import in the scss file where you want to use global  
+    `@import "../../global/global.scss";` (change the path depending on where you file is)
+2.  use the variable defined in the global.scss file  
+    `.container-home h1 {`
+    `color: $textcolor;`
+    `}`
+
+<br>
+<br>
 
 # Voyage-tasks
 
