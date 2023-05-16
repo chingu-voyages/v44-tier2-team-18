@@ -35,7 +35,7 @@
 
 7. Open a pull request and wait for review from other members.
 
-8. After others have approved your changes, you should merge your branch with the dev branch. Be sure to execute the following command to retrieve the most recent changes from the development branch: "git pull." If conflicts arise, be sure to address them promptly.
+8. After others have approved your changes, you should merge your branch with the development branch. Be sure to execute the following command to retrieve the most recent changes from the development branch: "git pull." If conflicts arise, be sure to address them promptly.
 
    <br>
    <br>
