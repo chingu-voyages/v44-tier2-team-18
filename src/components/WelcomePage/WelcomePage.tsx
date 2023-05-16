@@ -1,13 +1,17 @@
 import './WelcomePage.scss';
 import Git from './Images/github2.png';
 import Linkedin from './Images/linkedin.png';
+import { Link } from 'react-router-dom';
+
 function WelcomePage() {
     return(
+        
 
     <>
+   
     <div className='container-home'>
         <h1>BOOLE BOTS BATTLE GAME</h1>
-        <button>Lets Play</button>
+        <Link to="/gamepage" className='link'><button >Lets Play</button></Link>
         
     </div>
 
@@ -18,11 +22,11 @@ function WelcomePage() {
         
     
         <div className='Team-links'>
-            <p>Sheriff Oladimeji <img src={Git} alt='github' className='github'/><img src={Linkedin} alt='linkedin' className='in'/></p>
-            <p>Giang Pham <img src={Git} alt='github' className='github'/><img src={Linkedin} alt='linkedin' className='in'/></p>
-            <p>Daniel <img src={Git} alt='github' className='github'/><img src={Linkedin} alt='linkedin' className='in'/></p>
-            <p>Emiri Ishikawa <img src={Git} alt='github' className='github'/><img src={Linkedin} alt='linkedin' className='in'/></p>
-            <p>LebzaM <img src={Git} alt='github' className='github'/><img src={Linkedin} alt='linkedin' className='in'/></p>
+        <a href='#' className='links'><p>Sheriff Oladimeji <img src={Git} alt='github' className='github'/><img src={Linkedin} alt='linkedin' className='in'/></p></a>
+            <a href='https://github.com/giangpham-cfg' className='links'><p>Giang Pham <img src={Git} alt='github' className='github'/><img src={Linkedin} alt='linkedin' className='in'/></p></a>
+            <a href='#' className='links'><p>Daniel <img src={Git} alt='github' className='github'/><img src={Linkedin} alt='linkedin' className='in'/></p></a>
+            <a href='https://github.com/Emiri-i' className='links'><p>Emiri Ishikawa <img src={Git} alt='github' className='github'/><img src={Linkedin} alt='linkedin' className='in'/></p></a>
+            <a href='https://github.com/LebzaM' className='links'><p>LebzaM <img src={Git} alt='github' className='github'/><img src={Linkedin} alt='linkedin' className='in'/></p></a>
 
         </div>
         <div className='chingu'>
