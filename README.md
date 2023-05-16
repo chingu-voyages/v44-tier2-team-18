@@ -4,7 +4,7 @@
    `git clone https://github.com/chingu-voyages/v44-tier2-team-18.git`
 
    `git branch -a`
-   `git checkout dev`
+   `git checkout development`
 
 2. Execute npm install  
    `npm install`
@@ -21,7 +21,7 @@
 1. Create a new branch for your work. Use 4 basic types of branches: bug, feature, refactor, and style to start with your branch's name.  For example: `git checkout -b 'feature/welcome-page'`
 
 - Don't forget to update your branch before pushing any changes
-  `git pull origin <branch name>` (branch name should be "dev" or "master" depending on your necessaries)
+  `git pull origin <branch name>` (branch name should be "development" or "master" depending on your necessaries)
 
 2. `git init` (only for the first time of this project)
 
