@@ -22,11 +22,11 @@ function WelcomePage() {
         
     
         <div className='Team-links'>
-        <a href='#' className='links'><p>Sheriff Oladimeji <img src={Git} alt='github' className='github'/></p></a>
-            <a href='https://github.com/giangpham-cfg' className='links'><p>Giang Pham <img src={Git} alt='github' className='github'/></p></a>
-            <a href='#' className='links'><p>Daniel <img src={Git} alt='github' className='github'/></p></a>
-            <a href='https://github.com/Emiri-i' className='links'><p>Emiri Ishikawa <img src={Git} alt='github' className='github'/></p></a>
-            <a href='https://github.com/LebzaM' className='links'><p>LebzaM <img src={Git} alt='github' className='github'/></p></a>
+            <a href='#' className='links' target="_blank" rel="noopener noreferrer"><p>Sheriff Oladimeji <img src={Git} alt='github' className='github'/></p></a>
+            <a href='https://github.com/giangpham-cfg' className='links' target="_blank" rel="noopener noreferrer"><p>Giang Pham <img src={Git} alt='github' className='github'/></p></a>
+            <a href='#' className='links' target="_blank" rel="noopener noreferrer"><p>Daniel <img src={Git} alt='github' className='github'/></p></a>
+            <a href='https://github.com/Emiri-i' className='links' target="_blank" rel="noopener noreferrer"><p>Emiri Ishikawa <img src={Git} alt='github' className='github'/></p></a>
+            <a href='https://github.com/LebzaM' className='links' target="_blank" rel="noopener noreferrer"><p>LebzaM <img src={Git} alt='github' className='github'/></p></a>
 
         </div>
         <div className='chingu'>
