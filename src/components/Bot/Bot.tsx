@@ -1,5 +1,4 @@
-import React, { useContext } from 'react';
-import { AppContext } from '../GamePage/GamePageLayout';
+import React, { useState } from 'react';
 import './Bot.scss'
 
 interface BotProps {
@@ -7,11 +6,29 @@ interface BotProps {
   rowPosition: number;
 }
 
+interface Bot {
+  position: number[];
+}
+
 function Bot({ columnPosition, rowPosition }: BotProps) {
-  const { board } = useContext(AppContext)
-  const bot = board[columnPosition][rowPosition]
+
+  const [bots, setBots] = useState<Bot[]>([{ position: [3, 5] }]);
+  const botsByPosition: { [key: string]: Bot } = {};
+  bots.forEach((bot) => {
+    botsByPosition[bot.position.join(":")] = bot;
+  });
+
+  const botPosition = botsByPosition[[columnPosition, rowPosition].join(":")];
+
+  if (botPosition) {
+    return (
+      <div className='bot'>
+        <div className='bot-head'>A</div>
+      </div>
+    )
+  }
   return (
-    <div className='bot'>{bot}</div>
+    <div className='bot'></div>
   )
 }
 
