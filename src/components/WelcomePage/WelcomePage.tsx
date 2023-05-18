@@ -22,7 +22,7 @@ function WelcomePage() {
         
     
         <div className='Team-links'>
-            <a href='#' className='links' target="_blank" rel="noopener noreferrer"><p>Sheriff Oladimeji <img src={Git} alt='github' className='github'/></p></a>
+            <a href='https://github.com/Sheriff-Oladimeji' className='links' target="_blank" rel="noopener noreferrer"><p>Sheriff Oladimeji <img src={Git} alt='github' className='github'/></p></a>
             <a href='https://github.com/giangpham-cfg' className='links' target="_blank" rel="noopener noreferrer"><p>Giang Pham <img src={Git} alt='github' className='github'/></p></a>
             <a href='#' className='links' target="_blank" rel="noopener noreferrer"><p>Daniel <img src={Git} alt='github' className='github'/></p></a>
             <a href='https://github.com/Emiri-i' className='links' target="_blank" rel="noopener noreferrer"><p>Emiri Ishikawa <img src={Git} alt='github' className='github'/></p></a>
