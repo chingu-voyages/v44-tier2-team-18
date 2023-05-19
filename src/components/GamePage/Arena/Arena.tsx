@@ -1,4 +1,5 @@
-import Bot from '../../Bot/Bot';
+
+import Cell from '../../Bot/Cell';
 import './Arena.scss';
 import React, { useState } from 'react';
 
@@ -12,7 +13,7 @@ function Arena(): JSX.Element {
                 return (
                     <div className="row">
                         {row.map((col, j) => {
-                            return <Bot columnPosition={i} rowPosition={j} />
+                            return <Cell columnPosition={j} rowPosition={i} />;
                         })}
                     </div>
                 )
