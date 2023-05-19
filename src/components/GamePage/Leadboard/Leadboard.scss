@@ -1,18 +1,14 @@
-$whiteColor : #fff;
+$whiteColor: #fff;
 $blackColor: black;
 $titleFont: Poppins;
 
-.board-container{
- 
-    width: 70%;
-    height: 80%;
-    margin-inline: auto;
-    margin-block: 10px;
-
+.board-container {
+  width: 70%;
+  margin-inline: auto;
 }
-.board-container h3{
-    color: $blackColor;
-    font-weight: 700;
-     font-family: $titleFont;
-     font-size: 30px;
+.board-container h3 {
+  color: $blackColor;
+  font-weight: 700;
+  font-family: $titleFont;
+  font-size: 30px;
 }
