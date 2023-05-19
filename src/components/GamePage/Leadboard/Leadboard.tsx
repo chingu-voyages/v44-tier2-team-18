@@ -4,7 +4,7 @@ function Leadboard() {
 
     return (
         <div className="board-container">
-<h3></h3>
+<h3>Battle Results</h3>
     </div>
     )
 }
