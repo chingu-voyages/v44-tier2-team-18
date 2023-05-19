@@ -1,6 +1,5 @@
 import './WelcomePage.scss';
-import Git from './Images/git.png';
-import Linkedin from './Images/linkedin.png';
+import Git from '../../assets/git.png'
 import { Link } from 'react-router-dom';
 
 function WelcomePage() {
