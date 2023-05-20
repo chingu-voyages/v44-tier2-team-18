@@ -6,36 +6,92 @@
   }
   .configuration-content {
     margin: 0 auto;
-    padding: 20px 0;
+    padding: 30px 0;
     width: 80%;
-    background-color: white;
-    opacity: 0.7;
+    background-color: lightgray;
+    border-radius: 10px;
+    opacity: 0.9;
     z-index: 0;
-    .range-wrapper {
-      .speed-slider-title {
-        margin: 10px 0;
-        z-index: 1;
-        color: black;
+    .not-editing {
+      .button-wrapper {
+        margin-bottom: 20px;
+        .globalButton {
+          background-color: white;
+          border: none;
+          outline: none;
+          // margin-bottom: 10px;
+          border-radius: 10px;
+          width: 130px;
+          height: 35px;
+          font-size: 15px;
+          z-index: 1;
+          &:hover {
+            cursor: pointer;
+          }
+        }
+      }
+      .range-wrapper {
+        label {
+          color: black;
+        }
+        .range-bar {
+          margin: 10px 0;
+          width: 70%;
+          -webkit-appearance: none; //need this to style the bar
+          appearance: none;
+          cursor: pointer;
+          background: #8acdff;
+          height: 10px; // height of the bar
+          border-radius: 3px;
+          border: solid 1px #dff1ff;
+          outline: 0;
+
+          &::-webkit-slider-thumb {
+            -webkit-appearance: none; // delete the default thumb style
+            background: #53aeff;
+            width: 20px;
+            height: 20px;
+            border-radius: 2px;
+            box-shadow: 0px 3px 6px 0px rgba(0, 0, 0, 0.15); // 影
+          }
+        }
+        .range-value {
+          color: black;
+          display: flex;
+          justify-content: space-around;
+          margin: 0 1rem;
+          span {
+            display: block;
+          }
+        }
       }
     }
-    label {
-      color: pink;
-    }
-    .range-value {
+    .editing {
       color: black;
-      display: flex;
-      justify-content: space-around;
-      margin: 0 1rem;
-      span {
-        display: block;
+      hr {
+        margin: 20px 0;
+        border: none;
+        height: 2px;
+        background-color: white;
+      }
+      .bot-setting-title {
+        text-align: center;
+        font-size: 1.3rem;
+      }
+      .bot-setting-content {
+        text-align: left;
+        margin: 0 15px;
+        .bot-each-config {
+          margin-bottom: 20px;
+        }
       }
     }
   }
   .buttle-button {
-    background-color: lightyellow;
+    background-color: white;
     border: none;
     outline: none;
-    margin: 10px;
+    margin-top: 30px;
     border-radius: 10px;
     width: 100px;
     height: 40px;
@@ -44,10 +100,4 @@
       cursor: pointer;
     }
   }
-  // input[type="range"] {
-  //   margin: 0.5rem auto;
-  //   &:after {
-  //     content: value;
-  //   }
-  // }
 }
