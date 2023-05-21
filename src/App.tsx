@@ -24,13 +24,9 @@ function App() {
     }
   ])
   return (
-<<<<<<< HEAD
     // <RouterProvider router={router} />
     <GamePageLayout/>
    
-=======
-    <RouterProvider router={router} />
->>>>>>> ed271e5938d219b2683beb0a05a0fb5edabf7afc
   );
 }
 
