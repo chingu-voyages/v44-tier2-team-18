@@ -1,4 +1,5 @@
 import { useState } from "react";
+import "./SetupBotConfig.scss";
 
 type BotConfigType = {
   botName: string;
@@ -74,7 +75,9 @@ export const SetupBotConfig = (props: Props) => {
               </select>
             </label>
           </div>
-          <button type="submit">Submit form</button>
+          <div className="submit">
+            <button type="submit">Confirm</button>
+          </div>
         </form>
       </div>
     </div>

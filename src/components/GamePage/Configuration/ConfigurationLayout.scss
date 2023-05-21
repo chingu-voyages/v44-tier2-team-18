@@ -66,26 +66,6 @@
         }
       }
     }
-    .editing {
-      color: black;
-      hr {
-        margin: 20px 0;
-        border: none;
-        height: 2px;
-        background-color: white;
-      }
-      .bot-setting-title {
-        text-align: center;
-        font-size: 1.3rem;
-      }
-      .bot-setting-content {
-        text-align: left;
-        margin: 0 15px;
-        .bot-each-config {
-          margin-bottom: 20px;
-        }
-      }
-    }
   }
   .buttle-button {
     background-color: white;
