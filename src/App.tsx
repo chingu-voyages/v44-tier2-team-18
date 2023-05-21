@@ -24,8 +24,8 @@ function App() {
     }
   ])
   return (
-    // <RouterProvider router={router} />
-    <GamePageLayout/>
+    <RouterProvider router={router} />
+
    
   );
 }
