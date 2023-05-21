@@ -3,7 +3,8 @@ import "./ConfigurationLayout.scss";
 import { SetupBotConfig } from "./SetupBotConfig";
 
 function ConfigurationLayout() {
-  const [speed, setSpeed] = useState<string>("1");
+  const [speed, setSpeed] = useState<number>(1);
+  const [operation, setOperation] = useState<string>("");
   const [isEditingConfig, setIsEditingConfig] = useState<boolean>(false);
   const [currentEditingBot, setCurrentEditingBot] = useState<string>("");
 
@@ -14,6 +15,8 @@ function ConfigurationLayout() {
     setCurrentEditingBot(botName);
     setIsEditingConfig(true);
   };
+
+  const operationArray: string[] = ["and", "or", "xor", "nand", "nor", "xnor"];
 
   return (
     <div className="configuration-container">
@@ -32,14 +35,18 @@ function ConfigurationLayout() {
                 className="globalButton">
                 Bot1 Setting
               </button>
-              {/* <GlobalButton buttonText="bot 1 setting" /> */}
             </div>
             <div className="button-wrapper">
-              <button className="globalButton">Bot2 Setting</button>
-              {/* <GlobalButton buttonText="bot 2 setting" /> */}
+              <button
+                className="globalButton"
+                onClick={(e: React.MouseEvent<HTMLElement>) =>
+                  setEditingBot(e, "Bot2")
+                }>
+                Bot2 Setting
+              </button>
             </div>
             <div className="range-wrapper">
-              <label htmlFor="speed">choose the speed</label>
+              <label htmlFor="speed">Choose the speed</label>
               <input
                 className="range-bar"
                 type="range"
@@ -49,7 +56,7 @@ function ConfigurationLayout() {
                 max="4"
                 value={speed}
                 onChange={(e: React.FormEvent<HTMLInputElement>) =>
-                  setSpeed(e.currentTarget.value)
+                  setSpeed(Number(e.currentTarget.value))
                 }
               />
               <div className="range-value">
@@ -58,7 +65,25 @@ function ConfigurationLayout() {
                 <span>3</span>
                 <span>4</span>
               </div>
-              <div className="bot-each-config">Operation:</div>
+            </div>
+            <div className="bot-each-config operation-wrapper">
+              <label>
+                <div>Operation:</div>
+                <select
+                  name="operation"
+                  value={operation}
+                  onChange={(e: React.ChangeEvent<HTMLSelectElement>) =>
+                    setOperation(e.currentTarget.value)
+                  }>
+                  {operationArray.map((op: string) => {
+                    return (
+                      <option value={op} key={op}>
+                        {op.toUpperCase()}
+                      </option>
+                    );
+                  })}
+                </select>
+              </label>
             </div>
           </div>
         )}
