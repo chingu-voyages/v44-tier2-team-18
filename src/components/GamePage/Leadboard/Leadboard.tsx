@@ -8,7 +8,7 @@ function Leadboard() {
         </div >
         <div className='botname'>
         <div className='botname-A'>
-            <p>Bot A</p>
+            <p>Bot A-</p>
             
 
         </div>
