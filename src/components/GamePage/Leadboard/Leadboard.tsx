@@ -1,5 +1,6 @@
 import './Leadboard.scss'
 import { botImg } from '../../../assets';
+
 function Leadboard() {
 
     return (
