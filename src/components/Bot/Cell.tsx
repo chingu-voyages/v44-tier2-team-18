@@ -19,64 +19,91 @@ interface Bot {
 function Cell({ columnPosition, rowPosition }: CellProps) {
   const [position, setPosition] = useState<Position>({ x: 3, y: 5 });
   const [bots, setBots] = useState<Bot[]>([{ position: [position.x, position.y], direction: "North" }]);
-  const [direction, setDirection] = useState(bots[0].direction);
+  // const [direction, setDirection] = useState(bots[0].direction);
+
+  // const randomDirectionRef = useRef<number>(Math.floor(Math.random() * 2));
+  // const stepRef = useRef<number>(Math.floor(Math.random() * 2) === 0 ? -1 : 1);
+
 
   useEffect(() => {
     const interval = setInterval(() => {
-      // Generate random movement: 0 for x-axis, 1 for y-axis
-      const randomDirection = Math.floor(Math.random() * 2);
-      const step = Math.floor(Math.random() * 2) === 0 ? -1 : 1;
-
       setBots((prevBots) => {
         const newBots = prevBots.map((bot) => {
-          const newPosition = [...bot.position];
+          let newPosition = [...bot.position];
 
           if (bot.direction === 'North') {
             newPosition[1] -= 1;
+
             // Ensure y position stays within arena bounds
             if (newPosition[1] < 0) {
+              const randomDirection = Math.floor(Math.random() * 3);
               if (randomDirection === 0) {
-                newPosition[0] += step;
+                newPosition[1] = 0; // Move bot to East
+                bot.direction = 'East';
+              } else if (randomDirection === 1) {
+                newPosition[1] = 0; // Move bot to West
+                bot.direction = 'West';
               } else {
-                newPosition[1] -= 1;
+                newPosition[1] = 0 // Move bot to South
+                bot.direction = 'South';
               }
             }
-
           } else if (bot.direction === 'South') {
+            newPosition[1] += 1;
+
             // Ensure y position stays within arena bounds
             if (newPosition[1] > 7) {
+              const randomDirection = Math.floor(Math.random() * 3);
               if (randomDirection === 0) {
-                newPosition[0] += step;
+                newPosition[1] = 7; // Move bot to East
+                bot.direction = 'East';
+              } else if (randomDirection === 1) {
+                newPosition[1] = 7; // Move bot to West
+                bot.direction = 'West';
               } else {
-                newPosition[1] += 1;
+                // Move bot to North
+                bot.direction = 'North';
               }
             }
-            newPosition[1] += 1;
           } else if (bot.direction === 'East') {
-            // Ensure x position stays within arena bounds
-            if (newPosition[0] > 7) {
-              if (randomDirection === 1) {
-                newPosition[1] += step;
-              } else {
-                newPosition[0] += 1;
-              }
-            }
             newPosition[0] += 1;
-          } else if (bot.direction === 'West') {
-            // Ensure x position stays within arena bounds
-            if (newPosition[0] < 0) {
-              if (randomDirection === 1) {
-                newPosition[1] += step;
+
+            // Ensure y position stays within arena bounds
+            if (newPosition[0] > 7) {
+              const randomDirection = Math.floor(Math.random() * 3);
+              if (randomDirection === 0) {
+                newPosition[0] = 7; // Move bot to South
+                bot.direction = 'South';
+              } else if (randomDirection === 1) {
+                newPosition[0] = 7; // Move bot to North
+                bot.direction = 'North';
               } else {
-                newPosition[0] -= 1;
+                // Move bot to West
+                bot.direction = 'West';
               }
             }
+          } else if (bot.direction === 'West') {
             newPosition[0] -= 1;
-          }
 
+            // Ensure y position stays within arena bounds
+            if (newPosition[0] < 0) {
+              const randomDirection = Math.floor(Math.random() * 3);
+              if (randomDirection === 0) {
+                newPosition[0] = 0; // Move bot to South
+                bot.direction = 'South';
+              } else if (randomDirection === 1) {
+                newPosition[0] = 0; // Move bot to North
+                bot.direction = 'North';
+              } else {
+                // Move bot to East
+                bot.direction = 'East';
+              }
+            }
+          }
           return {
             ...bot,
             position: newPosition,
+            direction: bot.direction,
           };
         });
 
@@ -85,60 +112,7 @@ function Cell({ columnPosition, rowPosition }: CellProps) {
     }, 1000);
 
     return () => clearInterval(interval);
-  }, []);
-
-
-  //     setPosition((prevPosition) => {
-  //       const newPosition = { ...prevPosition };
-
-  //       if (direction === 'North') {
-  //         // Ensure y position stays within arena bounds
-  //         if (newPosition.y < 0) {
-  //           if (randomDirection === 0) {
-  //             newPosition.x += step;
-  //           } else {
-  //             newPosition.y -= 1;
-  //           }
-  //         }
-  //         newPosition.y -= 1;
-  //       } else if (direction === 'South') {
-  //         // Ensure y position stays within arena bounds
-  //         if (newPosition.y > 7) {
-  //           if (randomDirection === 0) {
-  //             newPosition.x += step;
-  //           } else {
-  //             newPosition.y += 1;
-  //           }
-  //         }
-  //         newPosition.y += 1;
-  //       } else if (direction === 'East') {
-  //         // Ensure x position stays within arena bounds
-  //         if (newPosition.x > 7) {
-  //           if (randomDirection === 1) {
-  //             newPosition.y += step;
-  //           } else {
-  //             newPosition.x += 1;
-  //           }
-  //         }
-  //         newPosition.x += 1;
-  //       } else if (direction === 'West') {
-  //         // Ensure x position stays within arena bounds
-  //         if (newPosition.x < 0) {
-  //           if (randomDirection === 1) {
-  //             newPosition.y += step;
-  //           } else {
-  //             newPosition.x -= 1;
-  //           }
-  //         }
-  //         newPosition.x -= 1;
-  //       }
-
-  //       return newPosition;
-  //     });
-  //   }, 1000);
-
-  //   return () => clearInterval(interval);
-  // }, []);
+  }, [position]);
 
   const botsByPosition: { [key: string]: Bot } = {};
   bots.forEach((bot) => {
