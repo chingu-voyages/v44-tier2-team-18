@@ -4,24 +4,23 @@
    `git clone https://github.com/chingu-voyages/v44-tier2-team-18.git`
 
    `git branch -a`
-   `git checkout dev`
+   `git checkout development`
 
 2. Execute npm install  
    `npm install`
 
 3. run the project in your local host  
-    `npm start`
+   `npm start`
 
- - If there is an error "Cannot find module 'sass' --> run this `npm install sass`
-    
-   <br>
+- If there is an error "Cannot find module 'sass' --> run this `npm install sass`
+  <br>
 
 # The workflow of github
 
-1. Create a new branch for your work. Use 4 basic types of branches: bug, feature, refactor, and style to start with your branch's name.  For example: `git checkout -b 'feature/welcome-page'`
+1. Create a new branch for your work. Use 4 basic types of branches: bug, feature, refactor, and style to start with your branch's name. For example: `git checkout -b 'feature/welcome-page'`
 
 - Don't forget to update your branch before pushing any changes
-  `git pull origin <branch name>` (branch name should be "dev" or "master" depending on your necessaries)
+  `git pull origin <branch name>` (branch name should be "development" or "master" depending on your necessaries)
 
 2. `git init` (only for the first time of this project)
 
@@ -35,10 +34,22 @@
 
 7. Open a pull request and wait for review from other members.
 
-8. After others have approved your changes, you should merge your branch with the dev branch. Be sure to execute the following command to retrieve the most recent changes from the development branch: "git pull." If conflicts arise, be sure to address them promptly.
+8. After others have approved your changes, you should merge your branch with the development branch. Be sure to execute the following command to retrieve the most recent changes from the development branch: "git pull." If conflicts arise, be sure to address them promptly.
 
    <br>
    <br>
+
+# How to use global.scss
+
+1.  add import in the scss file where you want to use global  
+    `@import "../../global/global.scss";` (change the path depending on where you file is)
+2.  use the variable defined in the global.scss file  
+    `.container-home h1 {`
+    `color: $textcolor;`
+    `}`
+
+<br>
+<br>
 
 # Voyage-tasks
 

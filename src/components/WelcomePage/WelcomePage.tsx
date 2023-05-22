@@ -1,13 +1,16 @@
 import './WelcomePage.scss';
-import Git from './Images/github2.png';
-import Linkedin from './Images/linkedin.png';
+import Git from '../../assets/git.png'
+import { Link } from 'react-router-dom';
+
 function WelcomePage() {
     return(
+        
 
     <>
+   
     <div className='container-home'>
         <h1>BOOLE BOTS BATTLE GAME</h1>
-        <button>Lets Play</button>
+        <Link to="/gamepage" className='link'><button >Lets Play</button></Link>
         
     </div>
 
@@ -18,11 +21,11 @@ function WelcomePage() {
         
     
         <div className='Team-links'>
-            <p>Sheriff Oladimeji <img src={Git} alt='github' className='github'/><img src={Linkedin} alt='linkedin' className='in'/></p>
-            <p>Giang Pham <img src={Git} alt='github' className='github'/><img src={Linkedin} alt='linkedin' className='in'/></p>
-            <p>Daniel <img src={Git} alt='github' className='github'/><img src={Linkedin} alt='linkedin' className='in'/></p>
-            <p>Emiri Ishikawa <img src={Git} alt='github' className='github'/><img src={Linkedin} alt='linkedin' className='in'/></p>
-            <p>LebzaM <img src={Git} alt='github' className='github'/><img src={Linkedin} alt='linkedin' className='in'/></p>
+            <a href='https://github.com/Sheriff-Oladimeji' className='links' target="_blank" rel="noopener noreferrer"><p>Sheriff Oladimeji <img src={Git} alt='github' className='github'/></p></a>
+            <a href='https://github.com/giangpham-cfg' className='links' target="_blank" rel="noopener noreferrer"><p>Giang Pham <img src={Git} alt='github' className='github'/></p></a>
+            <a href='#' className='links' target="_blank" rel="noopener noreferrer"><p>Daniel <img src={Git} alt='github' className='github'/></p></a>
+            <a href='https://github.com/Emiri-i' className='links' target="_blank" rel="noopener noreferrer"><p>Emiri Ishikawa <img src={Git} alt='github' className='github'/></p></a>
+            <a href='https://github.com/LebzaM' className='links' target="_blank" rel="noopener noreferrer"><p>LebzaM <img src={Git} alt='github' className='github'/></p></a>
 
         </div>
         <div className='chingu'>
