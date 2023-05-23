@@ -1,8 +1,14 @@
 import { useState } from "react";
 import "./ConfigurationLayout.scss";
 import { SetupBotConfig } from "./SetupBotConfig";
+import { configActions } from "../../../store/index";
+import { useAppDispatch, useAppSelector } from "../../../store";
 
 function ConfigurationLayout() {
+  //TO GET STATE FROM REDUX
+  const config = useAppSelector((state) => state);
+  //TO DISPATCH THE REDUCER IN REDUX
+  const dispatch = useAppDispatch();
   const [speed, setSpeed] = useState<number>(1);
   const [operation, setOperation] = useState<string>("");
   const [isEditingConfig, setIsEditingConfig] = useState<boolean>(false);
@@ -14,6 +20,8 @@ function ConfigurationLayout() {
   ) => {
     setCurrentEditingBot(botName);
     setIsEditingConfig(true);
+    console.log(config);
+    dispatch(configActions.setSpeed(2));
   };
 
   const operationArray: string[] = ["and", "or", "xor", "nand", "nor", "xnor"];
