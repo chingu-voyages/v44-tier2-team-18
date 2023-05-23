@@ -76,6 +76,6 @@ const store = configureStore({
   reducer: botConfigSlice.reducer,
 });
 
-export const { setSpeed } = botConfigSlice.actions;
+export const configActions = botConfigSlice.actions;
 
 export default store;
