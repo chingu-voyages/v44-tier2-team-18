@@ -6,7 +6,7 @@
     height: 65vh;
     justify-content: center;
     text-align: center;
-    background-image:url(./Images/bots.png);
+    background-image:url(../../assets/bots.png);
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center;
@@ -37,8 +37,14 @@
   .footer-home{
     height: 35vh;
     background: #D9D9D9;
+    
     @media screen and (max-width: 650px) {
       height: 45vh;
+      
+    }
+
+    @media screen and (max-width: 1200px) {
+      height: 50vh;
       
     }
   }
@@ -50,8 +56,10 @@
   // top: 558px;
   border-radius: 20px;
   text-align: center;
+  transition: all 2.5s;
   justify-content: center;
-  margin-top: 280px;
+  margin-top: 250px;
+  display: inline;
   background: #C4C4C4;
   font-family: 'Poppins';
   font-style: normal;
@@ -61,13 +69,19 @@
   color: #060606;
   border: none;
   cursor: pointer;
+  @media screen and (max-width: 1200px) {
+    margin-top: 100px;
+    
+  }
   
   }
   .container-home button:hover{
+    
     background: red;
   }
   .Team{
     text-align: center;
+    
     
   }
   .Team-links{
@@ -90,13 +104,23 @@
     text-align: center;
     
   }
-  .in{
-    width: 24px;
-    height: 24px;
-  }
+  
   
   .github{
-    width: 24px;
-    height: 24px;
+    width: 30px;
+    height: 30px;
+   
+    
+    
+    
+  }
+
+  .link{
+    text-decoration: none;
+  }
+
+  .links{
+    text-decoration: none;
+    color: #060606;
   }
   
