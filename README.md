@@ -51,6 +51,33 @@
 <br>
 <br>
 
+<<<<<<< HEAD
+=======
+# How to use redux-toolkit
+
+## To access the state in store
+
+1. Add this import in the top of your code
+   `import { useAppSelector } from "../../../store";`
+   //the path may be changed depending on where you file is.
+2. Get state by using useAppSelector(This is same function as UseSelector. To be able to use it in typescript, we need write this way.)
+   `const config = useAppSelector((state) => state);`
+
+<br>
+
+## To update the state in store
+
+1. Add this import in the top of your code
+   `import { useAppDispatch } from "../../../store";`
+   //the path may be changed depending on where you file is.
+2. Get state by using useAppSelector(This is same function as UseSelector. To be able to use it in typescript, we need write this way.)
+   `const dispatch = useAppDispatch();`
+   `dispatch(configActions.setSpeed(2));`
+
+<br>
+<br>
+
+>>>>>>> f40c9723099f0ca0e4836d35a3428a28b0c720f0
 # Voyage-tasks
 
 Your project's `readme` is as important to success as your code. For
