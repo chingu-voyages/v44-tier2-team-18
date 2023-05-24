@@ -13,8 +13,16 @@ interface Bot {
 }
 
 function Arena(): JSX.Element {
-    const [grid, setGrid] = useState(genNArray(8).map(() => genNArray(8)));
+
+    const [grid, setGrid] = useState(() => genNArray(8).map(() => genNArray(8)));
+    console.log('rendering', grid)
     const [bots, setBots] = useState<Bot[]>([{ position: [3, 5], direction: "North" }]); //hardcoded for now, will get from context later
+
+    // botsByPosition allows efficient search of bots based on position
+    const botsByPosition: { [key: string]: Bot } = {};
+    bots.forEach((bot) => {
+        botsByPosition[bot.position.join(":")] = bot;
+    });
 
     useEffect(() => {
         const interval = setInterval(() => {
@@ -22,13 +30,13 @@ function Arena(): JSX.Element {
                 const newBots = prevBots.map((bot) => {
                     let newPosition = [...bot.position];
                     let newDirection = bot.direction;
-                    botMoving(newDirection, newPosition);
+                    const returnValue = botMoving(newDirection, newPosition);
+                    // console.log(returnValue);
                     return {
-                        position: newPosition,
-                        direction: newDirection,
+                        position: returnValue.position,
+                        direction: returnValue.direction,
                     };
                 });
-
                 return newBots;
             });
         }, 1000);
@@ -40,9 +48,10 @@ function Arena(): JSX.Element {
         <div className="board">
             {grid.map((row, i) => {
                 return (
-                    <div className="row">
+                    <div key={i} className="row">
                         {row.map((col, j) => {
-                            return <Cell columnPosition={j} rowPosition={i} currBots={bots} />;
+                            const bot = botsByPosition[[j, i].join(":")];
+                            return <Cell key={j} bot={bot} />;
                         })}
                     </div>
                 )

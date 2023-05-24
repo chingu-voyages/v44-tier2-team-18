@@ -1,8 +1,9 @@
 
-export const botMoving = (direction: string, position: number[]) => {
+export const botMoving = (direction: "North" | "South" | "East" | "West",
+    position: number[]) => {
     switch (direction) {
         case 'North': {
-            if (position[1] < 0) {
+            if (position[1] === 0) {
                 position[1] += 1;
                 const randomDirection = Math.floor(Math.random() * 3);
                 if (randomDirection === 0) {
@@ -18,7 +19,7 @@ export const botMoving = (direction: string, position: number[]) => {
             break;
         }
         case 'South': {
-            if (position[1] > 7) {
+            if (position[1] === 7) {
                 position[1] -= 1;
                 const randomDirection = Math.floor(Math.random() * 3);
                 if (randomDirection === 0) {
@@ -34,7 +35,7 @@ export const botMoving = (direction: string, position: number[]) => {
             break;
         }
         case 'East': {
-            if (position[1] > 7) {
+            if (position[0] === 7) {
                 position[0] -= 1;
                 const randomDirection = Math.floor(Math.random() * 3);
                 if (randomDirection === 0) {
@@ -49,8 +50,8 @@ export const botMoving = (direction: string, position: number[]) => {
             };
             break;
         }
-        case 'East': {
-            if (position[1] < 0) {
+        case 'West': {
+            if (position[0] === 0) {
                 position[0] += 1;
                 const randomDirection = Math.floor(Math.random() * 3);
                 if (randomDirection === 0) {

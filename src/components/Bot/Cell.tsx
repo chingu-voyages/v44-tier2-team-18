@@ -2,9 +2,7 @@ import React, { useState, useEffect } from 'react';
 import './Cell.scss';
 
 interface CellProps {
-  columnPosition: number;
-  rowPosition: number;
-  currBots: Bot[];
+  bot: Bot;
 }
 
 interface Bot {
@@ -12,16 +10,8 @@ interface Bot {
   direction: "North" | "South" | "East" | "West";
 }
 
-function Cell({ columnPosition, rowPosition, currBots }: CellProps) {
-
-  const botsByPosition: { [key: string]: Bot } = {};
-  currBots.forEach((bot) => {
-    botsByPosition[bot.position.join(":")] = bot;
-  });
-
-  const botPosition = botsByPosition[[columnPosition, rowPosition].join(":")];
-
-  if (botPosition) {
+function Cell({ bot }: CellProps) {
+  if (bot) {
     return (
       <div className='bot'>
         <div className='bot-head'>B</div>
@@ -30,6 +20,5 @@ function Cell({ columnPosition, rowPosition, currBots }: CellProps) {
   }
   return <div className='bot'></div>;
 }
-
 
 export default Cell;
