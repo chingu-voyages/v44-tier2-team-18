@@ -1,0 +1,50 @@
+.configuration-content {
+  .editing {
+    color: black;
+    .bot-each-config {
+      input {
+        width: 100%;
+        font-size: 16px;
+        border-radius: 3px;
+        border: 2px solid #ddd;
+        box-sizing: border-box;
+        &:focus {
+          border: 2px solid #53aeff;
+          z-index: 10;
+          outline: 0;
+        }
+      }
+      select {
+        border-radius: 3px;
+        border: 2px solid #ddd;
+        box-sizing: border-box;
+        &:focus {
+          border: 2px solid #53aeff;
+          z-index: 10;
+          outline: 0;
+        }
+      }
+    }
+    hr {
+      margin: 20px 0;
+      border: none;
+      height: 2px;
+      background-color: white;
+    }
+    .bot-setting-title {
+      text-align: center;
+      font-size: 1.3rem;
+    }
+    .bot-setting-content {
+      text-align: left;
+      margin: 0 15px;
+      .bot-each-config {
+        margin-bottom: 20px;
+      }
+    }
+    .submit {
+      text-align: center;
+      padding-top: 10px;
+    }
+  }
+}
