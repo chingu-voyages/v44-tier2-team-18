@@ -1,0 +1,51 @@
+@import url('https://fonts.googleapis.com/css2?family=Anton&family=Gugi&family=Lato:wght@100&family=Poppins:wght@700&family=Roboto:ital,wght@1,100&family=Sofia&display=swap');
+$whiteColor: #fff;
+$blackColor: black;
+$titleFont: Poppins;
+*{
+    margin: 0;
+    padding: 0;
+}
+.board-container {
+  width: 70%;
+  margin-inline: auto;
+  padding-block: 10px;
+}
+.board-container h3 {
+  color: $whiteColor;
+  font-weight: 700;
+  font-family: $titleFont;
+  font-size: 25px;
+  margin-bottom: 10px;
+}
+.result-container{
+    margin-top: 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 70%;
+}
+.bot-container{
+    display: flex;
+    align-items: center;
+    gap: 60px;
+}
+.bot-box{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    p {
+        color: $whiteColor;
+    }
+}
+.bot img{
+    width: 50px;
+}
+.score-info p{
+    font-weight: 700;
+}
+.result-info {
+    color: $whiteColor;
+}
