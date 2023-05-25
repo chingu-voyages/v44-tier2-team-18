@@ -10,13 +10,14 @@ let genNArray = (n: number) => Array.from({ length: n }, () => ({}));
 interface Bot {
     position: number[];
     direction: "North" | "South" | "East" | "West";
+    colour: "Red" | "Blue";
 }
 
 function Arena(): JSX.Element {
 
     const [grid, setGrid] = useState(() => genNArray(8).map(() => genNArray(8)));
-    console.log('rendering', grid)
-    const [bots, setBots] = useState<Bot[]>([{ position: [3, 5], direction: "North" }]); //hardcoded for now, will get from context later
+    // console.log('rendering', grid)
+    const [bots, setBots] = useState<Bot[]>([{ position: [3, 5], direction: "North", colour: "Red" }, { position: [4, 2], direction: "South", colour: "Blue" }]); //hardcoded for now, will get from context later
 
     // botsByPosition allows efficient search of bots based on position
     const botsByPosition: { [key: string]: Bot } = {};
@@ -30,11 +31,13 @@ function Arena(): JSX.Element {
                 const newBots = prevBots.map((bot) => {
                     let newPosition = [...bot.position];
                     let newDirection = bot.direction;
-                    const returnValue = botMoving(newDirection, newPosition);
+                    let colour = bot.colour
+                    const returnValue = botMoving(newDirection, newPosition, colour);
                     // console.log(returnValue);
                     return {
                         position: returnValue.position,
                         direction: returnValue.direction,
+                        colour: returnValue.colour,
                     };
                 });
                 return newBots;

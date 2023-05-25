@@ -1,10 +1,15 @@
 import { useState } from "react";
 import "./SetupBotConfig.scss";
+import React, { useEffect } from "react";
+// import { useAppDispatch, useAppSelector } from "../../../store";
+// import { configActions } from "../../../store/index";
+
 
 type BotConfigType = {
   botName: string;
   booleanValue: number;
   startingDirection: string;
+  // startingPosition: number[];
 };
 type Props = {
   currentEditingBot: string;
@@ -12,11 +17,25 @@ type Props = {
 };
 
 export const SetupBotConfig = (props: Props) => {
+  //TO GET STATE FROM REDUX
+  // const config = useAppSelector((state) => state);
+  // //TO DISPATCH THE REDUCER IN REDUX
+  // const dispatch = useAppDispatch();
   const [botInfo, setBotInfo] = useState<BotConfigType>({
     botName: "",
     booleanValue: 0,
     startingDirection: "",
+    // startingPosition: []
   });
+
+  // useEffect(() => {
+  //   console.log(botInfo); // Updated botInfo state
+  // }, [botInfo]);
+
+  // const genRandomIndex = () => Math.floor(Math.random() * 8);
+  // const genRandomPosition = () => [0, 0].map(genRandomIndex);
+  // let position = genRandomPosition()
+  // console.log(position)
 
   const handleSubmit = (e: React.SyntheticEvent) => {
     e.preventDefault();
@@ -25,12 +44,21 @@ export const SetupBotConfig = (props: Props) => {
       booleanValue: { value: number };
       startingDirection: { value: string };
     };
-    //set in useContext
+
     setBotInfo({
+      ...botInfo,
       botName: target.botName.value,
       booleanValue: target.booleanValue.value,
       startingDirection: target.startingDirection.value,
-    });
+      // startingPosition: position
+    })
+    //if (props.currentEditingBot === "Bot1"){
+    // dispatch(configActions.setBot1Config(botInfo))
+    // console.log('redux:', config)
+    // }
+
+    console.log(botInfo)
+
     props.setIsEditingConfig(false);
   };
 

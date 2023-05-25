@@ -1,6 +1,6 @@
 
 export const botMoving = (direction: "North" | "South" | "East" | "West",
-    position: number[]) => {
+    position: number[], colour: "Red" | "Blue") => {
     switch (direction) {
         case 'North': {
             if (position[1] === 0) {
@@ -67,6 +67,6 @@ export const botMoving = (direction: "North" | "South" | "East" | "West",
             break;
         }
     }
-    return { direction, position };
+    return { direction, position, colour };
 }
 
