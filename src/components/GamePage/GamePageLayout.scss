@@ -13,15 +13,18 @@
   grid-template-rows: 1fr 5fr;
   grid-gap: 20px;
 
-  .configuraion-section {
-    border: 1px solid black;
-    grid-row-start: 1;
-    grid-row-end: 3;
-  }
-  .arena-section {
-    border: 1px solid black;
-  }
-  .leadboard-section {
-    border: 1px solid black;
-  }
+    .configuraion-section {
+        border: 1px solid black;
+        grid-row-start: 1;
+        grid-row-end: 3;
+    }
+    .arena-section {
+        border: 1px solid black;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .leadboard-section {
+        border: 1px solid black;
+    }
 }
