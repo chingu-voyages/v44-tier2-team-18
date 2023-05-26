@@ -58,15 +58,14 @@ const botConfigSlice = createSlice({
       }
     },
     setBot2Config(state, action) {
-      if (action.payload.bot2Config.botName) {
-        state.bot2Config.botName = action.payload.bot2Config.botName;
+      if (action.payload.botName) {
+        state.bot2Config.botName = action.payload.botName;
       }
-      if (action.payload.bot2Config.booleanValue) {
-        state.bot2Config.booleanValue = action.payload.bot2Config.booleanValue;
+      if (action.payload.booleanValue) {
+        state.bot2Config.booleanValue = action.payload.booleanValue;
       }
-      if (action.payload.bot2Config.startingDirection) {
-        state.bot2Config.startingDirection =
-          action.payload.bot2Config.startingDirection;
+      if (action.payload.startingDirection) {
+        state.bot2Config.startingDirection = action.payload.startingDirection;
       }
     },
   },
