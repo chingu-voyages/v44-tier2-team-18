@@ -20,13 +20,13 @@ interface Bot {
 function Arena(): JSX.Element {
 
     const config = useAppSelector((state) => state);
-    const currOperation = config.operation;
+    const currOperation = "and";
     const currSpeed = config.speed;
 
     const [grid, setGrid] = useState(() => genNArray(8).map(() => genNArray(8)));
     const [bots, setBots] = useState<Bot[]>([
         { position: [3, 5], direction: "North", colour: "Red", booleanValue: 1, active: true },
-        { position: [4, 2], direction: "South", colour: "Blue", booleanValue: 0, active: false }
+        { position: [5, 3], direction: "West", colour: "Blue", booleanValue: 0, active: true }
     ]); //hardcoded for now, will get from context later
 
     // botsByPosition allows efficient search of bots based on position
@@ -35,7 +35,7 @@ function Arena(): JSX.Element {
         botsByPosition[bot.position.join(":")] = bot;
     });
 
-    const handleCollisions = (): void => {
+    const handleCollisions = (bots: Bot[]) => {
         if (JSON.stringify(bots[0].position) === JSON.stringify(bots[1].position)) {
             const result = botCollising(bots[0].booleanValue, bots[1].booleanValue, currOperation);
             if (result === 1) {
@@ -45,6 +45,7 @@ function Arena(): JSX.Element {
                 } else { bots[1].active = false }
             }
         }
+        return bots;
     }
 
     useEffect(() => {
@@ -57,7 +58,8 @@ function Arena(): JSX.Element {
                 });
                 return newBots;
             });
-            handleCollisions();
+            const newBots = bots
+            handleCollisions(newBots);
         }, currSpeed);
 
         return () => clearInterval(interval);
@@ -80,3 +82,6 @@ function Arena(): JSX.Element {
 }
 
 export default Arena;
+
+
+
