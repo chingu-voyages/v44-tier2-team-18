@@ -1,10 +1,11 @@
 .configuration-container {
   h2 {
     color: white;
+    margin-top: 30px;
   }
   text-align: center;
   .rule-explanation {
-    margin: 30px 0;
+    margin: 10px 0;
   }
   .configuration-content {
     margin: 0 auto;
@@ -12,7 +13,7 @@
     width: 80%;
     background-color: lightgray;
     border-radius: 10px;
-    opacity: 0.9;
+    // opacity: 0.97;
     z-index: 0;
     .not-editing {
       .button-wrapper {
@@ -60,6 +61,19 @@
           margin: 0 1rem;
           span {
             display: block;
+          }
+        }
+      }
+      .operation-wrapper {
+        select {
+          border-radius: 3px;
+          border: 2px solid #ddd;
+          box-sizing: border-box;
+          margin-top: 3px;
+          &:focus {
+            border: 2px solid #53aeff;
+            z-index: 10;
+            outline: 0;
           }
         }
       }
