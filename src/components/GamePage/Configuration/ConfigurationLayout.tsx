@@ -100,6 +100,7 @@ function ConfigurationLayout() {
             <SetupBotConfig
               currentEditingBot={currentEditingBot}
               setIsEditingConfig={setIsEditingConfig}
+              isEditingConfig={isEditingConfig}
             />
           </>
         )}

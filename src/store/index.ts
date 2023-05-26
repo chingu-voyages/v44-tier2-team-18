@@ -1,13 +1,13 @@
 import { configureStore, createSlice } from "@reduxjs/toolkit";
 import { TypedUseSelectorHook, useSelector, useDispatch } from "react-redux";
 
-type eachBotConfig = {
+export type eachBotConfig = {
   botName: string;
-  booleanValue: number;
+  booleanValue: number | null;
   startingDirection: string;
 };
 type configContextObj = {
-  speed: number;
+  speed: number | null;
   operation: string;
   bot1Config: eachBotConfig;
   bot2Config: eachBotConfig;
@@ -17,12 +17,12 @@ const initialState: configContextObj = {
   operation: "",
   bot1Config: {
     botName: "",
-    booleanValue: 0,
+    booleanValue: null,
     startingDirection: "",
   },
   bot2Config: {
     botName: "",
-    booleanValue: 0,
+    booleanValue: null,
     startingDirection: "",
   },
 };
@@ -46,7 +46,6 @@ const botConfigSlice = createSlice({
       state.operation = action.payload;
     },
     setBot1Config(state, action) {
-      console.log(action);
       if (action.payload.botName) {
         state.bot1Config.botName = action.payload.botName;
       }

@@ -1,22 +1,39 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "./SetupBotConfig.scss";
+import { useAppDispatch, useAppSelector } from "../../../store";
+import { configActions } from "../../../store/index";
 
-type BotConfigType = {
-  botName: string;
-  booleanValue: number;
-  startingDirection: string;
-};
 type Props = {
   currentEditingBot: string;
   setIsEditingConfig: (bool: boolean) => void;
+  isEditingConfig: boolean;
 };
 
 export const SetupBotConfig = (props: Props) => {
-  const [botInfo, setBotInfo] = useState<BotConfigType>({
-    botName: "",
-    booleanValue: 0,
-    startingDirection: "",
-  });
+  const dispatch = useAppDispatch();
+  const bot1Config = useAppSelector((state) => state.bot1Config);
+
+  const setSelectValues = () => {
+    const booleanValueElem = document.querySelector(
+      ".booleanValue"
+    ) as HTMLInputElement;
+    const startingDirectionElem = document.querySelector(
+      ".startingDirection"
+    ) as HTMLInputElement;
+
+    if (booleanValueElem && bot1Config.booleanValue) {
+      booleanValueElem.value = bot1Config.booleanValue.toString();
+    }
+    if (startingDirectionElem) {
+      startingDirectionElem.value = bot1Config.startingDirection;
+    }
+  };
+
+  useEffect(() => {
+    if (props.isEditingConfig) {
+      setSelectValues();
+    }
+  }, [props.isEditingConfig]);
 
   const handleSubmit = (e: React.SyntheticEvent) => {
     e.preventDefault();
@@ -25,12 +42,13 @@ export const SetupBotConfig = (props: Props) => {
       booleanValue: { value: number };
       startingDirection: { value: string };
     };
-    //set in useContext
-    setBotInfo({
-      botName: target.botName.value,
-      booleanValue: target.booleanValue.value,
-      startingDirection: target.startingDirection.value,
-    });
+    dispatch(
+      configActions.setBot1Config({
+        botName: target.botName.value,
+        booleanValue: target.booleanValue.value,
+        startingDirection: target.startingDirection.value,
+      })
+    );
     props.setIsEditingConfig(false);
   };
 
@@ -51,14 +69,14 @@ export const SetupBotConfig = (props: Props) => {
                 name="botName"
                 id="botName"
                 type="text"
-                defaultValue={botInfo.botName}
+                defaultValue={bot1Config.botName}
               />
             </label>
           </div>
           <div className="bot-each-config">
             <label>
               <div>Boolean Value:</div>
-              <select name="booleanValue">
+              <select name="booleanValue" className="booleanValue">
                 <option value="0">0</option>
                 <option value="1">1</option>
               </select>
@@ -67,7 +85,7 @@ export const SetupBotConfig = (props: Props) => {
           <div className="bot-each-config">
             <label>
               <div>Starting direction:</div>
-              <select name="startingDirection">
+              <select name="startingDirection" className="startingDirection">
                 <option value="top">Top</option>
                 <option value="left">Left</option>
                 <option value="bottom">Bottom</option>
