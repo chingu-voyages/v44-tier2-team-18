@@ -1,72 +1,79 @@
 
-export const botMoving = (direction: "North" | "South" | "East" | "West",
-    position: number[], colour: "Red" | "Blue") => {
-    switch (direction) {
+interface Bot {
+    position: number[];
+    direction: "North" | "South" | "East" | "West";
+    colour: "Red" | "Blue";
+    booleanValue: number;
+    active: boolean
+}
+
+export const botMoving = (newBot: Bot) => {
+    switch (newBot.direction) {
         case 'North': {
-            if (position[1] === 0) {
-                position[1] += 1;
+            if (newBot.position[1] === 0) {
+                newBot.position[1] += 1;
                 const randomDirection = Math.floor(Math.random() * 3);
                 if (randomDirection === 0) {
-                    direction = 'East';
+                    newBot.direction = 'East';
                 } else if (randomDirection === 1) {
-                    direction = 'West';
+                    newBot.direction = 'West';
                 } else {
-                    direction = 'South';
+                    newBot.direction = 'South';
                 };
             } else {
-                position[1] -= 1;
+                newBot.position[1] -= 1;
             };
             break;
         }
         case 'South': {
-            if (position[1] === 7) {
-                position[1] -= 1;
+            if (newBot.position[1] === 7) {
+                newBot.position[1] -= 1;
                 const randomDirection = Math.floor(Math.random() * 3);
                 if (randomDirection === 0) {
-                    direction = 'East';
+                    newBot.direction = 'East';
                 } else if (randomDirection === 1) {
-                    direction = 'West';
+                    newBot.direction = 'West';
                 } else {
-                    direction = 'North';
+                    newBot.direction = 'North';
                 };
             } else {
-                position[1] += 1;
+                newBot.position[1] += 1;
             };
             break;
         }
         case 'East': {
-            if (position[0] === 7) {
-                position[0] -= 1;
+            if (newBot.position[0] === 7) {
+                newBot.position[0] -= 1;
                 const randomDirection = Math.floor(Math.random() * 3);
                 if (randomDirection === 0) {
-                    direction = 'South';
+                    newBot.direction = 'South';
                 } else if (randomDirection === 1) {
-                    direction = 'North';
+                    newBot.direction = 'North';
                 } else {
-                    direction = 'West';
+                    newBot.direction = 'West';
                 };
             } else {
-                position[0] += 1;
+                newBot.position[0] += 1;
             };
             break;
         }
         case 'West': {
-            if (position[0] === 0) {
-                position[0] += 1;
+            if (newBot.position[0] === 0) {
+                newBot.position[0] += 1;
                 const randomDirection = Math.floor(Math.random() * 3);
                 if (randomDirection === 0) {
-                    direction = 'South';
+                    newBot.direction = 'South';
                 } else if (randomDirection === 1) {
-                    direction = 'North';
+                    newBot.direction = 'North';
                 } else {
-                    direction = 'East';
+                    newBot.direction = 'East';
                 };
             } else {
-                position[0] -= 1;
+                newBot.position[0] -= 1;
             };
             break;
         }
     }
-    return { direction, position, colour };
+    return newBot;
 }
 

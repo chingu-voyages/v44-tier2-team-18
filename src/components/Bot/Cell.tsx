@@ -10,6 +10,7 @@ interface Bot {
   position: number[];
   direction: "North" | "South" | "East" | "West";
   colour: "Red" | "Blue";
+  active: boolean
 }
 
 function Cell({ bot }: CellProps) {
@@ -17,7 +18,7 @@ function Cell({ bot }: CellProps) {
     return (
       <div className='bot'>
         <div className={bot.colour === "Red" ? "red-bot" : "blue-bot"}>
-          <img src={botIcon} alt='Bot Icon' />
+          {bot.active === true ? <img src={botIcon} alt='Bot Icon' /> : ""}
         </div>
       </div>
     );

@@ -25,7 +25,8 @@ export const SetupBotConfig = (props: Props) => {
     botName: "",
     booleanValue: 0,
     startingDirection: "",
-    // startingPosition: []
+    // startingPosition: [],
+    // active: boolean
   });
 
   // useEffect(() => {
@@ -46,11 +47,12 @@ export const SetupBotConfig = (props: Props) => {
     };
 
     setBotInfo({
-      ...botInfo,
+      // ...botInfo,
       botName: target.botName.value,
       booleanValue: target.booleanValue.value,
       startingDirection: target.startingDirection.value,
-      // startingPosition: position
+      // startingPosition: position,
+      // active: true
     })
     //if (props.currentEditingBot === "Bot1"){
     // dispatch(configActions.setBot1Config(botInfo))
@@ -96,10 +98,10 @@ export const SetupBotConfig = (props: Props) => {
             <label>
               <div>Starting direction:</div>
               <select name="startingDirection">
-                <option value="top">Top</option>
-                <option value="left">Left</option>
-                <option value="bottom">Bottom</option>
-                <option value="right">Right</option>
+                <option value="North">North</option>
+                <option value="West">West</option>
+                <option value="South">South</option>
+                <option value="East">East</option>
               </select>
             </label>
           </div>

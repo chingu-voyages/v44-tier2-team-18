@@ -2,37 +2,34 @@ import { configureStore, createSlice } from "@reduxjs/toolkit";
 import { TypedUseSelectorHook, useSelector, useDispatch } from "react-redux";
 
 type eachBotConfig = {
-  id: number,
-  startingPosition: number[],
+  position: number[],
   active: boolean,
   botName: string;
   booleanValue: number;
-  startingDirection: string;
+  startingDirection: "North" | "South" | "East" | "West" | null;
 };
 type configContextObj = {
   speed: number;
-  operation: string;
+  operation: "and" | "or" | "nor" | "nand" | null
   bot1Config: eachBotConfig;
   bot2Config: eachBotConfig;
 };
 const initialState: configContextObj = {
-  speed: 1,
-  operation: "",
+  speed: 1000,
+  operation: null,
   bot1Config: {
-    id: 1,
-    startingPosition: [],
+    position: [],
     active: true,
     botName: "",
     booleanValue: 0,
-    startingDirection: "",
+    startingDirection: null,
   },
   bot2Config: {
-    id: 2,
-    startingPosition: [],
+    position: [],
     active: true,
     botName: "",
     booleanValue: 0,
-    startingDirection: "",
+    startingDirection: null,
   },
 };
 // Infer the `RootState` and `AppDispatch` types from the store itself
@@ -59,14 +56,13 @@ const botConfigSlice = createSlice({
     setBot1Config(state, action) {
       if (action.payload.bot1Config.botName) {
         state.bot1Config.botName = action.payload.bot1Config.botName;
-        console.log(action.payload)
+        // console.log(action.payload)
       }
       if (action.payload.bot1Config.booleanValue) {
         state.bot1Config.booleanValue = action.payload.bot1Config.booleanValue;
       }
       if (action.payload.bot1Config.startingDirection) {
-        state.bot1Config.startingDirection =
-          action.payload.bot1Config.startingDirection;
+        state.bot1Config.startingDirection = action.payload.bot1Config.startingDirection;
       }
     },
     setBot2Config(state, action) {

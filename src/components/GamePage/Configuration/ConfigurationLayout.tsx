@@ -20,9 +20,6 @@ function ConfigurationLayout() {
   ) => {
     setCurrentEditingBot(botName);
     setIsEditingConfig(true);
-
-    // dispatch(configActions.setSpeed(2));
-    // console.log(config);
   };
 
   const operationArray: string[] = ["and", "or", "nand", "nor"];
@@ -63,8 +60,8 @@ function ConfigurationLayout() {
                   type="range"
                   id="speed"
                   name="speed"
-                  min="1"
-                  max="4"
+                  min="1" // need to fix the value to [1000, 2000, 3000, 4000]
+                  max="4" // need to fix the value to [1000, 2000, 3000, 4000]
                   value={speed}
                   onChange={(e: React.FormEvent<HTMLInputElement>) => {
                     setSpeed(Number(e.currentTarget.value))
@@ -89,7 +86,7 @@ function ConfigurationLayout() {
                     value={operation}
                     onChange={(e: React.ChangeEvent<HTMLSelectElement>) => {
                       setOperation(e.currentTarget.value)
-                      console.log(operation)
+                      // console.log(operation)
                       dispatch(configActions.setOperation(operation))
                       // console.log(config)
                     }
