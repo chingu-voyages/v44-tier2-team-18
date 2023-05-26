@@ -76,7 +76,9 @@ export const SetupBotConfig = (props: Props) => {
             </label>
           </div>
           <div className="submit">
-            <button type="submit">Confirm</button>
+            <button type="submit" className="confirm-bot-setting">
+              Confirm
+            </button>
           </div>
         </form>
       </div>
