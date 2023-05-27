@@ -5,7 +5,7 @@ export type eachBotConfig = {
   botName: string;
   position: number[];
   active: boolean;
-  booleanValue: number | null;
+  booleanValue: string;
   startingDirection: string;
 };
 type configContextObj = {
@@ -21,14 +21,14 @@ const initialState: configContextObj = {
     botName: "",
     position: [0, 0],
     active: false,
-    booleanValue: null,
+    booleanValue: "",
     startingDirection: "",
   },
   bot2Config: {
     botName: "",
     position: [0, 0],
     active: false,
-    booleanValue: null,
+    booleanValue: "",
     startingDirection: "",
   },
 };
