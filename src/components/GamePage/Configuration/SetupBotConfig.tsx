@@ -22,6 +22,7 @@ export const SetupBotConfig = (props: Props) => {
     ) as HTMLInputElement;
 
     if (booleanValueElem && bot1Config.booleanValue) {
+      console.log(bot1Config.booleanValue);
       booleanValueElem.value = bot1Config.booleanValue.toString();
     }
     if (startingDirectionElem) {
@@ -86,10 +87,10 @@ export const SetupBotConfig = (props: Props) => {
             <label>
               <div>Starting direction:</div>
               <select name="startingDirection" className="startingDirection">
-                <option value="top">Top</option>
-                <option value="left">Left</option>
-                <option value="bottom">Bottom</option>
-                <option value="right">Right</option>
+                <option value="north">North</option>
+                <option value="south">South</option>
+                <option value="west">West</option>
+                <option value="east">East</option>
               </select>
             </label>
           </div>
