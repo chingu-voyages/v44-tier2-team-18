@@ -3,6 +3,8 @@ import { TypedUseSelectorHook, useSelector, useDispatch } from "react-redux";
 
 export type eachBotConfig = {
   botName: string;
+  position: number[];
+  active: boolean;
   booleanValue: number | null;
   startingDirection: string;
 };
@@ -17,11 +19,15 @@ const initialState: configContextObj = {
   operation: "",
   bot1Config: {
     botName: "",
+    position: [0, 0],
+    active: false,
     booleanValue: null,
     startingDirection: "",
   },
   bot2Config: {
     botName: "",
+    position: [0, 0],
+    active: false,
     booleanValue: null,
     startingDirection: "",
   },
@@ -55,6 +61,12 @@ const botConfigSlice = createSlice({
       if (action.payload.startingDirection) {
         state.bot1Config.startingDirection = action.payload.startingDirection;
       }
+      if (action.payload.position) {
+        state.bot1Config.position = action.payload.position;
+      }
+      if (action.payload.active) {
+        state.bot1Config.active = action.payload.active;
+      }
     },
     setBot2Config(state, action) {
       if (action.payload.botName) {
@@ -65,6 +77,12 @@ const botConfigSlice = createSlice({
       }
       if (action.payload.startingDirection) {
         state.bot2Config.startingDirection = action.payload.startingDirection;
+      }
+      if (action.payload.position) {
+        state.bot2Config.position = action.payload.position;
+      }
+      if (action.payload.active) {
+        state.bot2Config.active = action.payload.active;
       }
     },
   },
