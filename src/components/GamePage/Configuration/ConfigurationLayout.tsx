@@ -11,7 +11,6 @@ function ConfigurationLayout() {
   const dispatch = useAppDispatch();
   const [speed, setSpeed] = useState<number>(1);
   const [operation, setOperation] = useState<string>("");
-  const [isEditingConfig, setIsEditingConfig] = useState<boolean>(false);
   const [currentEditingBot, setCurrentEditingBot] = useState<string>("");
 
   const setEditingBot = (
@@ -19,8 +18,6 @@ function ConfigurationLayout() {
     botName: string
   ) => {
     setCurrentEditingBot(botName);
-    setIsEditingConfig(true);
-    console.log(config);
     dispatch(configActions.setSpeed(2));
   };
 
@@ -33,7 +30,7 @@ function ConfigurationLayout() {
         <div className="rule-explanation">Learn more about the rules</div>
       </div>
       <div className="configuration-content">
-        {!isEditingConfig && (
+        {!currentEditingBot && (
           <div className="not-editing">
             <div className="button-wrapper">
               <button
@@ -95,17 +92,16 @@ function ConfigurationLayout() {
             </div>
           </div>
         )}
-        {isEditingConfig && (
+        {currentEditingBot && (
           <>
             <SetupBotConfig
               currentEditingBot={currentEditingBot}
-              setIsEditingConfig={setIsEditingConfig}
-              isEditingConfig={isEditingConfig}
+              setCurrentEditingBot={setCurrentEditingBot}
             />
           </>
         )}
       </div>
-      {!isEditingConfig && <button className="buttle-button">Battle</button>}
+      {!currentEditingBot && <button className="buttle-button">Battle</button>}
     </div>
   );
 }

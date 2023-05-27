@@ -5,13 +5,13 @@ import { configActions } from "../../../store/index";
 
 type Props = {
   currentEditingBot: string;
-  setIsEditingConfig: (bool: boolean) => void;
-  isEditingConfig: boolean;
+  setCurrentEditingBot: (bool: string) => void;
 };
 
 export const SetupBotConfig = (props: Props) => {
   const dispatch = useAppDispatch();
   const bot1Config = useAppSelector((state) => state.bot1Config);
+  const bot2Config = useAppSelector((state) => state.bot2Config);
 
   const setSelectValues = () => {
     const booleanValueElem = document.querySelector(
@@ -20,21 +20,20 @@ export const SetupBotConfig = (props: Props) => {
     const startingDirectionElem = document.querySelector(
       ".startingDirection"
     ) as HTMLInputElement;
-
-    if (booleanValueElem && bot1Config.booleanValue) {
-      console.log(bot1Config.booleanValue);
-      booleanValueElem.value = bot1Config.booleanValue.toString();
-    }
-    if (startingDirectionElem) {
+    if (props.currentEditingBot === "Bot1") {
+      booleanValueElem.value = bot1Config.booleanValue;
       startingDirectionElem.value = bot1Config.startingDirection;
+    } else if (props.currentEditingBot === "Bot2") {
+      booleanValueElem.value = bot2Config.booleanValue;
+      startingDirectionElem.value = bot2Config.startingDirection;
     }
   };
 
   useEffect(() => {
-    if (props.isEditingConfig) {
+    if (props.currentEditingBot) {
       setSelectValues();
     }
-  }, [props.isEditingConfig]);
+  }, [props.currentEditingBot]);
 
   const handleSubmit = (e: React.SyntheticEvent) => {
     e.preventDefault();
@@ -44,13 +43,19 @@ export const SetupBotConfig = (props: Props) => {
       startingDirection: { value: string };
     };
     dispatch(
-      configActions.setBot1Config({
-        botName: target.botName.value,
-        booleanValue: target.booleanValue.value,
-        startingDirection: target.startingDirection.value,
-      })
+      props.currentEditingBot === "Bot1"
+        ? configActions.setBot1Config({
+            botName: target.botName.value,
+            booleanValue: target.booleanValue.value,
+            startingDirection: target.startingDirection.value,
+          })
+        : configActions.setBot2Config({
+            botName: target.botName.value,
+            booleanValue: target.booleanValue.value,
+            startingDirection: target.startingDirection.value,
+          })
     );
-    props.setIsEditingConfig(false);
+    props.setCurrentEditingBot("");
   };
 
   return (
@@ -70,7 +75,11 @@ export const SetupBotConfig = (props: Props) => {
                 name="botName"
                 id="botName"
                 type="text"
-                defaultValue={bot1Config.botName}
+                defaultValue={
+                  props.currentEditingBot === "Bot1"
+                    ? bot1Config.botName
+                    : bot2Config.botName
+                }
               />
             </label>
           </div>
