@@ -24,7 +24,7 @@ function ConfigurationLayout() {
     dispatch(configActions.setSpeed(2));
   };
 
-  const operationArray: string[] = ["and", "or", "xor", "nand", "nor", "xnor"];
+  const operationArray: string[] = ["and", "or", "nor", "nand"];
 
   return (
     <div className="configuration-container">
