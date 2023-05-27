@@ -13,7 +13,7 @@ type configContextObj = {
   bot2Config: eachBotConfig;
 };
 const initialState: configContextObj = {
-  speed: 1,
+  speed: null,
   operation: "",
   bot1Config: {
     botName: "",
