@@ -17,6 +17,10 @@ interface Bot {
     active: boolean
 }
 
+interface botsByPositionProps {
+    [key: string]: Bot
+}
+
 function Arena(): JSX.Element {
 
     const config = useAppSelector((state) => state);
@@ -25,8 +29,8 @@ function Arena(): JSX.Element {
 
     const [grid, setGrid] = useState(() => genNArray(8).map(() => genNArray(8)));
     const [bots, setBots] = useState<Bot[]>([
-        { position: [3, 5], direction: "North", colour: "Red", booleanValue: 1, active: true },
-        { position: [5, 3], direction: "West", colour: "Blue", booleanValue: 0, active: true }
+        { position: [3, 5], direction: "North", colour: "Blue", booleanValue: 1, active: true },
+        { position: [5, 3], direction: "West", colour: "Red", booleanValue: 1, active: true }
     ]); //hardcoded for now, will get from context later
 
     // botsByPosition allows efficient search of bots based on position
@@ -36,13 +40,21 @@ function Arena(): JSX.Element {
     });
 
     const handleCollisions = (bots: Bot[]) => {
+        const collidedBots: Bot[] = [];
         if (JSON.stringify(bots[0].position) === JSON.stringify(bots[1].position)) {
             const result = botCollising(bots[0].booleanValue, bots[1].booleanValue, currOperation);
             if (result === 1) {
                 const genRandomIndex = Math.floor(Math.random() * 2);
                 if (genRandomIndex === 0) {
-                    bots[0].active = false
-                } else { bots[1].active = false }
+                    bots[0].active = false;
+                    collidedBots.push(bots[0])
+                } else {
+                    bots[1].active = false;
+                    collidedBots.push(bots[1])
+                }
+            }
+            if (collidedBots.length > 0) {
+                setBots((prevBots) => prevBots.filter((bot) => !collidedBots.includes(bot)));
             }
         }
         return bots;
@@ -56,10 +68,12 @@ function Arena(): JSX.Element {
                     const returnValue = botMoving(newBot);
                     return bot = returnValue;
                 });
+                if (newBots.length > 1) {
+                    const newBotsAfterCollide = handleCollisions(newBots);
+                    return newBotsAfterCollide;
+                }
                 return newBots;
             });
-            const newBots = bots
-            handleCollisions(newBots);
         }, currSpeed);
 
         return () => clearInterval(interval);
