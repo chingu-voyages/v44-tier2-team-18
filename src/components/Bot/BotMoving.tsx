@@ -69,4 +69,3 @@ export const botMoving = (direction: "North" | "South" | "East" | "West",
     }
     return { direction, position };
 }
-

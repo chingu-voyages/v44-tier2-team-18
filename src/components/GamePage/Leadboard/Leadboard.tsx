@@ -8,11 +8,11 @@ function Leadboard() {
       <h3>Battle Results</h3>
       <div className='result-container'>
         <div className='bot-container'>
-          <div className='bot-box'>
+          <div className='bot'>
             <p>Bot 1</p>
             <img src={botImg} alt="bot-1" />
           </div>
-          <div className='bot-box'>
+          <div className='bot'>
             <p> Bot 2</p>
             <img src={botImg} alt="bot-2" />
           </div>

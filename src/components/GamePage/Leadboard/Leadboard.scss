@@ -12,7 +12,7 @@ $titleFont: Poppins;
   padding-block: 10px;
 }
 .board-container h3 {
-  color: $whiteColor;
+  color: $blackColor;
   font-weight: 700;
   font-family: $titleFont;
   font-size: 25px;
@@ -26,26 +26,21 @@ $titleFont: Poppins;
     width: 70%;
 }
 .bot-container{
-    display: flex;
+      display: flex;
     align-items: center;
     gap: 60px;
 }
-.bot-box{
+
+
+.bot{
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-
-    p {
-        color: $whiteColor;
-    }
 }
 .bot img{
     width: 50px;
 }
 .score-info p{
     font-weight: 700;
-}
-.result-info {
-    color: $whiteColor;
 }
