@@ -5,12 +5,11 @@ import { configActions } from "../../../store/index";
 import { useAppDispatch, useAppSelector } from "../../../store";
 
 function ConfigurationLayout() {
-  //TO GET STATE FROM REDUX
-  const config = useAppSelector((state) => state);
-  //TO DISPATCH THE REDUCER IN REDUX
   const dispatch = useAppDispatch();
-  const [speed, setSpeed] = useState<number>(1);
-  const [operation, setOperation] = useState<string>("");
+
+  const speed = useAppSelector((state) => state.speed);
+  const operation = useAppSelector((state) => state.operation);
+
   const [currentEditingBot, setCurrentEditingBot] = useState<string>("");
 
   const setEditingBot = (
@@ -18,7 +17,6 @@ function ConfigurationLayout() {
     botName: string
   ) => {
     setCurrentEditingBot(botName);
-    dispatch(configActions.setSpeed(2));
   };
 
   const operationArray: string[] = ["and", "or", "nor", "nand"];
@@ -59,9 +57,11 @@ function ConfigurationLayout() {
                 name="speed"
                 min="1"
                 max="4"
-                value={speed}
+                value={speed?.toString()}
                 onChange={(e: React.FormEvent<HTMLInputElement>) =>
-                  setSpeed(Number(e.currentTarget.value))
+                  dispatch(
+                    configActions.setSpeed(Number(e.currentTarget.value))
+                  )
                 }
               />
               <div className="range-value">
@@ -78,7 +78,7 @@ function ConfigurationLayout() {
                   name="operation"
                   value={operation}
                   onChange={(e: React.ChangeEvent<HTMLSelectElement>) =>
-                    setOperation(e.currentTarget.value)
+                    dispatch(configActions.setOperation(e.currentTarget.value))
                   }>
                   {operationArray.map((op: string) => {
                     return (
