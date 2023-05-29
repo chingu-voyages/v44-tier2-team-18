@@ -3,12 +3,15 @@ import "./ConfigurationLayout.scss";
 import { SetupBotConfig } from "./SetupBotConfig";
 import { configActions } from "../../../store/index";
 import { useAppDispatch, useAppSelector } from "../../../store";
+import { AiOutlineCheck } from "react-icons/ai";
 
 function ConfigurationLayout() {
   const dispatch = useAppDispatch();
 
   const speed = useAppSelector((state) => state.speed);
   const operation = useAppSelector((state) => state.operation);
+  const bot1Config = useAppSelector((state) => state.bot1Config);
+  const bot2Config = useAppSelector((state) => state.bot2Config);
 
   const [currentEditingBot, setCurrentEditingBot] = useState<string>("");
 
@@ -36,7 +39,14 @@ function ConfigurationLayout() {
                   setEditingBot(e, "Bot1")
                 }
                 className="globalButton">
-                Bot1 Setting
+                <div className="button-text">
+                  Bot1 Setting
+                  {bot1Config.botName &&
+                    bot1Config.booleanValue &&
+                    bot1Config.startingDirection && (
+                      <AiOutlineCheck color="#4CAF50" size={"1.2rem"} />
+                    )}
+                </div>
               </button>
             </div>
             <div className="button-wrapper">
@@ -45,7 +55,14 @@ function ConfigurationLayout() {
                 onClick={(e: React.MouseEvent<HTMLElement>) =>
                   setEditingBot(e, "Bot2")
                 }>
-                Bot2 Setting
+                <div className="button-text">
+                  Bot2 Setting
+                  {bot2Config.botName &&
+                    bot2Config.booleanValue &&
+                    bot2Config.startingDirection && (
+                      <AiOutlineCheck color="#4CAF50" size={"1.2rem"} />
+                    )}
+                </div>
               </button>
             </div>
             <div className="range-wrapper">
