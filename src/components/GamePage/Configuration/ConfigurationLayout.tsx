@@ -5,13 +5,11 @@ import { configActions } from "../../../store/index";
 import { useAppDispatch, useAppSelector } from "../../../store";
 
 function ConfigurationLayout() {
-  //TO GET STATE FROM REDUX
-  const config = useAppSelector((state) => state);
-  //TO DISPATCH THE REDUCER IN REDUX
   const dispatch = useAppDispatch();
-  const [speed, setSpeed] = useState<number>(1);
-  const [operation, setOperation] = useState<string>("");
-  const [isEditingConfig, setIsEditingConfig] = useState<boolean>(false);
+
+  const speed = useAppSelector((state) => state.speed);
+  const operation = useAppSelector((state) => state.operation);
+
   const [currentEditingBot, setCurrentEditingBot] = useState<string>("");
 
   const setEditingBot = (
@@ -19,12 +17,9 @@ function ConfigurationLayout() {
     botName: string
   ) => {
     setCurrentEditingBot(botName);
-    setIsEditingConfig(true);
-    console.log(config);
-    dispatch(configActions.setSpeed(2));
   };
 
-  const operationArray: string[] = ["and", "or", "xor", "nand", "nor", "xnor"];
+  const operationArray: string[] = ["and", "or", "nor", "nand"];
 
   return (
     <div className="configuration-container">
@@ -33,7 +28,7 @@ function ConfigurationLayout() {
         <div className="rule-explanation">Learn more about the rules</div>
       </div>
       <div className="configuration-content">
-        {!isEditingConfig && (
+        {!currentEditingBot && (
           <div className="not-editing">
             <div className="button-wrapper">
               <button
@@ -62,9 +57,11 @@ function ConfigurationLayout() {
                 name="speed"
                 min="1"
                 max="4"
-                value={speed}
+                value={speed?.toString()}
                 onChange={(e: React.FormEvent<HTMLInputElement>) =>
-                  setSpeed(Number(e.currentTarget.value))
+                  dispatch(
+                    configActions.setSpeed(Number(e.currentTarget.value))
+                  )
                 }
               />
               <div className="range-value">
@@ -81,7 +78,7 @@ function ConfigurationLayout() {
                   name="operation"
                   value={operation}
                   onChange={(e: React.ChangeEvent<HTMLSelectElement>) =>
-                    setOperation(e.currentTarget.value)
+                    dispatch(configActions.setOperation(e.currentTarget.value))
                   }>
                   {operationArray.map((op: string) => {
                     return (
@@ -95,16 +92,16 @@ function ConfigurationLayout() {
             </div>
           </div>
         )}
-        {isEditingConfig && (
+        {currentEditingBot && (
           <>
             <SetupBotConfig
               currentEditingBot={currentEditingBot}
-              setIsEditingConfig={setIsEditingConfig}
+              setCurrentEditingBot={setCurrentEditingBot}
             />
           </>
         )}
       </div>
-      {!isEditingConfig && <button className="buttle-button">Battle</button>}
+      {!currentEditingBot && <button className="buttle-button">Battle</button>}
     </div>
   );
 }

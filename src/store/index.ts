@@ -1,9 +1,11 @@
 import { configureStore, createSlice } from "@reduxjs/toolkit";
 import { TypedUseSelectorHook, useSelector, useDispatch } from "react-redux";
 
-type eachBotConfig = {
+export type eachBotConfig = {
   botName: string;
-  booleanValue: number;
+  position: number[];
+  active: boolean;
+  booleanValue: string;
   startingDirection: string;
 };
 type configContextObj = {
@@ -17,12 +19,16 @@ const initialState: configContextObj = {
   operation: "",
   bot1Config: {
     botName: "",
-    booleanValue: 0,
+    position: [0, 0],
+    active: false,
+    booleanValue: "",
     startingDirection: "",
   },
   bot2Config: {
     botName: "",
-    booleanValue: 0,
+    position: [0, 0],
+    active: false,
+    booleanValue: "",
     startingDirection: "",
   },
 };
@@ -46,27 +52,37 @@ const botConfigSlice = createSlice({
       state.operation = action.payload;
     },
     setBot1Config(state, action) {
-      if (action.payload.bot1Config.botName) {
-        state.bot1Config.botName = action.payload.bot1Config.botName;
+      if (action.payload.botName) {
+        state.bot1Config.botName = action.payload.botName;
       }
-      if (action.payload.bot1Config.booleanValue) {
-        state.bot1Config.booleanValue = action.payload.bot1Config.booleanValue;
+      if (action.payload.booleanValue) {
+        state.bot1Config.booleanValue = action.payload.booleanValue;
       }
-      if (action.payload.bot1Config.startingDirection) {
-        state.bot1Config.startingDirection =
-          action.payload.bot1Config.startingDirection;
+      if (action.payload.startingDirection) {
+        state.bot1Config.startingDirection = action.payload.startingDirection;
+      }
+      if (action.payload.position) {
+        state.bot1Config.position = action.payload.position;
+      }
+      if (action.payload.active) {
+        state.bot1Config.active = action.payload.active;
       }
     },
     setBot2Config(state, action) {
-      if (action.payload.bot2Config.botName) {
-        state.bot2Config.botName = action.payload.bot2Config.botName;
+      if (action.payload.botName) {
+        state.bot2Config.botName = action.payload.botName;
       }
-      if (action.payload.bot2Config.booleanValue) {
-        state.bot2Config.booleanValue = action.payload.bot2Config.booleanValue;
+      if (action.payload.booleanValue) {
+        state.bot2Config.booleanValue = action.payload.booleanValue;
       }
-      if (action.payload.bot2Config.startingDirection) {
-        state.bot2Config.startingDirection =
-          action.payload.bot2Config.startingDirection;
+      if (action.payload.startingDirection) {
+        state.bot2Config.startingDirection = action.payload.startingDirection;
+      }
+      if (action.payload.position) {
+        state.bot2Config.position = action.payload.position;
+      }
+      if (action.payload.active) {
+        state.bot2Config.active = action.payload.active;
       }
     },
   },

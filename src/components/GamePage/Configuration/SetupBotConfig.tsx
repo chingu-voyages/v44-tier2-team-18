@@ -1,37 +1,77 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "./SetupBotConfig.scss";
+import { useAppDispatch, useAppSelector } from "../../../store";
+import { configActions } from "../../../store/index";
 
-type BotConfigType = {
-  botName: string;
-  booleanValue: number;
-  startingDirection: string;
-};
 type Props = {
   currentEditingBot: string;
-  setIsEditingConfig: (bool: boolean) => void;
+  setCurrentEditingBot: (bool: string) => void;
 };
 
 export const SetupBotConfig = (props: Props) => {
-  const [botInfo, setBotInfo] = useState<BotConfigType>({
-    botName: "",
-    booleanValue: 0,
-    startingDirection: "",
-  });
+  const dispatch = useAppDispatch();
+  const bot1Config = useAppSelector((state) => state.bot1Config);
+  const bot2Config = useAppSelector((state) => state.bot2Config);
+
+  const [isBotNameDuplicated, setIsBotNameDuplicated] = useState(false);
+
+  const setSelectValues = () => {
+    const booleanValueElem = document.querySelector(
+      ".booleanValue"
+    ) as HTMLInputElement;
+    const startingDirectionElem = document.querySelector(
+      ".startingDirection"
+    ) as HTMLInputElement;
+    if (props.currentEditingBot === "Bot1") {
+      booleanValueElem.value = bot1Config.booleanValue;
+      startingDirectionElem.value = bot1Config.startingDirection;
+    } else if (props.currentEditingBot === "Bot2") {
+      booleanValueElem.value = bot2Config.booleanValue;
+      startingDirectionElem.value = bot2Config.startingDirection;
+    }
+  };
+
+  useEffect(() => {
+    if (props.currentEditingBot) {
+      setSelectValues();
+    }
+  }, [props.currentEditingBot]);
 
   const handleSubmit = (e: React.SyntheticEvent) => {
     e.preventDefault();
+
     const target = e.target as typeof e.target & {
       botName: { value: string };
       booleanValue: { value: number };
       startingDirection: { value: string };
     };
-    //set in useContext
-    setBotInfo({
-      botName: target.botName.value,
-      booleanValue: target.booleanValue.value,
-      startingDirection: target.startingDirection.value,
-    });
-    props.setIsEditingConfig(false);
+
+    const theOtherBotName =
+      props.currentEditingBot === "Bot1"
+        ? bot2Config.botName
+        : bot1Config.botName;
+    if (theOtherBotName && target.botName.value === theOtherBotName) {
+      setIsBotNameDuplicated(true);
+      return;
+    }
+
+    setIsBotNameDuplicated(false);
+
+    dispatch(
+      props.currentEditingBot === "Bot1"
+        ? configActions.setBot1Config({
+            botName: target.botName.value,
+            booleanValue: target.booleanValue.value,
+            startingDirection: target.startingDirection.value,
+          })
+        : configActions.setBot2Config({
+            botName: target.botName.value,
+            booleanValue: target.booleanValue.value,
+            startingDirection: target.startingDirection.value,
+          })
+    );
+
+    props.setCurrentEditingBot("");
   };
 
   return (
@@ -51,14 +91,23 @@ export const SetupBotConfig = (props: Props) => {
                 name="botName"
                 id="botName"
                 type="text"
-                defaultValue={botInfo.botName}
+                className={`botname ${isBotNameDuplicated ? " alert" : ""}`}
+                defaultValue={
+                  props.currentEditingBot === "Bot1"
+                    ? bot1Config.botName
+                    : bot2Config.botName
+                }
               />
             </label>
+            <div className="alert-text">
+              {isBotNameDuplicated &&
+                "Bot Name is duplicated. Change the bot name."}
+            </div>
           </div>
           <div className="bot-each-config">
             <label>
               <div>Boolean Value:</div>
-              <select name="booleanValue">
+              <select name="booleanValue" className="booleanValue">
                 <option value="0">0</option>
                 <option value="1">1</option>
               </select>
@@ -67,16 +116,18 @@ export const SetupBotConfig = (props: Props) => {
           <div className="bot-each-config">
             <label>
               <div>Starting direction:</div>
-              <select name="startingDirection">
-                <option value="top">Top</option>
-                <option value="left">Left</option>
-                <option value="bottom">Bottom</option>
-                <option value="right">Right</option>
+              <select name="startingDirection" className="startingDirection">
+                <option value="north">North</option>
+                <option value="south">South</option>
+                <option value="west">West</option>
+                <option value="east">East</option>
               </select>
             </label>
           </div>
           <div className="submit">
-            <button type="submit">Confirm</button>
+            <button type="submit" className="confirm-bot-setting">
+              Confirm
+            </button>
           </div>
         </form>
       </div>
