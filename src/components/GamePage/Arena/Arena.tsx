@@ -22,18 +22,11 @@ function Arena(): JSX.Element {
 
     const bot1Config = useAppSelector((state) => state.bot1Config);
     const bot2Config = useAppSelector((state) => state.bot2Config);
-    // console.log(bot1Config)
-
-    // const config = useAppSelector((state) => state);
-    const currOperation = "and";
-    // const currSpeed = config.speed;
+    const speed = useAppSelector((state) => state.speed);
+    const operation = useAppSelector((state) => state.operation);
 
     const [grid, setGrid] = useState(() => genNArray(8).map(() => genNArray(8)));
-    const [bots, setBots] = useState<Bot[]>([
-        // bot1Config, bot2Config
-        // { position: [3, 5], startingDirection: "North", colour: "Blue", booleanValue: "1", active: true, botName: "Giang" },
-        // { position: [5, 3], startingDirection: "West", colour: "Red", booleanValue: "1", active: true, botName: "Emiri" }
-    ]); //hardcoded for now, will get from context later
+    const [bots, setBots] = useState<Bot[]>([]);
 
     useEffect(() => {
         setBots([bot1Config, bot2Config]);
@@ -48,7 +41,7 @@ function Arena(): JSX.Element {
     const handleCollisions = (bots: Bot[]) => {
         const collidedBots: Bot[] = [];
         if (JSON.stringify(bots[0].position) === JSON.stringify(bots[1].position)) {
-            const result = botCollising(bots[0].booleanValue, bots[1].booleanValue, currOperation);
+            const result = botCollising(bots[0].booleanValue, bots[1].booleanValue, operation);
             if (result === 1) {
                 const genRandomIndex = Math.floor(Math.random() * 2);
                 if (genRandomIndex === 0) {
@@ -80,7 +73,7 @@ function Arena(): JSX.Element {
                 }
                 return newBots;
             });
-        }, 1000);
+        }, 1000); //will change to speed later
 
         return () => clearInterval(interval);
     }, []);

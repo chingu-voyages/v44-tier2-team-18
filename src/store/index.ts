@@ -16,11 +16,6 @@ type configContextObj = {
   bot2Config: eachBotConfig;
 };
 
-// const genRandomIndex = () => Math.floor(Math.random() * 8);
-// const genRandomPosition = () => [0, 0].map(genRandomIndex);
-// let startingPosition1 = genRandomPosition();
-// let startingPosition2 = genRandomPosition();
-
 const initialState: configContextObj = {
   speed: 1,
   operation: "",
