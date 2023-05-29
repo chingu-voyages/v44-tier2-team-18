@@ -1,118 +1,246 @@
-
+  @import 'atropos/scss';
   @import url('https://fonts.googleapis.com/css2?family=Anton&family=Gugi&family=Lato:wght@100&family=Poppins:wght@700&family=Roboto:ital,wght@1,100&family=Sofia&display=swap');
 
-
-.container-home{
-    height: 65vh;
+  .container-home{
+    margin: 2% 10%;
+    height: 75vh;
     justify-content: center;
     text-align: center;
     background-image:url(../../assets/bots.png);
-    background-size: contain;
+    background-size:contain;
     background-repeat: no-repeat;
     background-position: center;
     background-color: white;
-    @media screen and (max-width: 650px) {
-      background-position: 20px 150px;
-      height: 60vh;
-      
+    @media screen and (max-width: 850px) {
+      height: 80vh;
+    }
+
+    .main-text {
+      font-size: calc(1.5rem + 1vw);
+      padding-top: 2%;
+      height: 50px;
+      font-family: 'Poppins';
+      font-style: normal;
+      font-weight: 700;
+      @media screen and (max-width: 850px) {
+        padding-top: 25%;
+        
+      }
+    }
+
+    button {
+      margin-top: 55vh;
+      position: relative;
+      width: 11em;
+      height: 4em;
+      outline: none;
+      transition: 0.1s;
+      background-color: transparent;
+      border: none;
+      font-size: 13px;
+      font-weight: bold;
+      color: #060606;
+
+      @media screen and (max-width: 850px) {
+            margin-top: 45vh;
+          }
     }
     
-  
-  }
-  .container-home h1{
+    #clip {
+      --color: #2761c3;
+      position: absolute;
+      top: 0;
+      overflow: hidden;
+      width: 100%;
+      height: 80%;
+      border: 5px double var(--color);
+      box-shadow: inset 0px 0px 15px #195480;
+      clip-path: polygon(30% 0%, 70% 0%, 100% 30%, 100% 70%, 70% 100%, 30% 100%, 0% 70%, 0% 30%);
+    }
     
-    height: 50px;
-    font-family: 'Poppins';
-    font-style: normal;
-    font-weight: 700;
-    font-size: 48px;
-    line-height: 72px;
-
-    align-items: center;
-    text-align: center;
+    .arrow {
+      position: absolute;
+      transition: 0.2s;
+      background-color: #2761c3;
+      top: 35%;
+      width: 11%;
+      height: 30%;
+    }
     
+    #leftArrow {
+      left: -13.5%;
+      clip-path: polygon(100% 0, 100% 100%, 0 50%);
+    }
     
+    #rightArrow {
+      clip-path: polygon(100% 49%, 0 0, 0 100%);
+      left: 109.5%;
+    }
+    
+    button:hover #rightArrow {
+      background-color: #27c39f;
+      left: -15%;
+      animation: 0.6s ease-in-out both infinite alternate rightArrow8;
+    }
+    
+    button:hover #leftArrow {
+      background-color: #27c39f;
+      left: 109.5%;
+      animation: 0.6s ease-in-out both infinite alternate leftArrow8;
+    }
+    
+    .corner {
+      position: absolute;
+      width: 4em;
+      height: 4em;
+      background-color: #2761c3;
+      box-shadow: inset 1px 1px 8px #2781c3;
+      transform: scale(1) rotate(45deg);
+      transition: 0.2s;
+    }
+    
+    #rightTop {
+      top: -1.98em;
+      left: 91%;
+    }
+    
+    #leftTop {
+      top: -1.96em;
+      left: -3.0em;
+    }
+    
+    #leftBottom {
+      top: 2.10em;
+      left: -2.15em;
+    }
+    
+    #rightBottom {
+      top: 45%;
+      left: 88%;
+    }
+    
+    button:hover #leftTop {
+      animation: 0.1s ease-in-out 0.05s both changeColor8,
+      0.2s linear 0.4s both lightEffect8;
+    }
+    
+    button:hover #rightTop {
+      animation: 0.1s ease-in-out 0.15s both changeColor8,
+      0.2s linear 0.4s both lightEffect8;
+    }
+    
+    button:hover #rightBottom {
+      animation: 0.1s ease-in-out 0.25s both changeColor8,
+      0.2s linear 0.4s both lightEffect8;
+    }
+    
+    button:hover #leftBottom {
+      animation: 0.1s ease-in-out 0.35s both changeColor8,
+      0.2s linear 0.4s both lightEffect8;
+    }
+    
+    button:hover .corner {
+      transform: scale(1.25) rotate(45deg);
+    }
+    
+    button:hover #clip {
+      animation: 0.2s ease-in-out 0.55s both greenLight8;
+      --color: #27c39f;
+    }
+    
+    @keyframes changeColor8 {
+      from {
+        background-color: #2781c3;
+      }
+    
+      to {
+        background-color: #27c39f;
+      }
+    }
+    
+    @keyframes lightEffect8 {
+      from {
+        box-shadow: 1px 1px 5px #27c39f;
+      }
+    
+      to {
+        box-shadow: 0 0 2px #27c39f;
+      }
+    }
+    
+    @keyframes greenLight8 {
+      from {
+      }
+    
+      to {
+        box-shadow: inset 0px 0px 32px #27c39f;
+      }
+    }
+    
+    @keyframes leftArrow8 {
+      from {
+        transform: translate(0px);
+      }
+    
+      to {
+        transform: translateX(10px);
+      }
+    }
+    
+    @keyframes rightArrow8 {
+      from {
+        transform: translate(0px);
+      }
+    
+      to {
+        transform: translateX(-10px);
+      }
+    }
   }
   
   .footer-home{
-    height: 35vh;
+   display: flex;
+   flex-direction: column;
+   justify-content: center;
+   align-items: center;
+    height: 20vh;
     background: #D9D9D9;
-    
-    @media screen and (max-width: 650px) {
-      height: 45vh;
-      
-    }
-
-    @media screen and (max-width: 1200px) {
-      height: 50vh;
-      
-    }
-  }
-  .container-home button{
-    height: 40.182647705078125px;
-    
-  width: 120px;
-  // left: 563px;
-  // top: 558px;
-  border-radius: 20px;
-  text-align: center;
-  transition: all 2.5s;
-  justify-content: center;
-  margin-top: 250px;
-  display: inline;
-  background: #C4C4C4;
-  font-family: 'Poppins';
-  font-style: normal;
-  font-weight: 800;
-  font-size: 15px;
-  line-height: 36px;
-  color: #060606;
-  border: none;
-  cursor: pointer;
-  @media screen and (max-width: 1200px) {
-    margin-top: 100px;
-    
   }
   
-  }
-  .container-home button:hover{
-    
-    background: red;
-  }
   .Team{
     text-align: center;
-    
-    
+    margin-bottom: 5px;
+    margin-top: 2%;
+    font-weight: bolder; 
   }
   .Team-links{
+
+    a {
+      margin: 0 2%;
+    }
+
     display: flex;
-    flex-direction: row;
-    justify-content: space-evenly;
+    text-align: center;
+    justify-content: center;
+    width: 60vw;
+    font-size: calc(0.7rem + 0.3vw);
   
     @media screen and (max-width: 650px) {
-      display: block;
-      text-align: center;
-      
+     width: 95vw;
     }
-  
-  
-    
-  
   }
   
   .chingu{
     text-align: center;
-    
+    font-size: calc(0.7rem + 0.3vw);
+    margin-bottom: 3%;
+    margin-top: 1%;
+
   }
-  
   
   .github{
     width: 30px;
-    height: 30px;
-   
-    
-    
-    
+    height: 30px; 
   }
 
   .link{

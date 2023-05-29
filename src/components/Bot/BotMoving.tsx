@@ -77,6 +77,9 @@ export const botMoving = (newBot: Bot) => {
     }
     return newBot;
 }
+<<<<<<< HEAD
 
 
 
+=======
+>>>>>>> 1223d6ecc6a3c0b709aa23f0be87a1591a538a6f
