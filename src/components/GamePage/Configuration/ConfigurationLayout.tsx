@@ -11,7 +11,6 @@ function ConfigurationLayout() {
   const dispatch = useAppDispatch();
   const [speed, setSpeed] = useState<number>(1);
   const [operation, setOperation] = useState<string>("");
-  const [isEditingConfig, setIsEditingConfig] = useState<boolean>(false);
   const [currentEditingBot, setCurrentEditingBot] = useState<string>("");
 
   const setEditingBot = (
@@ -19,102 +18,91 @@ function ConfigurationLayout() {
     botName: string
   ) => {
     setCurrentEditingBot(botName);
-    setIsEditingConfig(true);
+    dispatch(configActions.setSpeed(2));
   };
 
-  const operationArray: string[] = ["and", "or", "nand", "nor"];
+  const operationArray: string[] = ["and", "or", "nor", "nand"];
 
   return (
-    <>
-      console.log(speed);
-      <div className="configuration-container">
-        <div>
-          <h2>Finish setting up the configuration</h2>
-          <div className="rule-explanation">Learn more about the rules</div>
-        </div>
-        <div className="configuration-content">
-          {!isEditingConfig && (
-            <div className="not-editing">
-              <div className="button-wrapper">
-                <button
-                  onClick={(e: React.MouseEvent<HTMLElement>) =>
-                    setEditingBot(e, "Bot1")
-                  }
-                  className="globalButton">
-                  Bot1 Setting
-                </button>
-              </div>
-              <div className="button-wrapper">
-                <button
-                  className="globalButton"
-                  onClick={(e: React.MouseEvent<HTMLElement>) =>
-                    setEditingBot(e, "Bot2")
-                  }>
-                  Bot2 Setting
-                </button>
-              </div>
-              <div className="range-wrapper">
-                <label htmlFor="speed">Choose the speed</label>
-                <input
-                  className="range-bar"
-                  type="range"
-                  id="speed"
-                  name="speed"
-                  min="1" // need to fix the value to [1000, 2000, 3000, 4000]
-                  max="4" // need to fix the value to [1000, 2000, 3000, 4000]
-                  value={speed}
-                  onChange={(e: React.FormEvent<HTMLInputElement>) => {
-                    setSpeed(Number(e.currentTarget.value))
-                    // console.log(speed)
-                    dispatch(configActions.setSpeed(speed))
-                    // console.log(config)
-                  }
-                  }
-                />
-                <div className="range-value">
-                  <span>1</span>
-                  <span>2</span>
-                  <span>3</span>
-                  <span>4</span>
-                </div>
-              </div>
-              <div className="bot-each-config operation-wrapper">
-                <label>
-                  <div>Operation:</div>
-                  <select
-                    name="operation"
-                    value={operation}
-                    onChange={(e: React.ChangeEvent<HTMLSelectElement>) => {
-                      setOperation(e.currentTarget.value)
-                      // console.log(operation)
-                      dispatch(configActions.setOperation(operation))
-                      // console.log(config)
-                    }
-                    }>
-                    {operationArray.map((op: string) => {
-                      return (
-                        <option value={op} key={op}>
-                          {op.toUpperCase()}
-                        </option>
-                      );
-                    })}
-                  </select>
-                </label>
+    <div className="configuration-container">
+      <div>
+        <h2>Finish setting up the configuration</h2>
+        <div className="rule-explanation">Learn more about the rules</div>
+      </div>
+      <div className="configuration-content">
+        {!currentEditingBot && (
+          <div className="not-editing">
+            <div className="button-wrapper">
+              <button
+                onClick={(e: React.MouseEvent<HTMLElement>) =>
+                  setEditingBot(e, "Bot1")
+                }
+                className="globalButton">
+                Bot1 Setting
+              </button>
+            </div>
+            <div className="button-wrapper">
+              <button
+                className="globalButton"
+                onClick={(e: React.MouseEvent<HTMLElement>) =>
+                  setEditingBot(e, "Bot2")
+                }>
+                Bot2 Setting
+              </button>
+            </div>
+            <div className="range-wrapper">
+              <label htmlFor="speed">Choose the speed</label>
+              <input
+                className="range-bar"
+                type="range"
+                id="speed"
+                name="speed"
+                min="1"
+                max="4"
+                value={speed}
+                onChange={(e: React.FormEvent<HTMLInputElement>) =>
+                  setSpeed(Number(e.currentTarget.value))
+                }
+              />
+              <div className="range-value">
+                <span>1</span>
+                <span>2</span>
+                <span>3</span>
+                <span>4</span>
               </div>
             </div>
-          )}
-          {isEditingConfig && (
-            <>
-              <SetupBotConfig
-                currentEditingBot={currentEditingBot}
-                setIsEditingConfig={setIsEditingConfig}
-              />
-            </>
-          )}
-        </div>
-        {!isEditingConfig && <button className="buttle-button">Battle</button>}
+            <div className="bot-each-config operation-wrapper">
+              <label>
+                <div>Operation:</div>
+                <select
+                  name="operation"
+                  value={operation}
+                  onChange={(e: React.ChangeEvent<HTMLSelectElement>) =>
+                    setOperation(e.currentTarget.value)
+                  }>
+                  {operationArray.map((op: string) => {
+                    return (
+                      <option value={op} key={op}>
+                        {op.toUpperCase()}
+                      </option>
+                    );
+                  })}
+                </select>
+              </label>
+            </div>
+          </div>
+        )}
+        {currentEditingBot && (
+          <>
+            <SetupBotConfig
+              currentEditingBot={currentEditingBot}
+              setCurrentEditingBot={setCurrentEditingBot}
+            />
+          </>
+        )}
       </div>
-    </>
+      {!currentEditingBot && <button className="buttle-button">Battle</button>}
+    </div>
   );
 }
 

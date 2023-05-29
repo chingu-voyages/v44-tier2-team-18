@@ -10,28 +10,34 @@ import { useAppSelector } from '../../../store';
 let genNArray = (n: number) => Array.from({ length: n }, () => ({}));
 
 interface Bot {
+    botName: string;
     position: number[];
-    direction: "North" | "South" | "East" | "West";
-    colour: "Red" | "Blue";
-    booleanValue: number;
-    active: boolean
-}
-
-interface botsByPositionProps {
-    [key: string]: Bot
+    active: boolean;
+    colour: string;
+    booleanValue: string;
+    startingDirection: string;
 }
 
 function Arena(): JSX.Element {
 
-    const config = useAppSelector((state) => state);
+    const bot1Config = useAppSelector((state) => state.bot1Config);
+    const bot2Config = useAppSelector((state) => state.bot2Config);
+    // console.log(bot1Config)
+
+    // const config = useAppSelector((state) => state);
     const currOperation = "and";
-    const currSpeed = config.speed;
+    // const currSpeed = config.speed;
 
     const [grid, setGrid] = useState(() => genNArray(8).map(() => genNArray(8)));
     const [bots, setBots] = useState<Bot[]>([
-        { position: [3, 5], direction: "North", colour: "Blue", booleanValue: 1, active: true },
-        { position: [5, 3], direction: "West", colour: "Red", booleanValue: 1, active: true }
+        // bot1Config, bot2Config
+        // { position: [3, 5], startingDirection: "North", colour: "Blue", booleanValue: "1", active: true, botName: "Giang" },
+        // { position: [5, 3], startingDirection: "West", colour: "Red", booleanValue: "1", active: true, botName: "Emiri" }
     ]); //hardcoded for now, will get from context later
+
+    useEffect(() => {
+        setBots([bot1Config, bot2Config]);
+    }, [bot1Config, bot2Config]);
 
     // botsByPosition allows efficient search of bots based on position
     const botsByPosition: { [key: string]: Bot } = {};
@@ -74,7 +80,7 @@ function Arena(): JSX.Element {
                 }
                 return newBots;
             });
-        }, currSpeed);
+        }, 1000);
 
         return () => clearInterval(interval);
     }, []);

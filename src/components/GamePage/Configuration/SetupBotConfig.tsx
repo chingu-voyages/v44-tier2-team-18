@@ -1,41 +1,44 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "./SetupBotConfig.scss";
-import React, { useEffect } from "react";
-// import { useAppDispatch, useAppSelector } from "../../../store";
-// import { configActions } from "../../../store/index";
+import { useAppDispatch, useAppSelector } from "../../../store";
+import { configActions } from "../../../store/index";
 
-
-type BotConfigType = {
-  botName: string;
-  booleanValue: number;
-  startingDirection: string;
-  // startingPosition: number[];
-};
 type Props = {
   currentEditingBot: string;
-  setIsEditingConfig: (bool: boolean) => void;
+  setCurrentEditingBot: (bool: string) => void;
 };
 
 export const SetupBotConfig = (props: Props) => {
-  //TO GET STATE FROM REDUX
-  // const config = useAppSelector((state) => state);
-  // //TO DISPATCH THE REDUCER IN REDUX
-  // const dispatch = useAppDispatch();
-  const [botInfo, setBotInfo] = useState<BotConfigType>({
-    botName: "",
-    booleanValue: 0,
-    startingDirection: "",
-    // startingPosition: [],
-    // active: boolean
-  });
+  const dispatch = useAppDispatch();
+  const bot1Config = useAppSelector((state) => state.bot1Config);
+  const bot2Config = useAppSelector((state) => state.bot2Config);
 
-  // useEffect(() => {
-  //   console.log(botInfo); // Updated botInfo state
-  // }, [botInfo]);
+  const setSelectValues = () => {
+    const booleanValueElem = document.querySelector(
+      ".booleanValue"
+    ) as HTMLInputElement;
+    const startingDirectionElem = document.querySelector(
+      ".startingDirection"
+    ) as HTMLInputElement;
+    if (props.currentEditingBot === "Bot1") {
+      booleanValueElem.value = bot1Config.booleanValue;
+      startingDirectionElem.value = bot1Config.startingDirection;
+    } else if (props.currentEditingBot === "Bot2") {
+      booleanValueElem.value = bot2Config.booleanValue;
+      startingDirectionElem.value = bot2Config.startingDirection;
+    }
+  };
 
-  // const genRandomIndex = () => Math.floor(Math.random() * 8);
-  // const genRandomPosition = () => [0, 0].map(genRandomIndex);
-  // let position = genRandomPosition()
+  useEffect(() => {
+    if (props.currentEditingBot) {
+      setSelectValues();
+    }
+  }, [props.currentEditingBot]);
+
+  const genRandomIndex = () => Math.floor(Math.random() * 8);
+  const genRandomPosition = () => [0, 0].map(genRandomIndex);
+  let startingPosition1 = genRandomPosition();
+  let startingPosition2 = genRandomPosition();
   // console.log(position)
 
   const handleSubmit = (e: React.SyntheticEvent) => {
@@ -45,23 +48,24 @@ export const SetupBotConfig = (props: Props) => {
       booleanValue: { value: number };
       startingDirection: { value: string };
     };
-
-    setBotInfo({
-      // ...botInfo,
-      botName: target.botName.value,
-      booleanValue: target.booleanValue.value,
-      startingDirection: target.startingDirection.value,
-      // startingPosition: position,
-      // active: true
-    })
-    //if (props.currentEditingBot === "Bot1"){
-    // dispatch(configActions.setBot1Config(botInfo))
-    // console.log('redux:', config)
-    // }
-
-    console.log(botInfo)
-
-    props.setIsEditingConfig(false);
+    dispatch(
+      props.currentEditingBot === "Bot1"
+        ? configActions.setBot1Config({
+          botName: target.botName.value,
+          booleanValue: target.booleanValue.value,
+          startingDirection: target.startingDirection.value,
+          position: startingPosition1,
+          active: true
+        })
+        : configActions.setBot2Config({
+          botName: target.botName.value,
+          booleanValue: target.booleanValue.value,
+          startingDirection: target.startingDirection.value,
+          position: startingPosition2,
+          active: true
+        })
+    );
+    props.setCurrentEditingBot("");
   };
 
   return (
@@ -81,14 +85,18 @@ export const SetupBotConfig = (props: Props) => {
                 name="botName"
                 id="botName"
                 type="text"
-                defaultValue={botInfo.botName}
+                defaultValue={
+                  props.currentEditingBot === "Bot1"
+                    ? bot1Config.botName
+                    : bot2Config.botName
+                }
               />
             </label>
           </div>
           <div className="bot-each-config">
             <label>
               <div>Boolean Value:</div>
-              <select name="booleanValue">
+              <select name="booleanValue" className="booleanValue">
                 <option value="0">0</option>
                 <option value="1">1</option>
               </select>
@@ -97,16 +105,18 @@ export const SetupBotConfig = (props: Props) => {
           <div className="bot-each-config">
             <label>
               <div>Starting direction:</div>
-              <select name="startingDirection">
-                <option value="North">North</option>
-                <option value="West">West</option>
-                <option value="South">South</option>
-                <option value="East">East</option>
+              <select name="startingDirection" className="startingDirection">
+                <option value="north">North</option>
+                <option value="south">South</option>
+                <option value="west">West</option>
+                <option value="east">East</option>
               </select>
             </label>
           </div>
           <div className="submit">
-            <button type="submit">Confirm</button>
+            <button type="submit" className="confirm-bot-setting">
+              Confirm
+            </button>
           </div>
         </form>
       </div>

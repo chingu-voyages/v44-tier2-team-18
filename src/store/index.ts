@@ -1,35 +1,44 @@
 import { configureStore, createSlice } from "@reduxjs/toolkit";
 import { TypedUseSelectorHook, useSelector, useDispatch } from "react-redux";
 
-type eachBotConfig = {
-  position: number[],
-  active: boolean,
+export type eachBotConfig = {
   botName: string;
-  booleanValue: number;
-  startingDirection: "North" | "South" | "East" | "West" | null;
+  position: number[];
+  active: boolean;
+  colour: string;
+  booleanValue: string;
+  startingDirection: string;
 };
 type configContextObj = {
-  speed: number;
-  operation: "and" | "or" | "nor" | "nand" | null
+  speed: number | null;
+  operation: string;
   bot1Config: eachBotConfig;
   bot2Config: eachBotConfig;
 };
+
+// const genRandomIndex = () => Math.floor(Math.random() * 8);
+// const genRandomPosition = () => [0, 0].map(genRandomIndex);
+// let startingPosition1 = genRandomPosition();
+// let startingPosition2 = genRandomPosition();
+
 const initialState: configContextObj = {
-  speed: 1000,
-  operation: null,
+  speed: null,
+  operation: "",
   bot1Config: {
-    position: [],
-    active: true,
     botName: "",
-    booleanValue: 0,
-    startingDirection: null,
+    position: [0, 0],
+    active: false,
+    colour: "Red",
+    booleanValue: "",
+    startingDirection: "",
   },
   bot2Config: {
-    position: [],
-    active: true,
     botName: "",
-    booleanValue: 0,
-    startingDirection: null,
+    position: [0, 0],
+    active: false,
+    colour: "Blue",
+    booleanValue: "",
+    startingDirection: "",
   },
 };
 // Infer the `RootState` and `AppDispatch` types from the store itself
@@ -54,27 +63,37 @@ const botConfigSlice = createSlice({
       console.log('check action', action)
     },
     setBot1Config(state, action) {
-      if (action.payload.bot1Config.botName) {
-        state.bot1Config.botName = action.payload.bot1Config.botName;
-        // console.log(action.payload)
+      if (action.payload.botName) {
+        state.bot1Config.botName = action.payload.botName;
       }
-      if (action.payload.bot1Config.booleanValue) {
-        state.bot1Config.booleanValue = action.payload.bot1Config.booleanValue;
+      if (action.payload.booleanValue) {
+        state.bot1Config.booleanValue = action.payload.booleanValue;
       }
-      if (action.payload.bot1Config.startingDirection) {
-        state.bot1Config.startingDirection = action.payload.bot1Config.startingDirection;
+      if (action.payload.startingDirection) {
+        state.bot1Config.startingDirection = action.payload.startingDirection;
+      }
+      if (action.payload.position) {
+        state.bot1Config.position = action.payload.position;
+      }
+      if (action.payload.active) {
+        state.bot1Config.active = action.payload.active;
       }
     },
     setBot2Config(state, action) {
-      if (action.payload.bot2Config.botName) {
-        state.bot2Config.botName = action.payload.bot2Config.botName;
+      if (action.payload.botName) {
+        state.bot2Config.botName = action.payload.botName;
       }
-      if (action.payload.bot2Config.booleanValue) {
-        state.bot2Config.booleanValue = action.payload.bot2Config.booleanValue;
+      if (action.payload.booleanValue) {
+        state.bot2Config.booleanValue = action.payload.booleanValue;
       }
-      if (action.payload.bot2Config.startingDirection) {
-        state.bot2Config.startingDirection =
-          action.payload.bot2Config.startingDirection;
+      if (action.payload.startingDirection) {
+        state.bot2Config.startingDirection = action.payload.startingDirection;
+      }
+      if (action.payload.position) {
+        state.bot2Config.position = action.payload.position;
+      }
+      if (action.payload.active) {
+        state.bot2Config.active = action.payload.active;
       }
     },
   },

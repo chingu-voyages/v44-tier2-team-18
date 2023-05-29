@@ -7,9 +7,9 @@ interface CellProps {
 }
 
 interface Bot {
-  position: number[];
-  direction: "North" | "South" | "East" | "West";
-  colour: "Red" | "Blue";
+  // position: number[];
+  // startingDirection: string
+  colour: string;
   active: boolean
 }
 

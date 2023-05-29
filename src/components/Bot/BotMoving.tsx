@@ -1,75 +1,76 @@
 
 interface Bot {
+    botName: string;
     position: number[];
-    direction: "North" | "South" | "East" | "West";
-    colour: "Red" | "Blue";
-    booleanValue: number;
-    active: boolean
+    active: boolean;
+    colour: string;
+    booleanValue: string;
+    startingDirection: string;
 }
 
 export const botMoving = (newBot: Bot) => {
-    switch (newBot.direction) {
-        case 'North': {
+    switch (newBot.startingDirection) {
+        case 'north': {
             if (newBot.position[1] === 0) {
-                newBot.position[1] += 1;
+                newBot.position = [newBot.position[0], newBot.position[1] + 1];
                 const randomDirection = Math.floor(Math.random() * 3);
                 if (randomDirection === 0) {
-                    newBot.direction = 'East';
+                    newBot.startingDirection = 'east';
                 } else if (randomDirection === 1) {
-                    newBot.direction = 'West';
+                    newBot.startingDirection = 'west';
                 } else {
-                    newBot.direction = 'South';
+                    newBot.startingDirection = 'south';
                 };
             } else {
-                newBot.position[1] -= 1;
+                newBot.position = [newBot.position[0], newBot.position[1] - 1];
             };
             break;
         }
-        case 'South': {
+        case 'south': {
             if (newBot.position[1] === 7) {
-                newBot.position[1] -= 1;
+                newBot.position = [newBot.position[0], newBot.position[1] - 1];
                 const randomDirection = Math.floor(Math.random() * 3);
                 if (randomDirection === 0) {
-                    newBot.direction = 'East';
+                    newBot.startingDirection = 'east';
                 } else if (randomDirection === 1) {
-                    newBot.direction = 'West';
+                    newBot.startingDirection = 'west';
                 } else {
-                    newBot.direction = 'North';
+                    newBot.startingDirection = 'north';
                 };
             } else {
-                newBot.position[1] += 1;
+                newBot.position = [newBot.position[0], newBot.position[1] + 1];
             };
             break;
         }
-        case 'East': {
+        case 'east': {
             if (newBot.position[0] === 7) {
-                newBot.position[0] -= 1;
+                newBot.position = [newBot.position[0] - 1, newBot.position[1]];
                 const randomDirection = Math.floor(Math.random() * 3);
                 if (randomDirection === 0) {
-                    newBot.direction = 'South';
+                    newBot.startingDirection = 'south';
                 } else if (randomDirection === 1) {
-                    newBot.direction = 'North';
+                    newBot.startingDirection = 'north';
                 } else {
-                    newBot.direction = 'West';
+                    newBot.startingDirection = 'west';
                 };
             } else {
-                newBot.position[0] += 1;
+                newBot.position = [newBot.position[0] + 1, newBot.position[1]];
             };
             break;
         }
-        case 'West': {
+        case 'west': {
             if (newBot.position[0] === 0) {
-                newBot.position[0] += 1;
+                newBot.position = [newBot.position[0] + 1, newBot.position[1]];
                 const randomDirection = Math.floor(Math.random() * 3);
                 if (randomDirection === 0) {
-                    newBot.direction = 'South';
+                    newBot.startingDirection = 'south';
                 } else if (randomDirection === 1) {
-                    newBot.direction = 'North';
+                    newBot.startingDirection = 'north';
                 } else {
-                    newBot.direction = 'East';
+                    newBot.startingDirection = 'east';
                 };
             } else {
-                newBot.position[0] -= 1;
+                newBot.position = [newBot.position[0] - 1, newBot.position[1]];
             };
             break;
         }
