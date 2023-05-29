@@ -12,13 +12,17 @@ function Leadboard() {
       <div className='battle-result'>
         <div className='result-text'>Accumulated results</div>
         <div className='result-container'>
-          <div className='bot-name'>
-            {bot1Config.botName}
+          <div className='each-bot'>
+            <span className='bot-name'>
+              {bot1Config.botName}
+            </span>
             <div className='result'>1</div>
           </div>
-          <div className='bot-name'>
-            {bot2Config.botName}
-            <div className='result'>0</div>
+          <div className='each-bot'>
+            <span className='bot-name'>
+              {bot2Config.botName}
+            </span>
+            <div className='result'>1</div>
           </div>
         </div>
       </div>
@@ -28,8 +32,8 @@ function Leadboard() {
           <tbody>
             <tr>
               <th>Name</th>
-              <th>Giang</th>
-              <th>Ha</th>
+              <th>{bot1Config.botName}</th>
+              <th>{bot2Config.botName}</th>
             </tr>
             <tr>
               <th>Boolean value</th>
@@ -49,24 +53,6 @@ function Leadboard() {
           </div>
         </div>
       </div>
-      {/* <h3>Battle Results</h3>
-      <div className='result-container'>
-        <div className='bot-container'>
-          <div className='bot'>
-            <p>Bot 1</p>
-            <img src={botImg} alt="bot-1" />
-          </div>
-          <div className='bot'>
-            <p> Bot 2</p>
-            <img src={botImg} alt="bot-2" />
-          </div>
-        </div>
-        <div className='result-info'>
-          <p>Winner:</p>
-          <p>Looser:</p>
-        </div>
-
-      </div> */}
     </div>
   )
 }
