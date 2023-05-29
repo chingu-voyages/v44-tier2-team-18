@@ -15,6 +15,8 @@ function ConfigurationLayout() {
 
   const [currentEditingBot, setCurrentEditingBot] = useState<string>("");
 
+  const operationArray: string[] = ["and", "or", "nor", "nand"];
+
   const setEditingBot = (
     event: React.MouseEvent<HTMLElement>,
     botName: string
@@ -22,7 +24,15 @@ function ConfigurationLayout() {
     setCurrentEditingBot(botName);
   };
 
-  const operationArray: string[] = ["and", "or", "nor", "nand"];
+  const handleSubmit = (e: React.SyntheticEvent) => {
+    e.preventDefault();
+    const target = e.target as typeof e.target & {
+      speed: { value: number };
+      operation: { value: string };
+    };
+    console.log(target.operation.value);
+    console.log(target.speed.value);
+  };
 
   return (
     <div className="configuration-container">
@@ -65,48 +75,56 @@ function ConfigurationLayout() {
                 </div>
               </button>
             </div>
-            <div className="range-wrapper">
-              <label htmlFor="speed">Choose the speed</label>
-              <input
-                className="range-bar"
-                type="range"
-                id="speed"
-                name="speed"
-                min="1"
-                max="4"
-                value={speed?.toString()}
-                onChange={(e: React.FormEvent<HTMLInputElement>) =>
-                  dispatch(
-                    configActions.setSpeed(Number(e.currentTarget.value))
-                  )
-                }
-              />
-              <div className="range-value">
-                <span>1</span>
-                <span>2</span>
-                <span>3</span>
-                <span>4</span>
+            <form onSubmit={(e: React.SyntheticEvent) => handleSubmit(e)}>
+              <div className="range-wrapper">
+                <label htmlFor="speed">Choose the speed</label>
+                <input
+                  className="range-bar"
+                  type="range"
+                  id="speed"
+                  name="speed"
+                  min="1"
+                  max="4"
+                  required
+                  value={speed?.toString()}
+                  onChange={(e: React.FormEvent<HTMLInputElement>) =>
+                    dispatch(
+                      configActions.setSpeed(Number(e.currentTarget.value))
+                    )
+                  }
+                />
+                <div className="range-value">
+                  <span>1</span>
+                  <span>2</span>
+                  <span>3</span>
+                  <span>4</span>
+                </div>
               </div>
-            </div>
-            <div className="bot-each-config operation-wrapper">
-              <label>
-                <div>Operation:</div>
-                <select
-                  name="operation"
-                  value={operation}
-                  onChange={(e: React.ChangeEvent<HTMLSelectElement>) =>
-                    dispatch(configActions.setOperation(e.currentTarget.value))
-                  }>
-                  {operationArray.map((op: string) => {
-                    return (
-                      <option value={op} key={op}>
-                        {op.toUpperCase()}
-                      </option>
-                    );
-                  })}
-                </select>
-              </label>
-            </div>
+              <div className="bot-each-config operation-wrapper">
+                <label>
+                  <div>Operation:</div>
+                  <select
+                    name="operation"
+                    required
+                    onChange={(e: React.ChangeEvent<HTMLSelectElement>) =>
+                      dispatch(
+                        configActions.setOperation(e.currentTarget.value)
+                      )
+                    }>
+                    {operationArray.map((op: string) => {
+                      return (
+                        <option value={op} key={op}>
+                          {op.toUpperCase()}
+                        </option>
+                      );
+                    })}
+                  </select>
+                </label>
+              </div>
+              <button type="submit" className="buttle-button">
+                Battle
+              </button>
+            </form>
           </div>
         )}
         {currentEditingBot && (
@@ -118,7 +136,6 @@ function ConfigurationLayout() {
           </>
         )}
       </div>
-      {!currentEditingBot && <button className="buttle-button">Battle</button>}
     </div>
   );
 }
