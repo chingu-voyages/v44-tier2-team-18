@@ -10,7 +10,7 @@ export type eachBotConfig = {
   startingDirection: string;
 };
 type configContextObj = {
-  speed: number | null;
+  speed: number;
   operation: string;
   bot1Config: eachBotConfig;
   bot2Config: eachBotConfig;
@@ -22,7 +22,7 @@ type configContextObj = {
 // let startingPosition2 = genRandomPosition();
 
 const initialState: configContextObj = {
-  speed: null,
+  speed: 1,
   operation: "",
   bot1Config: {
     botName: "",

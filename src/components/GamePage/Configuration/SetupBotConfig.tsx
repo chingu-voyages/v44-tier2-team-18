@@ -13,6 +13,8 @@ export const SetupBotConfig = (props: Props) => {
   const bot1Config = useAppSelector((state) => state.bot1Config);
   const bot2Config = useAppSelector((state) => state.bot2Config);
 
+  const [isBotNameDuplicated, setIsBotNameDuplicated] = useState(false);
+
   const setSelectValues = () => {
     const booleanValueElem = document.querySelector(
       ".booleanValue"
@@ -43,11 +45,24 @@ export const SetupBotConfig = (props: Props) => {
 
   const handleSubmit = (e: React.SyntheticEvent) => {
     e.preventDefault();
+
     const target = e.target as typeof e.target & {
       botName: { value: string };
       booleanValue: { value: number };
       startingDirection: { value: string };
     };
+
+    const theOtherBotName =
+      props.currentEditingBot === "Bot1"
+        ? bot2Config.botName
+        : bot1Config.botName;
+    if (theOtherBotName && target.botName.value === theOtherBotName) {
+      setIsBotNameDuplicated(true);
+      return;
+    }
+
+    setIsBotNameDuplicated(false);
+
     dispatch(
       props.currentEditingBot === "Bot1"
         ? configActions.setBot1Config({
@@ -65,6 +80,7 @@ export const SetupBotConfig = (props: Props) => {
           active: true
         })
     );
+
     props.setCurrentEditingBot("");
   };
 
@@ -85,6 +101,7 @@ export const SetupBotConfig = (props: Props) => {
                 name="botName"
                 id="botName"
                 type="text"
+                className={`botname ${isBotNameDuplicated ? " alert" : ""}`}
                 defaultValue={
                   props.currentEditingBot === "Bot1"
                     ? bot1Config.botName
@@ -92,6 +109,10 @@ export const SetupBotConfig = (props: Props) => {
                 }
               />
             </label>
+            <div className="alert-text">
+              {isBotNameDuplicated &&
+                "Bot Name is duplicated. Change the bot name."}
+            </div>
           </div>
           <div className="bot-each-config">
             <label>
