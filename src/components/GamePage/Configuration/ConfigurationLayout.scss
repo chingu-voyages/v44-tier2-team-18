@@ -5,7 +5,9 @@
   }
   text-align: center;
   .rule-explanation {
-    margin: 10px 0;
+    margin: 30px 0;
+    color: #2962ff;
+    text-decoration: underline;
   }
   .configuration-content {
     margin: 0 auto;
@@ -13,7 +15,6 @@
     width: 80%;
     background-color: lightgray;
     border-radius: 10px;
-    // opacity: 0.97;
     z-index: 0;
     .not-editing {
       .button-wrapper {
