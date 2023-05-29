@@ -1,46 +1,91 @@
-@import url('https://fonts.googleapis.com/css2?family=Anton&family=Gugi&family=Lato:wght@100&family=Poppins:wght@700&family=Roboto:ital,wght@1,100&family=Sofia&display=swap');
-$whiteColor: #fff;
-$blackColor: black;
-$titleFont: Poppins;
-*{
-    margin: 0;
-    padding: 0;
-}
+// @import url('https://fonts.googleapis.com/css2?family=Anton&family=Gugi&family=Lato:wght@100&family=Poppins:wght@700&family=Roboto:ital,wght@1,100&family=Sofia&display=swap');
+// $titleFont: Poppins;
+
 .board-container {
-  width: 70%;
-  margin-inline: auto;
-  padding-block: 10px;
-}
-.board-container h3 {
-  color: $blackColor;
-  font-weight: 700;
-  font-family: $titleFont;
-  font-size: 25px;
-  margin-bottom: 10px;
-}
-.result-container{
-    margin-top: 0;
     display: flex;
-    align-items: center;
-    justify-content: space-between;
-    width: 70%;
-}
-.bot-container{
-      display: flex;
-    align-items: center;
-    gap: 60px;
-}
+    justify-content: space-around;
+    color: lightgrey;
 
+    .battle-result {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        align-items: center;
+        border-right: 1px solid lightgrey;
+        padding-right: 60px;
 
-.bot{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+        .result-text {
+            text-transform: uppercase;
+            font-weight: 600;
+            color: #8ac7ff;
+        }
+
+        .result-container {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+
+            .bot-name {
+                font-weight: 600;
+                margin: 0 20px;
+                text-align: center;
+    
+                .result {
+                    border: 1px solid lightgrey;
+                    border-radius: 5px;
+                    width: 30px;
+                    height: 30px;
+                    text-align: center;
+                    font-size: 24px;
+                    color: #ff8adf;
+                }
+            }
+        }  
+    }
+
+    .bot-info{
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: 1fr 2fr;
+
+        .info-text {
+            grid-column-start: 1;
+            grid-column-end: 3;
+            text-align: center;
+            text-transform: uppercase;
+            font-weight: 600;
+            padding-top: 10px;
+            color: #8ac7ff;
+        }
+
+        .table {
+
+            th.value {
+                color: #ff8adf;
+            }
+
+            th,
+            td {
+                text-align: left;
+                padding: 8px;
+                border: 1px solid #ddd;
+            }  
+        }
+
+        .result-info {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-around;
+            align-items: center;
+            font-weight: 600;
+
+                .value {
+                    border-bottom: 1px solid lightgrey;
+                    padding: 0 10px;
+                    color: #ff8adf;
+                    text-transform: uppercase;
+                } 
+        }
+    }  
 }
-.bot img{
-    width: 50px;
-}
-.score-info p{
-    font-weight: 700;
-}
+    
