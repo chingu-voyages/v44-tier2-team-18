@@ -8,6 +8,9 @@
     margin: 30px 0;
     color: #2962ff;
     text-decoration: underline;
+    &:hover {
+      cursor: pointer;
+    }
   }
   .configuration-content {
     margin: 0 auto;
