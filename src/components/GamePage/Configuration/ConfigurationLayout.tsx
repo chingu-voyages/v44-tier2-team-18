@@ -28,7 +28,6 @@ function ConfigurationLayout() {
     <div className="configuration-container">
       <div>
         <h2>Finish setting up the configuration</h2>
-        <div className="rule-explanation">Learn more about the rules</div>
       </div>
       <div className="configuration-content">
         {!currentEditingBot && (
