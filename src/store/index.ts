@@ -8,10 +8,12 @@ export type eachBotConfig = {
   colour: string;
   booleanValue: string;
   startingDirection: string;
+  result: number;
 };
 type configContextObj = {
   speed: number;
   operation: string;
+  output: number | null;
   bot1Config: eachBotConfig;
   bot2Config: eachBotConfig;
 };
@@ -19,6 +21,7 @@ type configContextObj = {
 const initialState: configContextObj = {
   speed: 1,
   operation: "",
+  output: null,
   bot1Config: {
     botName: "",
     position: [0, 0],
@@ -26,6 +29,7 @@ const initialState: configContextObj = {
     colour: "Red",
     booleanValue: "",
     startingDirection: "",
+    result: 0
   },
   bot2Config: {
     botName: "",
@@ -34,6 +38,7 @@ const initialState: configContextObj = {
     colour: "Blue",
     booleanValue: "",
     startingDirection: "",
+    result: 0
   },
 };
 // Infer the `RootState` and `AppDispatch` types from the store itself
@@ -51,11 +56,14 @@ const botConfigSlice = createSlice({
   reducers: {
     setSpeed: (state, action) => {
       state.speed = action.payload;
-      console.log("check action", action)
+      // console.log("check action", action)
     },
     setOperation(state, action) {
       state.operation = action.payload;
-      console.log('check action', action)
+      // console.log('check action', action)
+    },
+    setOutput(state, action) {
+      state.output = action.payload;
     },
     setBot1Config(state, action) {
       if (action.payload.botName) {
@@ -73,6 +81,9 @@ const botConfigSlice = createSlice({
       if (action.payload.active) {
         state.bot1Config.active = action.payload.active;
       }
+      if (action.payload.result) {
+        state.bot1Config.result = action.payload.result;
+      }
     },
     setBot2Config(state, action) {
       if (action.payload.botName) {
@@ -89,6 +100,9 @@ const botConfigSlice = createSlice({
       }
       if (action.payload.active) {
         state.bot2Config.active = action.payload.active;
+      }
+      if (action.payload.result) {
+        state.bot2Config.result = action.payload.result;
       }
     },
   },

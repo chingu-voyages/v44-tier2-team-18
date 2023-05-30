@@ -6,6 +6,7 @@ function Leadboard() {
   const bot1Config = useAppSelector((state) => state.bot1Config);
   const bot2Config = useAppSelector((state) => state.bot2Config);
   const operation = useAppSelector((state) => state.operation);
+  const output = useAppSelector((state) => state.output);
 
   return (
     <div className="board-container">
@@ -16,13 +17,13 @@ function Leadboard() {
             <span className='bot-name'>
               {bot1Config.botName}
             </span>
-            <div className='result'>1</div>
+            <div className='result'>{bot2Config.result}</div>
           </div>
           <div className='each-bot'>
             <span className='bot-name'>
               {bot2Config.botName}
             </span>
-            <div className='result'>1</div>
+            <div className='result'>{bot2Config.result}</div>
           </div>
         </div>
       </div>
@@ -49,7 +50,7 @@ function Leadboard() {
           </div>
           <div>
             Output:
-            <span className='value'></span>
+            <span className='value'>{output}</span>
           </div>
         </div>
       </div>

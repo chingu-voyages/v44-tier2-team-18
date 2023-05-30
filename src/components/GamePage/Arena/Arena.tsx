@@ -4,7 +4,8 @@ import { botMoving } from '../../Bot/BotMoving';
 import './Arena.scss';
 import React, { useEffect, useState } from 'react';
 import { botCollising } from '../../Bot/BotCollising';
-import { useAppSelector } from '../../../store';
+import { useAppDispatch, useAppSelector } from '../../../store';
+import { configActions } from '../../../store';
 
 
 let genNArray = (n: number) => Array.from({ length: n }, () => ({}));
@@ -20,9 +21,11 @@ interface Bot {
 
 function Arena(): JSX.Element {
 
+    const dispatch = useAppDispatch();
+
     const bot1Config = useAppSelector((state) => state.bot1Config);
     const bot2Config = useAppSelector((state) => state.bot2Config);
-    const speed = useAppSelector((state) => state.speed);
+    const speed = useAppSelector((state) => state.speed) * 500;
     const operation = useAppSelector((state) => state.operation);
 
     const [grid, setGrid] = useState(() => genNArray(8).map(() => genNArray(8)));
@@ -42,14 +45,29 @@ function Arena(): JSX.Element {
         const collidedBots: Bot[] = [];
         if (JSON.stringify(bots[0].position) === JSON.stringify(bots[1].position)) {
             const result = botCollising(bots[0].booleanValue, bots[1].booleanValue, operation);
+            dispatch(configActions.setOutput(result))
+
             if (result === 1) {
                 const genRandomIndex = Math.floor(Math.random() * 2);
                 if (genRandomIndex === 0) {
                     bots[0].active = false;
+
                     collidedBots.push(bots[0])
+                    // const bot2Result = bot2Config.result + 1;
+                    // dispatch(configActions.setBot2Config({ result: bot2Result }))
+                    // if (bot1Config.result > 0) {
+                    //     const bot1Result = bot1Config.result - 1;
+                    //     dispatch(configActions.setBot1Config({ result: bot1Result }))
+                    // }
                 } else {
                     bots[1].active = false;
                     collidedBots.push(bots[1])
+                    const bot1Result = bot1Config.result + 1;
+                    // dispatch(configActions.setBot1Config({ result: bot1Result }))
+                    // if (bot2Config.result > 0) {
+                    //     const bot2Result = bot2Config.result - 1;
+                    //     dispatch(configActions.setBot2Config({ result: bot2Result }))
+                    // }
                 }
             }
             if (collidedBots.length > 0) {
@@ -73,10 +91,12 @@ function Arena(): JSX.Element {
                 }
                 return newBots;
             });
-        }, 1000); //will change to speed later
+        }, speed);
+
+        console.log(speed)
 
         return () => clearInterval(interval);
-    }, []);
+    }, [speed]);
 
     return (
         <div className="board">
