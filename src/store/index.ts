@@ -5,6 +5,7 @@ export type eachBotConfig = {
   botName: string;
   position: number[];
   active: boolean;
+  colour: string;
   booleanValue: string;
   startingDirection: string;
 };
@@ -14,6 +15,7 @@ type configContextObj = {
   bot1Config: eachBotConfig;
   bot2Config: eachBotConfig;
 };
+
 const initialState: configContextObj = {
   speed: 1,
   operation: "and",
@@ -21,6 +23,7 @@ const initialState: configContextObj = {
     botName: "",
     position: [0, 0],
     active: false,
+    colour: "Red",
     booleanValue: "",
     startingDirection: "",
   },
@@ -28,6 +31,7 @@ const initialState: configContextObj = {
     botName: "",
     position: [0, 0],
     active: false,
+    colour: "Blue",
     booleanValue: "",
     startingDirection: "",
   },
