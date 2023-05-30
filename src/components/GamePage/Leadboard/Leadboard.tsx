@@ -3,7 +3,6 @@ import { useAppSelector } from '../../../store';
 
 function Leadboard() {
 
-<<<<<<< HEAD
   const bot1Config = useAppSelector((state) => state.bot1Config);
   const bot2Config = useAppSelector((state) => state.bot2Config);
   const operation = useAppSelector((state) => state.operation);
@@ -53,27 +52,6 @@ function Leadboard() {
             <span className='value'></span>
           </div>
         </div>
-=======
-  return (
-    <div className="board-container">
-      <h3>Battle Results</h3>
-      <div className='result-container'>
-        <div className='bot-container'>
-          <div className='bot'>
-            <p>Bot 1</p>
-            <img src={botImg} alt="bot-1" />
-          </div>
-          <div className='bot'>
-            <p> Bot 2</p>
-            <img src={botImg} alt="bot-2" />
-          </div>
-        </div>
-        <div className='result-info'>
-          <p>Winner:</p>
-          <p>Looser:</p>
-        </div>
-
->>>>>>> 1223d6ecc6a3c0b709aa23f0be87a1591a538a6f
       </div>
     </div>
   )
