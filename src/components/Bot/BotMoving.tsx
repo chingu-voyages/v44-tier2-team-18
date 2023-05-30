@@ -1,71 +1,79 @@
 
-export const botMoving = (direction: "North" | "South" | "East" | "West",
-    position: number[]) => {
-    switch (direction) {
-        case 'North': {
-            if (position[1] === 0) {
-                position[1] += 1;
+interface Bot {
+    botName: string;
+    position: number[];
+    active: boolean;
+    colour: string;
+    booleanValue: string;
+    startingDirection: string;
+}
+
+export const botMoving = (newBot: Bot) => {
+    switch (newBot.startingDirection) {
+        case 'north': {
+            if (newBot.position[1] === 0) {
+                newBot.position = [newBot.position[0], newBot.position[1] + 1];
                 const randomDirection = Math.floor(Math.random() * 3);
                 if (randomDirection === 0) {
-                    direction = 'East';
+                    newBot.startingDirection = 'east';
                 } else if (randomDirection === 1) {
-                    direction = 'West';
+                    newBot.startingDirection = 'west';
                 } else {
-                    direction = 'South';
+                    newBot.startingDirection = 'south';
                 };
             } else {
-                position[1] -= 1;
+                newBot.position = [newBot.position[0], newBot.position[1] - 1];
             };
             break;
         }
-        case 'South': {
-            if (position[1] === 7) {
-                position[1] -= 1;
+        case 'south': {
+            if (newBot.position[1] === 7) {
+                newBot.position = [newBot.position[0], newBot.position[1] - 1];
                 const randomDirection = Math.floor(Math.random() * 3);
                 if (randomDirection === 0) {
-                    direction = 'East';
+                    newBot.startingDirection = 'east';
                 } else if (randomDirection === 1) {
-                    direction = 'West';
+                    newBot.startingDirection = 'west';
                 } else {
-                    direction = 'North';
+                    newBot.startingDirection = 'north';
                 };
             } else {
-                position[1] += 1;
+                newBot.position = [newBot.position[0], newBot.position[1] + 1];
             };
             break;
         }
-        case 'East': {
-            if (position[0] === 7) {
-                position[0] -= 1;
+        case 'east': {
+            if (newBot.position[0] === 7) {
+                newBot.position = [newBot.position[0] - 1, newBot.position[1]];
                 const randomDirection = Math.floor(Math.random() * 3);
                 if (randomDirection === 0) {
-                    direction = 'South';
+                    newBot.startingDirection = 'south';
                 } else if (randomDirection === 1) {
-                    direction = 'North';
+                    newBot.startingDirection = 'north';
                 } else {
-                    direction = 'West';
+                    newBot.startingDirection = 'west';
                 };
             } else {
-                position[0] += 1;
+                newBot.position = [newBot.position[0] + 1, newBot.position[1]];
             };
             break;
         }
-        case 'West': {
-            if (position[0] === 0) {
-                position[0] += 1;
+        case 'west': {
+            if (newBot.position[0] === 0) {
+                newBot.position = [newBot.position[0] + 1, newBot.position[1]];
                 const randomDirection = Math.floor(Math.random() * 3);
                 if (randomDirection === 0) {
-                    direction = 'South';
+                    newBot.startingDirection = 'south';
                 } else if (randomDirection === 1) {
-                    direction = 'North';
+                    newBot.startingDirection = 'north';
                 } else {
-                    direction = 'East';
+                    newBot.startingDirection = 'east';
                 };
             } else {
-                position[0] -= 1;
+                newBot.position = [newBot.position[0] - 1, newBot.position[1]];
             };
             break;
         }
     }
-    return { direction, position };
+    return newBot;
 }

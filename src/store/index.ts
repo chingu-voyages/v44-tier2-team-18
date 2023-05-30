@@ -5,6 +5,7 @@ export type eachBotConfig = {
   botName: string;
   position: number[];
   active: boolean;
+  colour: string;
   booleanValue: string;
   startingDirection: string;
 };
@@ -14,6 +15,7 @@ type configContextObj = {
   bot1Config: eachBotConfig;
   bot2Config: eachBotConfig;
 };
+
 const initialState: configContextObj = {
   speed: 1,
   operation: "",
@@ -21,6 +23,7 @@ const initialState: configContextObj = {
     botName: "",
     position: [0, 0],
     active: false,
+    colour: "Red",
     booleanValue: "",
     startingDirection: "",
   },
@@ -28,6 +31,7 @@ const initialState: configContextObj = {
     botName: "",
     position: [0, 0],
     active: false,
+    colour: "Blue",
     booleanValue: "",
     startingDirection: "",
   },
@@ -47,9 +51,11 @@ const botConfigSlice = createSlice({
   reducers: {
     setSpeed: (state, action) => {
       state.speed = action.payload;
+      console.log("check action", action)
     },
     setOperation(state, action) {
       state.operation = action.payload;
+      console.log('check action', action)
     },
     setBot1Config(state, action) {
       if (action.payload.botName) {
