@@ -18,7 +18,7 @@ type configContextObj = {
 
 const initialState: configContextObj = {
   speed: 1,
-  operation: "",
+  operation: "and",
   bot1Config: {
     botName: "",
     position: [0, 0],
@@ -51,11 +51,9 @@ const botConfigSlice = createSlice({
   reducers: {
     setSpeed: (state, action) => {
       state.speed = action.payload;
-      console.log("check action", action)
     },
     setOperation(state, action) {
       state.operation = action.payload;
-      console.log('check action', action)
     },
     setBot1Config(state, action) {
       if (action.payload.botName) {

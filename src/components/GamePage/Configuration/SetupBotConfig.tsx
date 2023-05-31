@@ -100,6 +100,7 @@ export const SetupBotConfig = (props: Props) => {
                 name="botName"
                 id="botName"
                 type="text"
+                required
                 className={`botname ${isBotNameDuplicated ? " alert" : ""}`}
                 defaultValue={
                   props.currentEditingBot === "Bot1"
@@ -116,7 +117,7 @@ export const SetupBotConfig = (props: Props) => {
           <div className="bot-each-config">
             <label>
               <div>Boolean Value:</div>
-              <select name="booleanValue" className="booleanValue">
+              <select name="booleanValue" className="booleanValue" required>
                 <option value="0">0</option>
                 <option value="1">1</option>
               </select>
@@ -125,7 +126,10 @@ export const SetupBotConfig = (props: Props) => {
           <div className="bot-each-config">
             <label>
               <div>Starting direction:</div>
-              <select name="startingDirection" className="startingDirection">
+              <select
+                name="startingDirection"
+                className="startingDirection"
+                required>
                 <option value="north">North</option>
                 <option value="south">South</option>
                 <option value="west">West</option>
