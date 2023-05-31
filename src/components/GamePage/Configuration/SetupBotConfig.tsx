@@ -12,8 +12,10 @@ export const SetupBotConfig = (props: Props) => {
   const dispatch = useAppDispatch();
   const bot1Config = useAppSelector((state) => state.bot1Config);
   const bot2Config = useAppSelector((state) => state.bot2Config);
+  const [isRunning, setIsRunning] = useState(false);
 
   const [isBotNameDuplicated, setIsBotNameDuplicated] = useState(false);
+  
 
   const setSelectValues = () => {
     const booleanValueElem = document.querySelector(
@@ -51,6 +53,33 @@ export const SetupBotConfig = (props: Props) => {
       startingDirection: { value: string };
     };
 
+    if (!isRunning) {
+      setIsRunning(true);
+      dispatch(
+        props.currentEditingBot === "Bot1"
+          ? configActions.setBot1Config({
+            botName: target.botName.value,
+            booleanValue: target.booleanValue.value,
+            startingDirection: target.startingDirection.value,
+            position: startingPosition1,
+            active: true
+          })
+          : configActions.setBot2Config({
+            botName: target.botName.value,
+            booleanValue: target.booleanValue.value,
+            startingDirection: target.startingDirection.value,
+            position: startingPosition2,
+            active: true
+          })
+      );
+      setTimeout(function(){
+        props.setCurrentEditingBot("");
+   },10000);
+  
+    } else {
+      setIsRunning(false);
+    }
+
     const theOtherBotName =
       props.currentEditingBot === "Bot1"
         ? bot2Config.botName
@@ -62,27 +91,16 @@ export const SetupBotConfig = (props: Props) => {
 
     setIsBotNameDuplicated(false);
 
-    dispatch(
-      props.currentEditingBot === "Bot1"
-        ? configActions.setBot1Config({
-          botName: target.botName.value,
-          booleanValue: target.booleanValue.value,
-          startingDirection: target.startingDirection.value,
-          position: startingPosition1,
-          active: true
-        })
-        : configActions.setBot2Config({
-          botName: target.botName.value,
-          booleanValue: target.booleanValue.value,
-          startingDirection: target.startingDirection.value,
-          position: startingPosition2,
-          active: true
-        })
-    );
+    console.log(isRunning)
 
-    props.setCurrentEditingBot("");
+    
   };
+  
+  
 
+  
+
+ 
   return (
     <div className="editing">
       <div className="bot-setting-title">
@@ -138,8 +156,8 @@ export const SetupBotConfig = (props: Props) => {
             </label>
           </div>
           <div className="submit">
-            <button type="submit" className="confirm-bot-setting">
-              Confirm
+            <button type="submit" className="confirm-bot-setting" >
+            {isRunning ? 'Stop!' : 'Battle!'}
             </button>
           </div>
         </form>
