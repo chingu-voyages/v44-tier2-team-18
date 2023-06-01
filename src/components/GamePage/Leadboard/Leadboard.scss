@@ -8,6 +8,8 @@
     gap: 5vw;
     width: 100%;
     height: 100%;
+    border-bottom: 1px solid lightgrey;
+    padding-bottom: 10px;
 
     @media (max-width: 420px) {
         gap: 0

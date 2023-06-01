@@ -4,6 +4,7 @@ import { useAppDispatch, useAppSelector } from "../../../store";
 import { configActions } from "../../../store/index";
 
 type Props = {
+  battle: boolean;
   currentEditingBot: string;
   setCurrentEditingBot: (bool: string) => void;
 };
@@ -42,6 +43,15 @@ export const SetupBotConfig = (props: Props) => {
   let startingPosition1 = genRandomPosition();
   let startingPosition2 = genRandomPosition();
 
+  // useEffect(() => {
+  //   const direction = props.battle ? target.startingDirection.value : "";
+  //   dispatch(
+  //     props.currentEditingBot === "Bot1"
+  //       ? configActions.setBot1Config({ startingDirection: direction })
+  //       : configActions.setBot2Config({ startingDirection: direction })
+  //   );
+  // }, [props.battle]);
+
   const handleSubmit = (e: React.SyntheticEvent) => {
     e.preventDefault();
 
@@ -62,19 +72,21 @@ export const SetupBotConfig = (props: Props) => {
 
     setIsBotNameDuplicated(false);
 
+    const direction = props.battle === true ? target.startingDirection.value : "";
+
     dispatch(
       props.currentEditingBot === "Bot1"
         ? configActions.setBot1Config({
           botName: target.botName.value,
           booleanValue: target.booleanValue.value,
-          startingDirection: target.startingDirection.value,
+          startingDirection: direction,
           position: startingPosition1,
           active: true
         })
         : configActions.setBot2Config({
           botName: target.botName.value,
           booleanValue: target.booleanValue.value,
-          startingDirection: target.startingDirection.value,
+          startingDirection: direction,
           position: startingPosition2,
           active: true
         })

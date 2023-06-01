@@ -22,8 +22,8 @@
     .configuraion-section {
         border: 1px solid lightgrey;
         border-radius: 20px;
-        grid-row-start: 1;
-        grid-row-end: 3;
+        // grid-row-start: 1;
+        // grid-row-end: 3;
 
         @media (max-width: 420px) {
             border: none;

@@ -7,8 +7,6 @@ interface CellProps {
 }
 
 interface Bot {
-  // position: number[];
-  // startingDirection: string
   colour: string;
   active: boolean
 }

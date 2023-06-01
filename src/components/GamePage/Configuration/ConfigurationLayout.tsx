@@ -11,6 +11,7 @@ function ConfigurationLayout() {
   const operation = useAppSelector((state) => state.operation);
 
   const [currentEditingBot, setCurrentEditingBot] = useState<string>("");
+  let [battle, setBattle] = useState<boolean>(false);
 
   const setEditingBot = (
     event: React.MouseEvent<HTMLElement>,
@@ -20,6 +21,10 @@ function ConfigurationLayout() {
   };
 
   const operationArray: string[] = ["and", "or", "nor", "nand"];
+
+  const handleBattleButton = () => {
+    setBattle((prevBattle) => !prevBattle)
+  }
 
   return (
     <div className="configuration-container">
@@ -95,13 +100,18 @@ function ConfigurationLayout() {
         {currentEditingBot && (
           <>
             <SetupBotConfig
+              battle={battle}
               currentEditingBot={currentEditingBot}
               setCurrentEditingBot={setCurrentEditingBot}
             />
           </>
         )}
       </div>
-      {!currentEditingBot && <button className="buttle-button">Battle</button>}
+      {!currentEditingBot &&
+        <button className="buttle-button"
+          onClick={handleBattleButton}>
+          Battle
+        </button>}
     </div>
   );
 }
