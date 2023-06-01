@@ -47,7 +47,7 @@ export const SetupBotConfig = (props: Props) => {
 
     const target = e.target as typeof e.target & {
       botName: { value: string };
-      booleanValue: { value: number };
+      booleanValue: { value: string };
       startingDirection: { value: string };
     };
 
@@ -62,23 +62,17 @@ export const SetupBotConfig = (props: Props) => {
 
     setIsBotNameDuplicated(false);
 
-    dispatch(
-      props.currentEditingBot === "Bot1"
-        ? configActions.setBot1Config({
-          botName: target.botName.value,
-          booleanValue: target.booleanValue.value,
-          startingDirection: target.startingDirection.value,
-          position: startingPosition1,
-          active: true
-        })
-        : configActions.setBot2Config({
-          botName: target.botName.value,
-          booleanValue: target.booleanValue.value,
-          startingDirection: target.startingDirection.value,
-          position: startingPosition2,
-          active: true
-        })
-    );
+    const targetValue = {
+      num: props.currentEditingBot === "Bot1" ? 1 : 2,
+      config: {
+        botName: target.botName.value,
+        booleanValue: target.booleanValue.value,
+        startingDirection: target.startingDirection.value,
+        position: startingPosition1,
+        active: true,
+      },
+    };
+    dispatch(configActions.setBotConfig(targetValue));
 
     props.setCurrentEditingBot("");
   };
