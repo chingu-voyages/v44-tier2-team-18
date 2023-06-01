@@ -1,9 +1,13 @@
 @import "../../global/global.scss";
 .layout-container {
   box-sizing: border-box;
+  display: grid;
   width: 100vw;
   height: 100vh;
-  display: grid;
+  background-image: url(../../assets/bots.png);
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
   background-color: $background-color;
   background-image: url(../../assets/bots.png);
   background-size: contain;
@@ -19,31 +23,38 @@
     grid-template-columns: 30px 1fr;
   }
 
-    .configuraion-section {
-        border: 1px solid lightgrey;
-        border-radius: 20px;
-        grid-row-start: 1;
-        grid-row-end: 3;
+  @media (max-width: 820px) {
+    display: flex;
+    flex-direction: column;
+  }
 
-        @media (max-width: 420px) {
-            border: none;
-        }
-    }
-    .arena-section {
-        border: 1px solid lightgrey;
-        border-radius: 20px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
+  .configuraion-section {
+    height: 100%;
+    border: 1px solid lightgrey;
+    border-radius: 20px;
+    grid-row-start: 1;
+    grid-row-end: 3;
 
-        @media (max-width: 850px) {
-            align-items:start;
-            padding-top: 20px;
-        }
+    @media (max-width: 420px) {
+      border: none;
     }
+  }
+  .arena-section {
+    margin-top: 10px;
+    border: 1px solid lightgrey;
+    border-radius: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 
-    .leadboard-section {
-        border: 1px solid lightgrey;
-        border-radius: 20px;
+    @media (max-width: 850px) {
+      align-items: start;
+      padding-top: 20px;
     }
+  }
+
+  .leadboard-section {
+    border: 1px solid lightgrey;
+    border-radius: 20px;
+  }
 }

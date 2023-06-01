@@ -1,38 +1,40 @@
 .bot {
-    flex: 33%;
-    height: 100%;
-    border: 1px solid grey;
-    margin: 5px;
-    display: grid;
-    place-items: center;
+  width: 2.7rem;
+  height: 2.7rem;
+  border: 1px solid grey;
+  margin: 5px;
+  display: grid;
+  place-items: center;
 
-    .red-bot {
-      background-color: red;
-      display: flex;
-      justify-content: center;
-      align-items: center;
+  .red-bot {
+    background-color: red;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 
-      img {
-        width: 50px;
-        @media (max-width: 700px) {
-          width: 20px;
-          height: 20px;
-        }
-      }
-    }
-
-    .blue-bot {
-      background-color: blue;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-
-      img {
-        width: 50px;
-        @media (max-width: 700px) {
-          width: 20px;
-          height: 20px;
-        }
+    img {
+      width: 2.7rem;
+      height: 2.7rem;
+      @media (max-width: 700px) {
+        width: 20px;
+        height: 20px;
       }
     }
   }
+
+  .blue-bot {
+    background-color: blue;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    img {
+      width: 2.7rem;
+      height: 2.7rem;
+      @media (max-width: 700px) {
+        width: 20px;
+        height: 20px;
+      }
+    }
+  }
+}
