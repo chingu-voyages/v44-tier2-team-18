@@ -3,15 +3,19 @@ import "./ConfigurationLayout.scss";
 import { SetupBotConfig } from "./SetupBotConfig";
 import { configActions } from "../../../store/index";
 import { useAppDispatch, useAppSelector } from "../../../store";
+import { AiOutlineCheck } from "react-icons/ai";
 
 function ConfigurationLayout() {
   const dispatch = useAppDispatch();
 
   const speed = useAppSelector((state) => state.speed);
   const operation = useAppSelector((state) => state.operation);
+  const bot1Config = useAppSelector((state) => state.bot1Config);
+  const bot2Config = useAppSelector((state) => state.bot2Config);
 
   const [currentEditingBot, setCurrentEditingBot] = useState<string>("");
-  let [battle, setBattle] = useState<boolean>(false);
+
+  const operationArray: string[] = ["and", "or", "nor", "nand"];
 
   const setEditingBot = (
     event: React.MouseEvent<HTMLElement>,
@@ -20,17 +24,10 @@ function ConfigurationLayout() {
     setCurrentEditingBot(botName);
   };
 
-  const operationArray: string[] = ["and", "or", "nor", "nand"];
-
-  const handleBattleButton = () => {
-    setBattle((prevBattle) => !prevBattle)
-  }
-
   return (
     <div className="configuration-container">
       <div>
         <h2>Finish setting up the configuration</h2>
-        <div className="rule-explanation">Learn more about the rules</div>
       </div>
       <div className="configuration-content">
         {!currentEditingBot && (
@@ -41,7 +38,14 @@ function ConfigurationLayout() {
                   setEditingBot(e, "Bot1")
                 }
                 className="globalButton">
-                Bot1 Setting
+                <div className="button-text">
+                  Bot1 Setting
+                  {bot1Config.botName &&
+                    bot1Config.booleanValue &&
+                    bot1Config.startingDirection && (
+                      <AiOutlineCheck color="#4CAF50" size={"1.2rem"} />
+                    )}
+                </div>
               </button>
             </div>
             <div className="button-wrapper">
@@ -50,7 +54,14 @@ function ConfigurationLayout() {
                 onClick={(e: React.MouseEvent<HTMLElement>) =>
                   setEditingBot(e, "Bot2")
                 }>
-                Bot2 Setting
+                <div className="button-text">
+                  Bot2 Setting
+                  {bot2Config.botName &&
+                    bot2Config.booleanValue &&
+                    bot2Config.startingDirection && (
+                      <AiOutlineCheck color="#4CAF50" size={"1.2rem"} />
+                    )}
+                </div>
               </button>
             </div>
             <div className="range-wrapper">
@@ -62,6 +73,7 @@ function ConfigurationLayout() {
                 name="speed"
                 min="1"
                 max="4"
+                required
                 value={speed?.toString()}
                 onChange={(e: React.FormEvent<HTMLInputElement>) =>
                   dispatch(
@@ -81,7 +93,7 @@ function ConfigurationLayout() {
                 <div>Operation:</div>
                 <select
                   name="operation"
-                  value={operation}
+                  required
                   onChange={(e: React.ChangeEvent<HTMLSelectElement>) =>
                     dispatch(configActions.setOperation(e.currentTarget.value))
                   }>
@@ -100,7 +112,6 @@ function ConfigurationLayout() {
         {currentEditingBot && (
           <>
             <SetupBotConfig
-              battle={battle}
               currentEditingBot={currentEditingBot}
               setCurrentEditingBot={setCurrentEditingBot}
             />
@@ -108,8 +119,7 @@ function ConfigurationLayout() {
         )}
       </div>
       {!currentEditingBot &&
-        <button className="buttle-button"
-          onClick={handleBattleButton}>
+        <button className="buttle-button">
           Battle
         </button>}
     </div>

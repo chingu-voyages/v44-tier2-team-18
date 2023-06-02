@@ -10,9 +10,6 @@ function GamePageLayout(): JSX.Element {
             <div className="configuraion-section">
                 <ConfigurationLayout />
             </div>
-            {/* <div className="leadboard-section">
-                <Leadboard />
-            </div> */}
             <div className="arena-section">
                 <Arena />
             </div>

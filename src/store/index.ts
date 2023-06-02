@@ -18,7 +18,7 @@ type configContextObj = {
 
 const initialState: configContextObj = {
   speed: 1,
-  operation: "",
+  operation: "and",
   bot1Config: {
     botName: "",
     position: [0, 0],

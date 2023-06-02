@@ -4,7 +4,6 @@ import { useAppDispatch, useAppSelector } from "../../../store";
 import { configActions } from "../../../store/index";
 
 type Props = {
-  battle: boolean;
   currentEditingBot: string;
   setCurrentEditingBot: (bool: string) => void;
 };
@@ -43,15 +42,6 @@ export const SetupBotConfig = (props: Props) => {
   let startingPosition1 = genRandomPosition();
   let startingPosition2 = genRandomPosition();
 
-  // useEffect(() => {
-  //   const direction = props.battle ? target.startingDirection.value : "";
-  //   dispatch(
-  //     props.currentEditingBot === "Bot1"
-  //       ? configActions.setBot1Config({ startingDirection: direction })
-  //       : configActions.setBot2Config({ startingDirection: direction })
-  //   );
-  // }, [props.battle]);
-
   const handleSubmit = (e: React.SyntheticEvent) => {
     e.preventDefault();
 
@@ -72,21 +62,19 @@ export const SetupBotConfig = (props: Props) => {
 
     setIsBotNameDuplicated(false);
 
-    const direction = props.battle === true ? target.startingDirection.value : "";
-
     dispatch(
       props.currentEditingBot === "Bot1"
         ? configActions.setBot1Config({
           botName: target.botName.value,
           booleanValue: target.booleanValue.value,
-          startingDirection: direction,
+          startingDirection: target.startingDirection.value,
           position: startingPosition1,
           active: true
         })
         : configActions.setBot2Config({
           botName: target.botName.value,
           booleanValue: target.booleanValue.value,
-          startingDirection: direction,
+          startingDirection: target.startingDirection.value,
           position: startingPosition2,
           active: true
         })
@@ -112,6 +100,7 @@ export const SetupBotConfig = (props: Props) => {
                 name="botName"
                 id="botName"
                 type="text"
+                required
                 className={`botname ${isBotNameDuplicated ? " alert" : ""}`}
                 defaultValue={
                   props.currentEditingBot === "Bot1"
@@ -128,7 +117,7 @@ export const SetupBotConfig = (props: Props) => {
           <div className="bot-each-config">
             <label>
               <div>Boolean Value:</div>
-              <select name="booleanValue" className="booleanValue">
+              <select name="booleanValue" className="booleanValue" required>
                 <option value="0">0</option>
                 <option value="1">1</option>
               </select>
@@ -137,7 +126,10 @@ export const SetupBotConfig = (props: Props) => {
           <div className="bot-each-config">
             <label>
               <div>Starting direction:</div>
-              <select name="startingDirection" className="startingDirection">
+              <select
+                name="startingDirection"
+                className="startingDirection"
+                required>
                 <option value="north">North</option>
                 <option value="south">South</option>
                 <option value="west">West</option>
