@@ -12,6 +12,7 @@ export type eachBotConfig = {
 type configContextObj = {
   speed: number;
   operation: string;
+  isBattleStart: boolean;
   bot1Config: eachBotConfig;
   bot2Config: eachBotConfig;
 };
@@ -19,6 +20,7 @@ type configContextObj = {
 const initialState: configContextObj = {
   speed: 1,
   operation: "and",
+  isBattleStart: false,
   bot1Config: {
     botName: "",
     position: [0, 0],
@@ -52,18 +54,21 @@ const botConfigSlice = createSlice({
     setSpeed: (state, action) => {
       state.speed = action.payload;
     },
-    setOperation(state, action) {
+    setOperation: (state, action) => {
       state.operation = action.payload;
     },
-    setBotConfig(
+    setBotConfig: (
       state,
       action: PayloadAction<{ num: number; config: Partial<eachBotConfig> }>
-    ) {
+    ) => {
       if (action.payload.num === 1) {
         state.bot1Config = { ...state.bot1Config, ...action.payload.config };
       } else if (action.payload.num === 2) {
         state.bot2Config = { ...state.bot2Config, ...action.payload.config };
       }
+    },
+    toggleBattleStart: (state) => {
+      state.isBattleStart = !state.isBattleStart;
     },
   },
 });

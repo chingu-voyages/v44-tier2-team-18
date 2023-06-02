@@ -40,7 +40,7 @@ export const SetupBotConfig = (props: Props) => {
   const genRandomIndex = () => Math.floor(Math.random() * 8);
   const genRandomPosition = () => [0, 0].map(genRandomIndex);
   let startingPosition1 = genRandomPosition();
-  let startingPosition2 = genRandomPosition();
+  // let startingPosition2 = genRandomPosition();
 
   const handleSubmit = (e: React.SyntheticEvent) => {
     e.preventDefault();
