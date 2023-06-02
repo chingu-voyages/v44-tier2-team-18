@@ -3,6 +3,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    width: 100%;
 
     .board {
         width: 600px;
@@ -11,7 +12,6 @@
         padding-bottom: 13px;
         display: flex;
         flex-direction: column;
-        padding: 10px 0;
     
         @media (max-width: 700px) {
             width: 320px;
