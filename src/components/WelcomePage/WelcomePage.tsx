@@ -9,7 +9,7 @@ function WelcomePage() {
         <>
             <Atropos className="my-atropos">
                 <div className='container-home'>
-                    <div className='main-text'>BOOLE BOTS BATTLE GAME</div>
+                    <div className='main-text'>BOOLE BOTS GAME</div>
                     <Link to="/gamepage" className='link'><button>
                         L E T'S P L A Y
                         <div id="clip">
