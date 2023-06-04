@@ -10,6 +10,7 @@ function WelcomePage() {
             <Atropos className="my-atropos">
                 <div className='container-home'>
                     <div className='main-text'>BOOLE BOTS GAME</div>
+                    <div>A game of boolean algebra logic</div>
                     <Link to="/gamepage" className='link'><button>
                         L E T'S P L A Y
                         <div id="clip">
