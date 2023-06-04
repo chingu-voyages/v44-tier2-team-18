@@ -28,8 +28,14 @@
       }
     }
 
+    .sub-text {
+      font-weight: 600;
+      font-family: 'Poppins';
+      margin-top: 5px;
+    }
+
     button {
-      margin-top: 55vh;
+      margin-top: 50vh;
       position: relative;
       width: 11em;
       height: 4em;
@@ -42,7 +48,7 @@
       color: #060606;
 
       @media screen and (max-width: 650px) {
-            margin-top: 45vh;
+            margin-top: 40vh;
       }
     }
     
