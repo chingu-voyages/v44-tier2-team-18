@@ -111,12 +111,15 @@
   .instruction {
     color: black;
     outline: none;
-    margin: 40px 40px;
+    margin: 40px 20px;
     padding: 10px;
     border-radius: 10px;
     background-color: #77b2e8;
     font-weight: 600;
+    border: none;
     cursor: pointer;
+    width: 18vw;
+    font-size: 18px;
 
     &:hover {
       background-color: #a07ead;

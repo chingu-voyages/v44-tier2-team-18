@@ -7,6 +7,11 @@
         .instruction-modal-header {
             padding: 10px;
             border-bottom: 1px solid #ccc;
+            background-color: #77b2e8;
+
+            @media (max-width: 400px) {
+                font-size: 10px;
+            }
 
             .right {
                 float: right;
@@ -21,12 +26,34 @@
             }
         }
 
+        .instruction-modal-body {
+            padding: 15px;
+            height: 100%;
+            font-size: 14px;
+
+            @media (max-width: 400px) {
+                font-size: 8px;
+            }
+
+            .boolean-logic {
+                width: 20vw;
+                height: 25vh;
+                margin: 5px 0 5px 15vw;
+
+                @media (max-width: 850px) {
+                    height: 10vh;
+                    width: 23vw;
+                }
+            }
+        }
+
         .instruction-modal-footer {
             border-top: 1px solid #ccc;
             padding: 10px;
             display: flex;
             justify-content: flex-end;
             gap: 15px;
+            background-color: #77b2e8;
 
             button {
                 border: none;
@@ -36,7 +63,8 @@
             }
 
             .btn-instruction-close {
-                background-color: grey;
+                background-color: #333333;
+                color: lightgrey;
             }
         }
     }
