@@ -101,11 +101,6 @@ function Arena(): JSX.Element {
         );
       }
     }
-    if (collidedBots.length > 0) {
-      setBots((prevBots) =>
-        prevBots.filter((bot) => !collidedBots.includes(bot))
-      );
-    }
     return bots;
   };
 
