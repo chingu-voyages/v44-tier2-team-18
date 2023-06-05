@@ -34,6 +34,10 @@ function Arena(): JSX.Element {
 
     useEffect(() => {
         setBots([bot1Config, bot2Config]);
+    }, [bot1Config, bot2Config]);
+
+    useEffect(() => {
+        setBots([bot1Config, bot2Config]);
         setOutput(null);
     }, [bot1Config, bot2Config]);
 
@@ -54,21 +58,11 @@ function Arena(): JSX.Element {
                 const genRandomIndex = Math.floor(Math.random() * 2);
                 if (genRandomIndex === 0) {
                     bots[0].active = false;
-                    // if (result1 === 0) {
                     setResult2(prevResult2 => prevResult2 + 1);
-                    // } else if (result1 > 0) {
-                    //     setResult2(prevResult2 => prevResult2 + 1);
-                    //     setResult1(prevResult1 => prevResult1 - 1)
-                    // }
                     collidedBots.push(bots[0])
                 } else {
                     bots[1].active = false;
-                    // if (result2 === 0) {
                     setResult1(prevResult1 => prevResult1 + 1);
-                    // } else if (result2 > 0) {
-                    //     setResult1(prevResult1 => prevResult1 + 1);
-                    //     setResult2(prevResult2 => prevResult2 - 1)
-                    // }
                     collidedBots.push(bots[1])
                 }
             }
@@ -76,8 +70,14 @@ function Arena(): JSX.Element {
                 setBots((prevBots) => prevBots.filter((bot) => !collidedBots.includes(bot)));
             }
         }
+
+        if (collidedBots.length > 0) {
+            setBots((prevBots) =>
+                prevBots.filter((bot) => !collidedBots.includes(bot))
+            );
+        }
         return bots;
-    }
+    };
 
     useEffect(() => {
         if (isBattleStart) {
@@ -120,6 +120,3 @@ function Arena(): JSX.Element {
 }
 
 export default Arena;
-
-
-
