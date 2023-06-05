@@ -106,4 +106,18 @@
       cursor: pointer;
     }
   }
+  .instruction {
+    color: black;
+    outline: none;
+    margin: 40px 40px;
+    padding: 10px;
+    border-radius: 10px;
+    background-color: #77b2e8;
+    font-weight: 600;
+    cursor: pointer;
+
+    &:hover {
+      background-color: #a07ead;
+    }
+  }
 }

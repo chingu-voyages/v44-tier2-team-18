@@ -130,6 +130,7 @@ function ConfigurationLayout() {
           {isBattleStart ? "STOP" : "Battle"}
         </button>
       )}
+      <div className="instruction">How to play</div>
     </div>
   );
 }
