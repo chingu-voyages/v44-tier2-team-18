@@ -9,7 +9,8 @@ function WelcomePage() {
         <>
             <Atropos className="my-atropos">
                 <div className='container-home'>
-                    <div className='main-text'>BOOLE BOTS BATTLE GAME</div>
+                    <div className='main-text'>BOOLE BOTS GAME</div>
+                    <div className='sub-text'>A game of boolean algebra logic</div>
                     <Link to="/gamepage" className='link'><button>
                         L E T'S P L A Y
                         <div id="clip">
@@ -31,9 +32,7 @@ function WelcomePage() {
 
 
                 <div className='Team-links'>
-                    <a href='https://github.com/Sheriff-Oladimeji' className='links' target="_blank" rel="noopener noreferrer"><p>Sheriff<img src={Git} alt='github' className='github' /></p></a>
                     <a href='https://github.com/giangpham-cfg' className='links' target="_blank" rel="noopener noreferrer"><p>Giang<img src={Git} alt='github' className='github' /></p></a>
-                    <a href='#' className='links' target="_blank" rel="noopener noreferrer"><p>Daniel <img src={Git} alt='github' className='github' /></p></a>
                     <a href='https://github.com/Emiri-i' className='links' target="_blank" rel="noopener noreferrer"><p>Emiri<img src={Git} alt='github' className='github' /></p></a>
                     <a href='https://github.com/LebzaM' className='links' target="_blank" rel="noopener noreferrer"><p>LebzaM <img src={Git} alt='github' className='github' /></p></a>
 

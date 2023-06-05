@@ -1,7 +1,13 @@
 import './Leadboard.scss'
 import { useAppSelector } from '../../../store';
 
-function Leadboard() {
+interface leadboardProps {
+  result1: number,
+  result2: number,
+  output: number | null
+}
+
+function Leadboard({ result1, result2, output }: leadboardProps): JSX.Element {
 
   const bot1Config = useAppSelector((state) => state.bot1Config);
   const bot2Config = useAppSelector((state) => state.bot2Config);
@@ -16,13 +22,13 @@ function Leadboard() {
             <span className='bot-name'>
               {bot1Config.botName}
             </span>
-            <div className='result'>1</div>
+            <div className='result'>{result1}</div>
           </div>
           <div className='each-bot'>
             <span className='bot-name'>
               {bot2Config.botName}
             </span>
-            <div className='result'>1</div>
+            <div className='result'>{result2}</div>
           </div>
         </div>
       </div>
@@ -49,7 +55,7 @@ function Leadboard() {
           </div>
           <div>
             Output:
-            <span className='value'></span>
+            <span className='value'>{output}</span>
           </div>
         </div>
       </div>
