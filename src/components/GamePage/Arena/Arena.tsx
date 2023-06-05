@@ -48,10 +48,6 @@ function Arena(): JSX.Element {
   }, [JSON.stringify(bots)]);
 
   useEffect(() => {
-    setBots([bot1Config, bot2Config]);
-  }, [bot1Config, bot2Config]);
-
-  useEffect(() => {
     if (isBattleStart) {
       const interval = setInterval(() => {
         setBots((prevBots) => {
@@ -71,10 +67,6 @@ function Arena(): JSX.Element {
       return () => clearInterval(interval);
     }
   }, [speed, operation, isBattleStart]);
-
-  useEffect(() => {
-    setBots([bot1Config, bot2Config]);
-  }, [bot1Config, bot2Config]);
 
   useEffect(() => {
     setBots([bot1Config, bot2Config]);
