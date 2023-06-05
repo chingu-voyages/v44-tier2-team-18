@@ -3,7 +3,7 @@ import { TypedUseSelectorHook, useSelector, useDispatch } from "react-redux";
 
 export type eachBotConfig = {
   botName: string;
-  position: number[];
+  position: number[] | [];
   active: boolean;
   colour: string;
   booleanValue: string;
@@ -23,7 +23,7 @@ const initialState: configContextObj = {
   isBattleStart: false,
   bot1Config: {
     botName: "",
-    position: [0, 0],
+    position: [],
     active: false,
     colour: "Red",
     booleanValue: "",
@@ -31,7 +31,7 @@ const initialState: configContextObj = {
   },
   bot2Config: {
     botName: "",
-    position: [0, 0],
+    position: [],
     active: false,
     colour: "Blue",
     booleanValue: "",

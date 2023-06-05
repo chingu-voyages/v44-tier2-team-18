@@ -9,7 +9,7 @@ let genNArray = (n: number) => Array.from({ length: n }, () => ({}));
 
 interface Bot {
   botName: string;
-  position: number[];
+  position: number[] | [];
   active: boolean;
   colour: string;
   booleanValue: string;
@@ -26,16 +26,46 @@ function Arena(): JSX.Element {
   const [grid, setGrid] = useState(() => genNArray(8).map(() => genNArray(8)));
   const [bots, setBots] = useState<Bot[]>([]);
 
+  const [botsByPosition, setBotsByPosition] = useState<{ [key: string]: Bot }>(
+    {}
+  );
+
+  useEffect(() => {
+    setBotsByPosition({});
+    bots.forEach((bot) => {
+      if (bot.position.length) {
+        setBotsByPosition((prevValue) => ({
+          ...prevValue,
+          [bot.position.join(":")]: bot,
+        }));
+      }
+    });
+  }, [JSON.stringify(bots)]);
+
   useEffect(() => {
     setBots([bot1Config, bot2Config]);
   }, [bot1Config, bot2Config]);
 
-  // botsByPosition allows efficient search of bots based on position
-  const botsByPosition: { [key: string]: Bot } = {};
-  bots.forEach((bot) => {
-    botsByPosition[bot.position.join(":")] = bot;
-  });
-  console.log(bots);
+  useEffect(() => {
+    if (isBattleStart) {
+      const interval = setInterval(() => {
+        setBots((prevBots) => {
+          const newBots = prevBots.map((bot) => {
+            let newBot = { ...bot };
+            const returnValue = botMoving(newBot);
+            return (bot = returnValue);
+          });
+          if (newBots.length > 1) {
+            const newBotsAfterCollide = handleCollisions(newBots);
+            return newBotsAfterCollide;
+          }
+          return newBots;
+        });
+      }, 1000 / speed); //will change to speed later
+
+      return () => clearInterval(interval);
+    }
+  }, [isBattleStart]);
 
   const handleCollisions = (bots: Bot[]) => {
     const collidedBots: Bot[] = [];
@@ -64,35 +94,13 @@ function Arena(): JSX.Element {
     return bots;
   };
 
-  useEffect(() => {
-    if (isBattleStart) {
-      const interval = setInterval(() => {
-        setBots((prevBots) => {
-          const newBots = prevBots.map((bot) => {
-            let newBot = { ...bot };
-            const returnValue = botMoving(newBot);
-            return (bot = returnValue);
-          });
-          if (newBots.length > 1) {
-            const newBotsAfterCollide = handleCollisions(newBots);
-            return newBotsAfterCollide;
-          }
-          return newBots;
-        });
-      }, 1000); //will change to speed later
-
-      return () => clearInterval(interval);
-    }
-  }, [isBattleStart]);
-
   return (
     <div className="board">
       {grid.map((row, i) => {
         return (
           <div key={i} className="row">
             {row.map((col, j) => {
-              const bot = botsByPosition[[j, i].join(":")];
-              return <Cell key={j} bot={bot} />;
+              return <Cell key={j} bot={botsByPosition[[j, i].join(":")]} />;
             })}
           </div>
         );
