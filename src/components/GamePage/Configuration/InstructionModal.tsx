@@ -9,12 +9,6 @@ interface instructionModalProps {
 
 function InstructionModal({ isOpenModal, closeInstructionModal }: instructionModalProps): JSX.Element {
 
-    // const [isOpenInstructionModal, setIsOpenInstructionModal] = useState<boolean>(isOpenModal);
-
-    // const closeInstructionModal = () => {
-    //     setIsOpenInstructionModal(false);
-    // }
-
     return (
         <Modal
             isOpen={isOpenModal}
@@ -28,6 +22,13 @@ function InstructionModal({ isOpenModal, closeInstructionModal }: instructionMod
                     <span className='right'
                         onClick={() => closeInstructionModal()}
                     >X</span>
+                </div>
+                <div className='instruction-modal-footer'>
+                    <button className='btn-instruction-close'
+                        onClick={() => closeInstructionModal()}
+                    >
+                        Close
+                    </button>
                 </div>
             </div>
 
