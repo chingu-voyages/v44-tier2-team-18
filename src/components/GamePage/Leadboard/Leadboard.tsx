@@ -34,7 +34,7 @@ function Leadboard({ result1, result2, output }: leadboardProps): JSX.Element {
       </div>
       <div className='bot-info'>
         <div className='info-text'> Bots' information</div>
-        <table className='table'>
+        <table className='info-table'>
           <tbody>
             <tr>
               <th>Name</th>

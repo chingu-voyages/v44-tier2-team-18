@@ -106,7 +106,7 @@ function Arena(): JSX.Element {
             <div className="board">
                 {grid.map((row, i) => {
                     return (
-                        <div key={i} className="row">
+                        <div key={i} className="row-board">
                             {row.map((col, j) => {
                                 const bot = botsByPosition[[j, i].join(":")];
                                 return <Cell key={j} bot={bot} />;

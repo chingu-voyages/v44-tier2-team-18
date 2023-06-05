@@ -1,0 +1,24 @@
+.instruction-modal-container {
+
+    .instruction-modal-content {
+        display: flex;
+        flex-direction: column;
+
+        .instruction-modal-header {
+            padding: 10px;
+            border-bottom: 1px solid #ccc;
+
+            .right {
+                float: right;
+                cursor: pointer;
+                font-weight: 600;
+            }
+
+            .left {
+                font-weight: 600;
+                font-size: 15px;
+                color: #333;
+            }
+        }
+    }
+}
