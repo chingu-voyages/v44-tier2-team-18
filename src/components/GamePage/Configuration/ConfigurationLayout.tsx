@@ -12,6 +12,7 @@ function ConfigurationLayout() {
   const operation = useAppSelector((state) => state.operation);
   const bot1Config = useAppSelector((state) => state.bot1Config);
   const bot2Config = useAppSelector((state) => state.bot2Config);
+  const isBattleStart = useAppSelector((state) => state.isBattleStart);
 
   const [currentEditingBot, setCurrentEditingBot] = useState<string>("");
 
@@ -22,6 +23,10 @@ function ConfigurationLayout() {
     botName: string
   ) => {
     setCurrentEditingBot(botName);
+  };
+
+  const startBattle = (e: React.MouseEvent<HTMLElement>) => {
+    dispatch(configActions.toggleBattleStart());
   };
 
   return (
@@ -118,10 +123,13 @@ function ConfigurationLayout() {
           </>
         )}
       </div>
-      {!currentEditingBot &&
-        <button className="buttle-button">
-          Battle
-        </button>}
+      {!currentEditingBot && (
+        <button
+          onClick={(e: React.MouseEvent<HTMLElement>) => startBattle(e)}
+          className="buttle-button">
+          {isBattleStart ? "STOP" : "Battle"}
+        </button>
+      )}
     </div>
   );
 }

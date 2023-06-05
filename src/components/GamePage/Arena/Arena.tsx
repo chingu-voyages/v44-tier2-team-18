@@ -19,26 +19,28 @@ interface Bot {
 }
 
 function Arena(): JSX.Element {
-
-    const [grid, setGrid] = useState(() => genNArray(8).map(() => genNArray(8)));
-    const [bots, setBots] = useState<Bot[]>([]);
-
     const bot1Config = useAppSelector((state) => state.bot1Config);
     const bot2Config = useAppSelector((state) => state.bot2Config);
     const speed = useAppSelector((state) => state.speed) * 500;
     const operation = useAppSelector((state) => state.operation);
+    const isBattleStart = useAppSelector((state) => state.isBattleStart);
 
     const [result1, setResult1] = useState(0);
     const [result2, setResult2] = useState(0);
     const [output, setOutput] = useState<any>(null);
 
+    const [grid, setGrid] = useState(() => genNArray(8).map(() => genNArray(8)));
+    const [bots, setBots] = useState<Bot[]>([]);
+
     useEffect(() => {
         setBots([bot1Config, bot2Config]);
+        setOutput(null);
     }, [bot1Config, bot2Config]);
 
     // botsByPosition allows efficient search of bots based on position
     const botsByPosition: { [key: string]: Bot } = {};
     bots.forEach((bot) => {
+        console.log("rendering")
         botsByPosition[bot.position.join(":")] = bot;
     });
 
@@ -78,23 +80,25 @@ function Arena(): JSX.Element {
     }
 
     useEffect(() => {
-        const interval = setInterval(() => {
-            setBots((prevBots) => {
-                const newBots = prevBots.map((bot) => {
-                    let newBot = { ...bot }
-                    const returnValue = botMoving(newBot);
-                    return bot = returnValue;
+        if (isBattleStart) {
+            const interval = setInterval(() => {
+                setBots((prevBots) => {
+                    const newBots = prevBots.map((bot) => {
+                        let newBot = { ...bot }
+                        const returnValue = botMoving(newBot);
+                        return bot = returnValue;
+                    });
+                    if (newBots.length > 1) {
+                        const newBotsAfterCollide = handleCollisions(newBots, operation);
+                        return newBotsAfterCollide;
+                    }
+                    return newBots;
                 });
-                if (newBots.length > 1) {
-                    const newBotsAfterCollide = handleCollisions(newBots, operation);
-                    return newBotsAfterCollide;
-                }
-                return newBots;
-            });
-        }, speed);
+            }, speed);
 
-        return () => clearInterval(interval);
-    }, [speed, operation]);
+            return () => clearInterval(interval);
+        }
+    }, [speed, operation, isBattleStart]);
 
     return (
         <div className='game-container'>
