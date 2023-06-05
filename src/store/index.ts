@@ -1,9 +1,9 @@
-import { configureStore, createSlice } from "@reduxjs/toolkit";
+import { PayloadAction, configureStore, createSlice } from "@reduxjs/toolkit";
 import { TypedUseSelectorHook, useSelector, useDispatch } from "react-redux";
 
 export type eachBotConfig = {
   botName: string;
-  position: number[];
+  position: number[] | [];
   active: boolean;
   colour: string;
   booleanValue: string;
@@ -12,6 +12,7 @@ export type eachBotConfig = {
 type configContextObj = {
   speed: number;
   operation: string;
+  isBattleStart: boolean;
   bot1Config: eachBotConfig;
   bot2Config: eachBotConfig;
 };
@@ -19,9 +20,10 @@ type configContextObj = {
 const initialState: configContextObj = {
   speed: 1,
   operation: "and",
+  isBattleStart: false,
   bot1Config: {
     botName: "",
-    position: [0, 0],
+    position: [],
     active: false,
     colour: "Red",
     booleanValue: "",
@@ -29,7 +31,7 @@ const initialState: configContextObj = {
   },
   bot2Config: {
     botName: "",
-    position: [0, 0],
+    position: [],
     active: false,
     colour: "Blue",
     booleanValue: "",
@@ -52,42 +54,21 @@ const botConfigSlice = createSlice({
     setSpeed: (state, action) => {
       state.speed = action.payload;
     },
-    setOperation(state, action) {
+    setOperation: (state, action) => {
       state.operation = action.payload;
     },
-    setBot1Config(state, action) {
-      if (action.payload.botName) {
-        state.bot1Config.botName = action.payload.botName;
-      }
-      if (action.payload.booleanValue) {
-        state.bot1Config.booleanValue = action.payload.booleanValue;
-      }
-      if (action.payload.startingDirection) {
-        state.bot1Config.startingDirection = action.payload.startingDirection;
-      }
-      if (action.payload.position) {
-        state.bot1Config.position = action.payload.position;
-      }
-      if (action.payload.active) {
-        state.bot1Config.active = action.payload.active;
+    setBotConfig: (
+      state,
+      action: PayloadAction<{ num: number; config: Partial<eachBotConfig> }>
+    ) => {
+      if (action.payload.num === 1) {
+        state.bot1Config = { ...state.bot1Config, ...action.payload.config };
+      } else if (action.payload.num === 2) {
+        state.bot2Config = { ...state.bot2Config, ...action.payload.config };
       }
     },
-    setBot2Config(state, action) {
-      if (action.payload.botName) {
-        state.bot2Config.botName = action.payload.botName;
-      }
-      if (action.payload.booleanValue) {
-        state.bot2Config.booleanValue = action.payload.booleanValue;
-      }
-      if (action.payload.startingDirection) {
-        state.bot2Config.startingDirection = action.payload.startingDirection;
-      }
-      if (action.payload.position) {
-        state.bot2Config.position = action.payload.position;
-      }
-      if (action.payload.active) {
-        state.bot2Config.active = action.payload.active;
-      }
+    toggleBattleStart: (state) => {
+      state.isBattleStart = !state.isBattleStart;
     },
   },
 });
