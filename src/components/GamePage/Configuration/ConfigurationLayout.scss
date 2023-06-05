@@ -94,7 +94,7 @@
     }
   }
   .buttle-button {
-    background-color: white;
+    background-color: aqua;
     border: none;
     outline: none;
     margin-top: 50px;
@@ -102,10 +102,31 @@
     width: 100px;
     height: 100px;
     font-size: 20px;
-    box-shadow: 7px rgba(164, 163, 163, 0.3);
+    box-shadow: 7px rgba(163, 164, 163, 0.3);
     letter-spacing: 0.05em;
+    border: 5px solid #1e57db;
+    transition: background-color 2.2s;
+    transition-duration: 3s;
+    transition: 2.5s;
+    font-family: fantasy;
     &:hover {
       cursor: pointer;
-    }
+      
+      transform: rotateX(30deg);
+      box-shadow: 0 -15px 15px #00a8ff;
+      transform: matrix3d(35deg);
+      transition-duration: 3s
+      
+      
+    };
+    
+  }
+
+  .buttle-button.STOP {
+    background-color: rgb(235, 21, 6);
+    transition: background-color 2.2s;
+    transition-duration: 3s;
+    transition: 2.5s;
+    
   }
 }
