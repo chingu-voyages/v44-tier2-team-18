@@ -45,6 +45,11 @@ function ConfigurationLayout() {
       <div>
         <h2>Finish setting up the configuration</h2>
       </div>
+      <a className="instruction"
+        onClick={() => handleClickInstruction()}
+      >
+        Check how to play
+      </a>
       <div className="configuration-content">
         {!currentEditingBot && (
           <div className="not-editing">
@@ -141,11 +146,7 @@ function ConfigurationLayout() {
           {isBattleStart ? "STOP" : "Battle"}
         </button>
       )}
-      <button className="instruction"
-        onClick={() => handleClickInstruction()}
-      >
-        How to play
-      </button>
+
       <InstructionModal
         isOpenModal={isOpenModalInstruction}
         closeInstructionModal={closeInstructionModal}
