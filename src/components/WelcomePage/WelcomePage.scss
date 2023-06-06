@@ -1,7 +1,12 @@
   @import 'atropos/scss';
   @import url('https://fonts.googleapis.com/css2?family=Anton&family=Gugi&family=Lato:wght@100&family=Poppins:wght@700&family=Roboto:ital,wght@1,100&family=Sofia&display=swap');
-
+  
   .container-home{
+
+    *, ::after, ::before {
+      box-sizing: unset;
+    }
+
     margin: 2% 10%;
     height: 75vh;
     justify-content: center;
@@ -80,7 +85,7 @@
     
     #rightArrow {
       clip-path: polygon(100% 49%, 0 0, 0 100%);
-      left: 103%;
+      left: 102%;
     }
     
     button:hover #rightArrow {
@@ -91,7 +96,7 @@
     
     button:hover #leftArrow {
       background-color: #27c39f;
-      left: 103%;
+      left: 102%;
       animation: 0.6s ease-in-out both infinite alternate leftArrow8;
     }
     

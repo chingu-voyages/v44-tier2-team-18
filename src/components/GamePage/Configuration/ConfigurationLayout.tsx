@@ -4,6 +4,7 @@ import { SetupBotConfig } from "./SetupBotConfig";
 import { configActions } from "../../../store/index";
 import { useAppDispatch, useAppSelector } from "../../../store";
 import { AiOutlineCheck } from "react-icons/ai";
+import InstructionModal from "./InstructionModal";
 
 function ConfigurationLayout() {
   const dispatch = useAppDispatch();
@@ -13,6 +14,8 @@ function ConfigurationLayout() {
   const bot1Config = useAppSelector((state) => state.bot1Config);
   const bot2Config = useAppSelector((state) => state.bot2Config);
   const isBattleStart = useAppSelector((state) => state.isBattleStart);
+
+  const [isOpenModalInstruction, setIsOpenModalInstruction] = useState<boolean>(false);
 
   const [currentEditingBot, setCurrentEditingBot] = useState<string>("");
 
@@ -29,11 +32,24 @@ function ConfigurationLayout() {
     dispatch(configActions.toggleBattleStart());
   };
 
+  const handleClickInstruction = () => {
+    setIsOpenModalInstruction(true);
+  }
+
+  const closeInstructionModal = () => {
+    setIsOpenModalInstruction(false);
+  }
+
   return (
     <div className="configuration-container">
       <div>
         <h2>Finish setting up the configuration</h2>
       </div>
+      <a className="instruction"
+        onClick={() => handleClickInstruction()}
+      >
+        Check how to play
+      </a>
       <div className="configuration-content">
         {!currentEditingBot && (
           <div className="not-editing">
@@ -130,6 +146,11 @@ function ConfigurationLayout() {
           {isBattleStart ? "STOP" : "BATTLE"}
         </button>
       )}
+
+      <InstructionModal
+        isOpenModal={isOpenModalInstruction}
+        closeInstructionModal={closeInstructionModal}
+      />
     </div>
   );
 }

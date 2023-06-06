@@ -81,14 +81,17 @@
             color: #8ac7ff;
         }
 
-        .table {
+        table {
+            border-collapse: separate;
+        }
 
-            th.value {
+        .info-table {
+
+            .value {
                 color: #ff8adf;
             }
 
-            th,
-            td {
+            th {
                 text-align: left;
                 padding: 8px;
                 border: 1px solid #ddd;
