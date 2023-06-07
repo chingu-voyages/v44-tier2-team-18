@@ -142,8 +142,8 @@ function ConfigurationLayout() {
       {!currentEditingBot && (
         <button
           onClick={(e: React.MouseEvent<HTMLElement>) => startBattle(e)}
-          className="buttle-button">
-          {isBattleStart ? "STOP" : "Battle"}
+          className={`buttle-button ${isBattleStart ? "STOP" : "BATTLE"}`}>
+          {isBattleStart ? "STOP" : "BATTLE"}
         </button>
       )}
 
