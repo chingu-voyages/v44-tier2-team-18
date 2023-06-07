@@ -1,7 +1,7 @@
 .configuration-container {
   h2 {
     color: white;
-    margin: 30px 0;
+    margin: 40px 0;
   }
   text-align: center;
   .rule-explanation {
@@ -111,18 +111,15 @@
     font-family: fantasy;
     font-weight: 600;
     font-size: 18px;
-    
+
     &:hover {
       cursor: pointer;
-      
+
       transform: rotateX(30deg);
       box-shadow: 0 -15px 15px #00a8ff;
       transform: matrix3d(35deg);
-      transition-duration: 3s
-      
-      
-    };
-    
+      transition-duration: 3s;
+    }
   }
 
   .buttle-button.STOP {
@@ -130,7 +127,6 @@
     transition: background-color 2.2s;
     transition-duration: 3s;
     transition: 2.5s;
-    
   }
   .instruction {
     color: #77b2e8;

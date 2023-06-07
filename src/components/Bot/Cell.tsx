@@ -13,9 +13,13 @@ interface Bot {
 
 function Cell({ bot }: CellProps) {
   if (bot) {
+    console.log(bot);
     return (
       <div className="bot">
-        <div className={bot.colour === "Red" ? "red-bot" : "blue-bot"}>
+        <div
+          className={`each-bot ${
+            bot.colour === "Red" ? "red-bot" : "blue-bot"
+          }`}>
           {bot.active === true ? <img src={botIcon} alt="Bot Icon" /> : ""}
         </div>
       </div>
