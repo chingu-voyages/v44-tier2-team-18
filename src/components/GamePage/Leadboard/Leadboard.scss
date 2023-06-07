@@ -41,7 +41,11 @@
                     font-weight: 600;
                     text-align: center;
                     font-size: calc(.45rem + .7vw);
-                    border-bottom: 1px solid lightgrey;     
+                    border-bottom: 1px solid lightgrey;
+                    overflow: hidden;
+                    max-width:150px;
+                    text-overflow: ellipsis;
+                       
                 }
 
                 .result {
@@ -97,7 +101,13 @@
                 border: 1px solid #ddd;
                 border-radius: 5px;
                 font-size: calc(.45rem + .7vw);
-            }  
+            } 
+            .bot-name{
+                overflow: hidden;
+                max-width:200px;
+                text-overflow: ellipsis;
+                
+            } 
         }
 
         .result-info {
