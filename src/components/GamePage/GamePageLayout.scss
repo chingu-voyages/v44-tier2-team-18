@@ -48,7 +48,6 @@
     .configuraion-section {
       .mobile-menu {
         width: 50%;
-        min-width: 200px;
         height: 100%;
         position: fixed;
         top: 0;
@@ -59,6 +58,7 @@
         transition: 0.7s;
         &.active {
           left: 0;
+          min-width: 200px;
         }
       }
     }
