@@ -68,7 +68,6 @@
     grid-template-rows: 1fr 2fr;
     padding-bottom: 10px;
 
-<<<<<<< HEAD
             .each-bot {
                 display: flex;
                 flex-direction: column;
@@ -102,7 +101,6 @@
                 }
             }
         }
-=======
     .info-text {
       font-size: calc(0.5rem + 1vw);
       grid-column-start: 1;
@@ -112,7 +110,6 @@
       font-weight: 600;
       padding-top: 10px;
       color: #8ac7ff;
->>>>>>> a938b65feb7d6d25d228c65b27c810e1e29f761d
     }
 
     table {
@@ -154,60 +151,6 @@
         @media (max-width: 437px) {
           padding: 0;
         }
-<<<<<<< HEAD
-
-        table {
-            border-collapse: separate;
-        }
-
-        .info-table {
-
-            .value {
-                color: #ff8adf;
-            }
-
-            th {
-                text-align: left;
-                padding: 8px;
-                border: 1px solid #ddd;
-                border-radius: 5px;
-                font-size: calc(.45rem + .7vw);
-            } 
-            .bot-name{
-                overflow: hidden;
-                max-width:200px;
-                text-overflow: ellipsis;
-                
-            } 
-        }
-
-        .result-info {
-            display: flex;
-            flex-direction: column;
-            justify-content: space-around;
-            font-weight: 600;
-            font-size: calc(.5rem + .5vw);
-            padding-left: 2vw;
-
-            @media (max-width: 420px) {
-                padding-left: 0;
-            }
-                .value {
-                    border-bottom: 1px solid lightgrey;
-                    padding: 0 10px;
-                    color: #ff8adf;
-                    text-transform: uppercase;
-                    font-size: calc(.5rem + .5vw);
-
-                    @media (max-width: 420px) {
-                        padding: 0 ;
-                    }
-                } 
-        }
-    }  
-=======
       }
     }
   }
->>>>>>> a938b65feb7d6d25d228c65b27c810e1e29f761d
-}
