@@ -93,41 +93,6 @@
       }
     }
   }
-  .buttle-button {
-    background-color: aqua;
-    border: none;
-    outline: none;
-    margin: 10px 0 30px 0;
-    border-radius: 50%;
-    width: 100px;
-    height: 100px;
-    font-size: 20px;
-    box-shadow: 7px rgba(163, 164, 163, 0.3);
-    letter-spacing: 0.05em;
-    border: 5px solid #1e57db;
-    transition: background-color 2.2s;
-    transition-duration: 3s;
-    transition: 2.5s;
-    font-family: fantasy;
-    font-weight: 600;
-    font-size: 18px;
-
-    &:hover {
-      cursor: pointer;
-
-      transform: rotateX(30deg);
-      box-shadow: 0 -15px 15px #00a8ff;
-      transform: matrix3d(35deg);
-      transition-duration: 3s;
-    }
-  }
-
-  .buttle-button.STOP {
-    background-color: rgb(235, 21, 6);
-    transition: background-color 2.2s;
-    transition-duration: 3s;
-    transition: 2.5s;
-  }
   .instruction {
     color: #77b2e8;
     font-weight: 600;
@@ -137,6 +102,11 @@
 
     &:hover {
       color: #a07ead;
+    }
+  }
+  @media (max-width: 820px) {
+    .config-buttle-button {
+      display: none;
     }
   }
 }
