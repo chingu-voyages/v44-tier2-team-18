@@ -1,14 +1,10 @@
 @import "../../global/global.scss";
 .layout-container {
   box-sizing: border-box;
-  width: 100vw;
-  height: 100vh;
-  background-color: $background-color;
   background-image: url(../../assets/bots.png);
   background-size: contain;
   background-repeat: no-repeat;
   background-position: center;
-  opacity: $background-opacity;
   padding: 10px;
 
   .content {
