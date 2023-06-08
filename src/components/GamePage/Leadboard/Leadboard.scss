@@ -14,7 +14,7 @@
     border-right: 1px solid lightgrey;
     padding: 0 5vw;
 
-    @media (max-width: 370px) {
+    @media (max-width: 430px) {
       padding: 0 0;
     }
 
@@ -35,12 +35,22 @@
         display: flex;
         flex-direction: column;
         justify-content: space-around;
+        align-items: center;
 
         .bot-name {
           font-weight: 600;
           text-align: center;
           font-size: calc(0.45rem + 0.7vw);
           border-bottom: 1px solid lightgrey;
+          height: 30px;
+          overflow: hidden;
+          width: 100px;
+          text-overflow: ellipsis;
+
+          @media (max-width: 430px){
+            width: 30px;
+            height: 20px;
+          }
         }
 
         .result {
@@ -53,7 +63,7 @@
           font-size: calc(0.6rem + 1vw);
           margin-top: 5px;
 
-          @media (max-width: 370px) {
+          @media (max-width: 430px) {
             width: 20px;
             height: 20px;
           }
@@ -68,41 +78,6 @@
     grid-template-rows: 1fr 2fr;
     padding-bottom: 10px;
 
-<<<<<<< HEAD
-            .each-bot {
-                display: flex;
-                flex-direction: column;
-                justify-content: space-around;
-
-                .bot-name {
-                    font-weight: 600;
-                    text-align: center;
-                    font-size: calc(.45rem + .7vw);
-                    border-bottom: 1px solid lightgrey;
-                    overflow: hidden;
-                    max-width:150px; 
-                    text-overflow: ellipsis;
-                       
-                }
-
-                .result {
-                    border: 1px solid lightgrey;
-                    border-radius: 5px;
-                    width: 30px;
-                    height: 30px;
-                    text-align: center;
-                    color: #ff8adf;
-                    font-size: calc(0.6rem + 1vw);
-                    margin-top: 5px;
-
-                    @media (max-width: 420px) {
-                        width: 20px;
-                        height: 20px;
-                    }
-                }
-            }
-        }
-=======
     .info-text {
       font-size: calc(0.5rem + 1vw);
       grid-column-start: 1;
@@ -112,7 +87,6 @@
       font-weight: 600;
       padding-top: 10px;
       color: #8ac7ff;
->>>>>>> a938b65feb7d6d25d228c65b27c810e1e29f761d
     }
 
     table {
@@ -122,6 +96,7 @@
     .info-table {
       .value {
         color: #ff8adf;
+        text-align: center;
       }
 
       th {
@@ -131,6 +106,16 @@
         border-radius: 5px;
         font-size: calc(0.45rem + 0.7vw);
       }
+
+      .bot-name {
+        overflow: hidden;
+        max-width: 100px;
+        text-overflow: ellipsis;
+
+        @media (max-width: 430px){
+            max-width: 50px;
+        }
+       }
     }
 
     .result-info {
@@ -141,7 +126,7 @@
       font-size: calc(0.5rem + 0.5vw);
       padding-left: 2vw;
 
-      @media (max-width: 370px) {
+      @media (max-width: 430px) {
         padding-left: 0;
       }
       .value {
@@ -151,63 +136,10 @@
         text-transform: uppercase;
         font-size: calc(0.5rem + 0.5vw);
 
-        @media (max-width: 437px) {
+        @media (max-width: 430px) {
           padding: 0;
         }
-<<<<<<< HEAD
-
-        table {
-            border-collapse: separate;
-        }
-
-        .info-table {
-
-            .value {
-                color: #ff8adf;
-            }
-
-            th {
-                text-align: left;
-                padding: 8px;
-                border: 1px solid #ddd;
-                border-radius: 5px;
-                font-size: calc(.45rem + .7vw);
-            } 
-            .bot-name{
-                overflow: hidden;
-                max-width:200px;
-                text-overflow: ellipsis;
-                
-            } 
-        }
-
-        .result-info {
-            display: flex;
-            flex-direction: column;
-            justify-content: space-around;
-            font-weight: 600;
-            font-size: calc(.5rem + .5vw);
-            padding-left: 2vw;
-
-            @media (max-width: 420px) {
-                padding-left: 0;
-            }
-                .value {
-                    border-bottom: 1px solid lightgrey;
-                    padding: 0 10px;
-                    color: #ff8adf;
-                    text-transform: uppercase;
-                    font-size: calc(.5rem + .5vw);
-
-                    @media (max-width: 420px) {
-                        padding: 0 ;
-                    }
-                } 
-        }
-    }  
-=======
       }
     }
   }
->>>>>>> a938b65feb7d6d25d228c65b27c810e1e29f761d
 }
