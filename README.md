@@ -18,6 +18,8 @@ it and the other bots' boolean value to determine which one wins or looses, or
 if the collision results in a tie. Loosing bots disappear and winning bots
 continue moving about the arena until only one remains.
 
+<br>
+
 ## :gear: General Instructions
 
 This project is designed to be worked on by a team rather than an individual
@@ -34,6 +36,8 @@ teamwork to make it distinctive and unique.
 Take note that we haven't given specific direction on what your UI/UX should
 look like. This is another area where you and your team can put your creativity
 to work!
+
+<br>
 
 ## :key: Requirements & Specifications
 
@@ -149,6 +153,7 @@ to work!
 - [ ] User can see the bot with the most wins highlighted in some way in the
       Leaderboard.
 
+<br>
 
 ## :wrench: Run this project locally
 
@@ -163,7 +168,7 @@ to work!
 3. run the project in your local host  
    `npm start`
 
-  <br>
+<br>
 
 ## :card_index_dividers: The workflow of github
 
