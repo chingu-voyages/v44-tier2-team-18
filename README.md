@@ -6,6 +6,21 @@ This app was created for the Chingu Voyage 44 - Tier 2:
 
 #### LIVE LINK: https://boole-bot-game.netlify.app/
 
+## :computer: Tech Used/Dependencies
+
+- Typescript
+- React
+- Redux
+- HTML5
+- CSS3
+- SCSS
+- Javascript
+- Bootstrap
+- Reactstrap
+- Icons from react-icons
+
+<br>
+
 Boole Bots is a game that is not only fun, but also an aid in helping to
 understand basic Boolean logic. This game has an arena of 8x8 game tiles in
 which your bots move at random speeds and trajectories. The Bots are assigned
@@ -191,16 +206,8 @@ to work!
 
 8. After others have approved your changes, you should merge your branch with the development branch. Be sure to execute the following command to retrieve the most recent changes from the development branch: "git pull." If conflicts arise, be sure to address them promptly.
 
-<br>
 
-## :computer: Tech Used/Dependencies
 
-- Typescript
-- React
-- Redux
-- Bootstrap
-- Reactstrap
-- Icons from react-icons
 
 
 
