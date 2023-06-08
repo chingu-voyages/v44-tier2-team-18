@@ -38,8 +38,8 @@ function Leadboard({ result1, result2, output }: leadboardProps): JSX.Element {
           <tbody>
             <tr>
               <th>Name</th>
-              <th>{bot1Config.botName}</th>
-              <th>{bot2Config.botName}</th>
+              <th className='bot-name'>{bot1Config.botName}</th>
+              <th className='bot-name'>{bot2Config.botName}</th>
             </tr>
             <tr>
               <th>Boolean value</th>

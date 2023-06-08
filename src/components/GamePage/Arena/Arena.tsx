@@ -5,6 +5,7 @@ import React, { useEffect, useState } from "react";
 import { botCollising } from "../../Bot/BotCollising";
 import { useAppSelector } from "../../../store";
 import Leadboard from "../Leadboard/Leadboard";
+import { ButtleButton } from "../../../global/ButtleButton";
 
 let genNArray = (n: number) => Array.from({ length: n }, () => ({}));
 
@@ -117,6 +118,9 @@ function Arena(): JSX.Element {
             </div>
           );
         })}
+        <div className="arena-buttle-button">
+          <ButtleButton />
+        </div>
       </div>
     </div>
   );
