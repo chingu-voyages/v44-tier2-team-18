@@ -1,122 +1,41 @@
-# How to start the app
+# Boole Bots Game 
 
-1. Execute the git clone in the folder you will work on with this commande  
-   `git clone https://github.com/chingu-voyages/v44-tier2-team-18.git`
+## :star: Overview
 
-   `git branch -a`
-   `git checkout development`
+This app was created for the Chingu Voyage 44 - Tier 2:
 
-2. Execute npm install  
-   `npm install`
+#### LIVE LINK: https://boole-bot-game.netlify.app/
 
-3. run the project in your local host  
-   `npm start`
+## :computer: Tech Used/Dependencies
 
-- If there is an error "Cannot find module 'sass' --> run this `npm install sass`
-  <br>
-
-# The workflow of github
-
-1. Create a new branch for your work. Use 4 basic types of branches: bug, feature, refactor, and style to start with your branch's name. For example: `git checkout -b 'feature/welcome-page'`
-
-- Don't forget to update your branch before pushing any changes
-  `git pull origin <branch name>` (branch name should be "development" or "master" depending on your necessaries)
-
-2. `git init` (only for the first time of this project)
-
-3. `git add <filename>` or `git add .`(all of the files in your branch)
-
-4. Commit to your branch using keywords: "feat, fix, style, refactor, docs" before your comment `git commit -m "keywords: <comment>"`. For example: `git commit -m "feat: Create footer section"`
-
-5. `git remote add origin https://github.com/chingu-voyages/v44-tier2-team-18.git`(only for the first time of this project)
-
-6. `git push origin <your branch name>`
-
-7. Open a pull request and wait for review from other members.
-
-8. After others have approved your changes, you should merge your branch with the development branch. Be sure to execute the following command to retrieve the most recent changes from the development branch: "git pull." If conflicts arise, be sure to address them promptly.
-
-   <br>
-   <br>
-
-# How to use global.scss
-
-1.  add import in the scss file where you want to use global  
-    `@import "../../global/global.scss";` (change the path depending on where you file is)
-2.  use the variable defined in the global.scss file  
-    `.container-home h1 {`
-    `color: $textcolor;`
-    `}`
+- Typescript
+- React
+- Redux
+- HTML5
+- CSS3
+- SCSS
+- Javascript
+- Bootstrap
+- Reactstrap
+- Icons from react-icons
 
 <br>
-<br>
-
-# How to use redux-toolkit
-
-## To access the state in store
-
-1. Add this import in the top of your code
-   `import { useAppSelector } from "../../../store";`
-   //the path may be changed depending on where you file is.
-2. Get state by using useAppSelector(This is same function as UseSelector. To be able to use it in typescript, we need write this way.)
-   `const config = useAppSelector((state) => state);`
-
-<br>
-
-## To update the state in store
-
-1. Add this import in the top of your code
-   `import { useAppDispatch } from "../../../store";`
-   //the path may be changed depending on where you file is.
-2. Get state by using useAppSelector(This is same function as UseSelector. To be able to use it in typescript, we need write this way.)
-   `const dispatch = useAppDispatch();`
-   `dispatch(configActions.setSpeed(2));`
-
-<br>
-<br>
-
-# Voyage-tasks
-
-Your project's `readme` is as important to success as your code. For
-this reason you should put as much care into its creation and maintenance
-as you would any other component of the application.
-
-If you are unsure of what should go into the `readme` let this article,
-written by an experienced Chingu, be your starting point -
-[Keys to a well written README](https://tinyurl.com/yk3wubft).
-
-And before we go there's "one more thing"! Once you decide what to include
-in your `readme` feel free to replace the text we've provided here.
-
-> Own it & Make it your Own!
-
-<br>
-
-# Voyage-project-tier2-boolebots
-
-## Table of Contents
-
-- [Overview](#overview)
-- [General Instructions](#general-instructions)
-- [Requirements & Specifications](#requirements-specifications)
-- [Acknowledgements](#acknowledgements)
-- [About Chingu](#about-chingu)
-
-## Overview
 
 Boole Bots is a game that is not only fun, but also an aid in helping to
 understand basic Boolean logic. This game has an arena of 8x8 game tiles in
 which your bots move at random speeds and trajectories. The Bots are assigned
 boolean values of 0 or 1 and boolean operations - AND, OR, NOR, NOT.
 
-![Boolean operations](./assets/boolean_operations.png)
+![Boolean operations](./src/assets/boolean_operations.png)
 
 When a bot collides with another bot its boolean operation is applied to both
 it and the other bots' boolean value to determine which one wins or looses, or
 if the collision results in a tie. Loosing bots disappear and winning bots
 continue moving about the arena until only one remains.
 
-## General Instructions
+<br>
+
+## :gear: General Instructions
 
 This project is designed to be worked on by a team rather than an individual
 Chingu. This means you and your team will need to thoroughly read and
@@ -133,7 +52,9 @@ Take note that we haven't given specific direction on what your UI/UX should
 look like. This is another area where you and your team can put your creativity
 to work!
 
-## Requirements & Specifications
+<br>
+
+## :key: Requirements & Specifications
 
 ### What You Need to Do
 
@@ -247,13 +168,51 @@ to work!
 - [ ] User can see the bot with the most wins highlighted in some way in the
       Leaderboard.
 
-## About Chingu
+<br>
 
-If you aren’t yet a member of Chingu we invite you to join us. We help our
-members transform what they’ve learned in courses & tutorials into the
-practical experience employers need and want.
+## :wrench: Run this project locally
 
-## Acknowledgements
+1. Execute the git clone in the folder you will work on with this commande  
+   `git clone https://github.com/chingu-voyages/v44-tier2-team-18.git`
 
-Thanks to our friend [Florin Pop](https://twitter.com/florinpop1705) who
-contributed the initial version on his [App Ideas repo](https://github.com/florinpop17/app-ideas).
+   `git checkout development`
+
+2. Execute npm install  
+   `npm install`
+
+3. run the project in your local host  
+   `npm start`
+
+<br>
+
+## :card_index_dividers: The workflow of github
+
+1. Create a new branch for your work. Use 4 basic types of branches: bug, feature, refactor, and style to start with your branch's name. For example: `git checkout -b 'feature/welcome-page'`
+
+- Don't forget to update your branch before pushing any changes
+  `git pull origin <branch name>` (branch name should be "development" or "master" depending on your necessaries)
+
+2. `git init` (only for the first time of this project)
+
+3. `git add <filename>` or `git add .`(all of the files in your branch)
+
+4. Commit to your branch using keywords: "feat, fix, style, refactor, docs" before your comment `git commit -m "keywords: <comment>"`. For example: `git commit -m "feat: Create footer section"`
+
+5. `git remote add origin https://github.com/chingu-voyages/v44-tier2-team-18.git`(only for the first time of this project)
+
+6. `git push origin <your branch name>`
+
+7. Open a pull request and wait for review from other members.
+
+8. After others have approved your changes, you should merge your branch with the development branch. Be sure to execute the following command to retrieve the most recent changes from the development branch: "git pull." If conflicts arise, be sure to address them promptly.
+
+
+
+
+
+
+
+
+
+
+

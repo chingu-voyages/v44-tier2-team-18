@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import Arena from "./Arena/Arena";
 import ConfigurationLayout from "./Configuration/ConfigurationLayout";
-import Leadboard from "./Leadboard/Leadboard";
 import "./GamePageLayout.scss";
 
 function GamePageLayout(): JSX.Element {
