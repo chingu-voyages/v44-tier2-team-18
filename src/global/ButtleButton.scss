@@ -17,6 +17,10 @@
   font-weight: 600;
   font-size: 18px;
 
+  @media (max-width: 430px) {
+    font-size: 10px;
+  }
+
   &:hover {
     cursor: pointer;
     transform: rotateX(30deg);
